@@ -1,10 +1,46 @@
+import { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+
+const EASE = [0.22, 1, 0.36, 1];
+
 export default function About() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const shouldReduceMotion = useReducedMotion();
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.12,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: EASE },
+    },
+  };
+
   return (
-    <section id="about" className="relative py-24 lg:py-32 px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section
+      ref={sectionRef}
+      id="about"
+      className="relative py-24 lg:py-32 px-6 lg:px-8"
+    >
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className="max-w-7xl mx-auto"
+      >
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left: label + headline */}
-          <div className="lg:col-span-5">
+          <motion.div variants={itemVariants} className="lg:col-span-5">
             <span className="text-xs uppercase tracking-widest text-[#8b5cf6] font-semibold">
               About
             </span>
@@ -15,10 +51,10 @@ export default function About() {
               </span>
               .
             </h2>
-          </div>
+          </motion.div>
 
           {/* Right: content */}
-          <div className="lg:col-span-7 lg:pt-4">
+          <motion.div variants={itemVariants} className="lg:col-span-7 lg:pt-4">
             <p className="text-xl text-white leading-relaxed mb-6">
               Hi, I'm Kent.
             </p>
@@ -46,30 +82,24 @@ export default function About() {
                 <p className="text-2xl lg:text-3xl font-bold text-white">
                   Cinematic
                 </p>
-                <p className="text-sm text-[#71717a] mt-1">
-                  Visual style
-                </p>
+                <p className="text-sm text-[#71717a] mt-1">Visual style</p>
               </div>
               <div>
                 <p className="text-2xl lg:text-3xl font-bold text-white">
                   AI-First
                 </p>
-                <p className="text-sm text-[#71717a] mt-1">
-                  Workflow
-                </p>
+                <p className="text-sm text-[#71717a] mt-1">Workflow</p>
               </div>
               <div>
                 <p className="text-2xl lg:text-3xl font-bold text-white">
                   Fast
                 </p>
-                <p className="text-sm text-[#71717a] mt-1">
-                  Turnaround
-                </p>
+                <p className="text-sm text-[#71717a] mt-1">Turnaround</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

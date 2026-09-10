@@ -3,18 +3,48 @@ import { useState, useEffect } from "react";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
+  // Detect scroll position for navbar styling
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Track which section is in view
+  useEffect(() => {
+    const sectionIds = ["home", "work", "about", "services", "contact"];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-40% 0px -55% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
   const links = [
-    { label: "Work", href: "#work" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Contact", href: "#contact" },
+    { label: "Work", href: "#work", id: "work" },
+    { label: "About", href: "#about", id: "about" },
+    { label: "Services", href: "#services", id: "services" },
+    { label: "Contact", href: "#contact", id: "contact" },
   ];
 
   return (
@@ -25,7 +55,11 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex justify-between items-center">
+      <div
+        className={`max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center transition-all duration-300 ${
+          scrolled ? "py-3.5" : "py-5"
+        }`}
+      >
         <a
           href="#home"
           className="text-lg font-bold tracking-tight text-white"
@@ -35,18 +69,33 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-[#a1a1aa] hover:text-white transition-colors duration-200 font-medium"
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) => {
+            const isActive = activeSection === l.id;
+            return (
+              <a
+                key={l.href}
+                href={l.href}
+                className={`group relative text-sm font-medium transition-colors duration-300 ${
+                  isActive
+                    ? "text-white"
+                    : "text-[#a1a1aa] hover:text-white"
+                }`}
+              >
+                {l.label}
+                {/* Underline indicator */}
+                <span
+                  className={`absolute left-0 -bottom-1 h-px bg-[#8b5cf6] transition-all duration-300 ${
+                    isActive
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </a>
+            );
+          })}
           <a
             href="#contact"
-            className="ml-4 text-sm font-medium bg-[#8b5cf6] hover:bg-[#7c3aed] text-white px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]"
+            className="ml-4 text-sm font-medium bg-[#8b5cf6] hover:bg-[#7c3aed] text-white px-5 py-2 rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98]"
           >
             Hire Me
           </a>
@@ -98,7 +147,7 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="bg-[#8b5cf6] hover:bg-[#7c3aed] text-white px-5 py-3 rounded-full text-center font-medium mt-2"
+            className="bg-[#8b5cf6] hover:bg-[#7c3aed] text-white px-5 py-3 rounded-full text-center font-medium mt-2 transition-colors"
           >
             Hire Me
           </a>

@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { projects } from "../data/projects";
 import VideoCard from "../components/VideoCard";
 import VideoModal from "../components/VideoModal";
+
+const EASE = [0.22, 1, 0.36, 1];
 
 const FILTERS = [
   { label: "All Work", value: "all" },
@@ -16,17 +19,40 @@ export default function VideoShowcase() {
   const [filter, setFilter] = useState("all");
   const [selected, setSelected] = useState(null);
 
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const gridRef = useRef(null);
+
+  const isHeaderInView = useInView(headerRef, { once: true, amount: 0.3 });
+  const isGridInView = useInView(gridRef, { once: true, amount: 0.1 });
+  const shouldReduceMotion = useReducedMotion();
+
   const visible =
     filter === "all"
       ? projects
       : projects.filter((p) => p.category === filter);
 
   return (
-    <section id="work" className="relative py-24 lg:py-32 px-6 lg:px-8">
+    <section
+      ref={sectionRef}
+      id="work"
+      className="relative py-24 lg:py-32 px-6 lg:px-8"
+    >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#8b5cf6]/10 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-7xl mx-auto">
-        <div className="max-w-2xl mb-12 lg:mb-16">
+        {/* Header with scroll reveal */}
+        <motion.div
+          ref={headerRef}
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
+          animate={
+            isHeaderInView
+              ? { opacity: 1, y: 0 }
+              : { opacity: 0, y: shouldReduceMotion ? 0 : 30 }
+          }
+          transition={{ duration: 0.7, ease: EASE }}
+          className="max-w-2xl mb-12 lg:mb-16"
+        >
           <span className="text-xs uppercase tracking-widest text-[#8b5cf6] font-semibold">
             Selected Work
           </span>
@@ -41,9 +67,19 @@ export default function VideoShowcase() {
             A curated collection of AI-generated videos built for brands,
             creators, and businesses that want to stand out.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="flex flex-wrap gap-2 mb-10">
+        {/* Filter tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
+          animate={
+            isHeaderInView
+              ? { opacity: 1, y: 0 }
+              : { opacity: 0, y: shouldReduceMotion ? 0 : 15 }
+          }
+          transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
+          className="flex flex-wrap gap-2 mb-10"
+        >
           {FILTERS.map((f) => (
             <button
               key={f.value}
@@ -57,37 +93,79 @@ export default function VideoShowcase() {
               {f.label}
             </button>
           ))}
-        </div>
+        </motion.div>
 
+        {/* Grid with staggered reveal */}
         {visible.length === 0 ? (
           <div className="text-center py-20 text-[#71717a]">
             No projects in this category yet.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-auto">
+          <motion.div
+            ref={gridRef}
+            initial="hidden"
+            animate={isGridInView ? "visible" : "hidden"}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: shouldReduceMotion ? 0 : 0.08,
+                },
+              },
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-auto"
+          >
             {visible.map((project) => (
-              <VideoCard
+              <motion.div
                 key={project.id}
-                project={project}
-                onClick={() => setSelected(project)}
-              />
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: shouldReduceMotion ? 0 : 30,
+                  },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.7, ease: EASE },
+                  },
+                }}
+              >
+                <VideoCard
+                  project={project}
+                  onClick={() => setSelected(project)}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
-        <div className="mt-16 text-center">
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
+          animate={
+            isGridInView
+              ? { opacity: 1, y: 0 }
+              : { opacity: 0, y: shouldReduceMotion ? 0 : 15 }
+          }
+          transition={{ duration: 0.6, delay: 0.5, ease: EASE }}
+          className="mt-16 text-center"
+        >
           <p className="text-[#a1a1aa] mb-4">
             Want to see more or discuss a project?
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 text-[#8b5cf6] hover:text-[#a78bfa] font-semibold transition-colors"
+            className="inline-flex items-center gap-2 text-[#8b5cf6] hover:text-[#a78bfa] font-semibold transition-colors group"
           >
-            Let's talk →
+            Let's talk
+            <span className="group-hover:translate-x-1 transition-transform duration-300">
+              →
+            </span>
           </a>
-        </div>
+        </motion.div>
       </div>
 
+      {/* Modal */}
       {selected && (
         <VideoModal project={selected} onClose={() => setSelected(null)} />
       )}

@@ -1,46 +1,47 @@
 export default function VideoCard({ project, onClick }) {
-  const categoryLabel = {
-    commercial: "Commercial",
-    food: "Food",
-    social: "Social",
-    character: "Character",
-    story: "Storytelling",
-  }[project.category] || project.category;
+  const categoryLabel =
+    {
+      commercial: "Commercial",
+      food: "Food",
+      social: "Social",
+      character: "Character",
+      story: "Storytelling",
+    }[project.category] || project.category;
 
   return (
     <div
       onClick={onClick}
-      className="group relative rounded-2xl overflow-hidden cursor-pointer bg-[#13131e] border border-[#26263a] hover:border-[#8b5cf6]/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(139,92,246,0.25)]"
+      className="group relative rounded-2xl overflow-hidden cursor-pointer bg-[#13131e] border border-[#26263a] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-[#8b5cf6]/60 hover:-translate-y-1.5 hover:shadow-[0_20px_60px_-15px_rgba(139,92,246,0.4)]"
     >
-      {/* Media area — aspect ratio depends on type */}
-     <div className="relative overflow-hidden aspect-[4/3]">
+      {/* Media area — uniform aspect ratio for clean grid */}
+      <div className="relative overflow-hidden aspect-[4/3]">
         <img
           src={project.thumbnail}
           alt={project.title}
           loading="lazy"
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] group-hover:brightness-[1.08]"
         />
 
         {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/30 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
 
         {/* Category badge top-left */}
-        <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10">
+        <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 transition-transform duration-500 group-hover:-translate-y-0.5">
           <span className="text-xs font-medium text-white/90 uppercase tracking-wider">
             {categoryLabel}
           </span>
         </div>
 
         {/* Type badge top-right */}
-        <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10">
+        <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 transition-transform duration-500 group-hover:-translate-y-0.5">
           <span className="text-xs font-medium text-[#a78bfa]">
             {project.type}
           </span>
         </div>
 
         {/* Play button center — appears on hover */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="w-16 h-16 rounded-full bg-[#8b5cf6] flex items-center justify-center shadow-[0_0_40px_rgba(139,92,246,0.6)] transform scale-90 group-hover:scale-100 transition-transform duration-300">
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+          <div className="w-16 h-16 rounded-full bg-[#8b5cf6] flex items-center justify-center shadow-[0_0_40px_rgba(139,92,246,0.6)] transform scale-75 group-hover:scale-100 transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]">
             <svg
               className="w-6 h-6 text-white ml-1"
               fill="currentColor"
@@ -51,8 +52,8 @@ export default function VideoCard({ project, onClick }) {
           </div>
         </div>
 
-        {/* Bottom overlay text */}
-        <div className="absolute bottom-0 left-0 right-0 p-5">
+        {/* Bottom overlay text — nudges up on hover */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
           <h3 className="text-lg font-bold text-white leading-tight">
             {project.title}
           </h3>
@@ -74,8 +75,11 @@ export default function VideoCard({ project, onClick }) {
             </span>
           ))}
         </div>
-        <span className="text-xs font-medium text-[#8b5cf6] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          View Project →
+        <span className="text-xs font-medium text-[#8b5cf6] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+          View Project
+          <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+            →
+          </span>
         </span>
       </div>
     </div>
