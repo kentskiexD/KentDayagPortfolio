@@ -82,14 +82,19 @@ export default function VideoModal({ project, onClose }) {
 
             {/* Details */}
             <div className="p-6 lg:p-8">
-              <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="text-xs uppercase tracking-wider font-semibold px-3 py-1 rounded-full bg-[#8b5cf6]/15 text-[#a78bfa] border border-[#8b5cf6]/30">
-                  {project.category}
-                </span>
-                <span className="text-xs uppercase tracking-wider font-semibold px-3 py-1 rounded-full bg-[#26263a] text-[#a1a1aa]">
-                  {project.type}
-                </span>
-              </div>
+             <div className="flex flex-wrap items-center gap-2 mb-3">
+  <span className="text-xs uppercase tracking-wider font-semibold px-3 py-1 rounded-full bg-[#8b5cf6]/15 text-[#a78bfa] border border-[#8b5cf6]/30">
+    {{
+      "ai-video": "AI Video",
+      "product-visuals": "Product Visual",
+      "social-content": "Social Content",
+      voiceover: "AI Voiceover",
+    }[project.category] || project.category}
+  </span>
+  <span className="text-xs uppercase tracking-wider font-semibold px-3 py-1 rounded-full bg-[#26263a] text-[#a1a1aa]">
+    {project.type}
+  </span>
+</div>
 
               <h2 className="text-2xl lg:text-3xl font-bold text-white">
                 {project.title}

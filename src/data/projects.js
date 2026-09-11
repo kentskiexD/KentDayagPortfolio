@@ -1,76 +1,107 @@
-// Placeholder AI video projects. Swap with your real work later.
+// Placeholder projects. Replace videoUrl, thumbnail, and text with your real AI content.
 
 export const projects = [
+  // ===== AI VIDEOS (short-form) =====
   {
     id: 1,
-    title: "AI Product Commercial",
-    category: "commercial",
-    type: "Landscape",
+    title: "AI Product Reel",
+    category: "ai-video",
+    type: "Vertical",
     description:
-      "A cinematic AI-generated commercial spot for a modern lifestyle brand. Pacing, color grading, and motion designed for paid social ads.",
-    tools: ["Runway ML", "After Effects", "ElevenLabs"],
+      "Short-form AI video for a product launch — built for Instagram Reels and TikTok with strong hooks and quick pacing.",
+    tools: ["AI Video", "Reels"],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/vid1/1200/700",
+    thumbnail: "https://picsum.photos/seed/vid1/1200/900",
     size: "large",
   },
   {
     id: 2,
-    title: "Cinematic Food Video",
-    category: "food",
-    type: "Portrait",
+    title: "Cinematic Short",
+    category: "ai-video",
+    type: "Landscape",
     description:
-      "Mouth-watering AI-generated food visuals with dynamic camera moves, macro shots, and warm cinematic tones.",
-    tools: ["Sora", "Premiere Pro"],
+      "A cinematic short-form AI video designed to capture attention in the first few seconds.",
+    tools: ["AI Video", "Shorts"],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/vid2/800/1000",
-    size: "small",
+    thumbnail: "https://picsum.photos/seed/vid2/1200/900",
+    size: "medium",
   },
+
+  // ===== PRODUCT VISUALS =====
   {
     id: 3,
-    title: "AI Social Media Ad",
-    category: "social",
-    type: "Vertical",
+    title: "Product Visual Concept",
+    category: "product-visuals",
+    type: "Landscape",
     description:
-      "Short-form vertical ad built for Instagram Reels and TikTok. Hook-driven pacing with AI-generated visuals.",
-    tools: ["Runway ML", "CapCut"],
+      "Eye-catching AI-generated product visuals for ads, promos, and brand content.",
+    tools: ["AI Visuals", "Product"],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/vid3/800/1000",
-    size: "small",
+    thumbnail: "https://picsum.photos/seed/prod1/1200/900",
+    size: "medium",
   },
   {
     id: 4,
-    title: "Character Animation",
-    category: "character",
-    type: "Landscape",
+    title: "Product Ad Visual",
+    category: "product-visuals",
+    type: "Portrait",
     description:
-      "Expressive AI character animation with consistent identity across scenes. Perfect for storytelling and branded content.",
-    tools: ["Runway ML", "Midjourney", "After Effects"],
+      "Promotional AI visual built for a product advertisement — clean, modern, and attention-grabbing.",
+    tools: ["AI Visuals", "Ad"],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/vid4/1200/700",
-    size: "medium",
+    thumbnail: "https://picsum.photos/seed/prod2/900/1200",
+    size: "small",
   },
+
+  // ===== SOCIAL CONTENT =====
   {
     id: 5,
-    title: "AI Storytelling",
-    category: "story",
-    type: "Landscape",
+    title: "Social Media Campaign",
+    category: "social-content",
+    type: "Vertical",
     description:
-      "A short narrative film built entirely from AI-generated footage. Focused on mood, pacing, and emotion.",
-    tools: ["Sora", "ElevenLabs", "DaVinci Resolve"],
+      "AI-powered social media content designed for Instagram, Facebook, and campaign posts.",
+    tools: ["Instagram", "Facebook"],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/vid5/1200/700",
-    size: "medium",
+    thumbnail: "https://picsum.photos/seed/social1/900/1200",
+    size: "small",
   },
   {
     id: 6,
-    title: "Short-Form Content",
-    category: "social",
-    type: "Vertical",
+    title: "Story Post Visual",
+    category: "social-content",
+    type: "Portrait",
     description:
-      "Fast-paced vertical content built for viral reach. Strong hooks, clean cuts, and AI-driven visuals.",
-    tools: ["Runway ML", "CapCut", "ElevenLabs"],
+      "Short visual content made for story posts and quick social updates.",
+    tools: ["AI Visuals", "Story"],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/vid6/800/1000",
+    thumbnail: "https://picsum.photos/seed/social2/900/1200",
     size: "small",
+  },
+
+  // ===== AI VOICEOVER =====
+  {
+    id: 7,
+    title: "Narrated AI Video",
+    category: "voiceover",
+    type: "Landscape",
+    description:
+      "Short-form AI video enhanced with AI voiceover, captions, and engaging storytelling.",
+    tools: ["Voiceover", "Captions"],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    thumbnail: "https://picsum.photos/seed/voice1/1200/900",
+    size: "medium",
+  },
+  {
+    id: 8,
+    title: "AI Voice Story",
+    category: "voiceover",
+    type: "Landscape",
+    description:
+      "A short narrative video combining AI visuals with natural-sounding AI narration.",
+    tools: ["Voiceover", "Story"],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    thumbnail: "https://picsum.photos/seed/voice2/1200/900",
+    size: "medium",
   },
 ];

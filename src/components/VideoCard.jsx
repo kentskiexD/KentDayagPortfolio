@@ -1,12 +1,11 @@
 export default function VideoCard({ project, onClick }) {
   const categoryLabel =
-    {
-      commercial: "Commercial",
-      food: "Food",
-      social: "Social",
-      character: "Character",
-      story: "Storytelling",
-    }[project.category] || project.category;
+  {
+    "ai-video": "AI Video",
+    "product-visuals": "Product Visual",
+    "social-content": "Social Content",
+    voiceover: "AI Voiceover",
+  }[project.category] || project.category;
 
   return (
     <div

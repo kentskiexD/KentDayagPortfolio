@@ -1,4 +1,9 @@
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { useRef } from "react";
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -7,17 +12,13 @@ export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef(null);
 
-  // Very subtle portrait parallax after entrance
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
   const portraitY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const circleY = useTransform(scrollYProgress, [0, 1], [0, 20]);
 
-  // ---- Desktop: split-direction entrance ----
-  // ---- Mobile / reduced-motion: simple upward fade ----
-
-  // Text container variants — staggered children
   const textContainer = {
     hidden: {},
     visible: {
@@ -28,7 +29,6 @@ export default function Hero() {
     },
   };
 
-  // Individual text item — slides from left on desktop, up on mobile
   const textItem = (delay = 0) => ({
     hidden: {
       opacity: 0,
@@ -47,21 +47,33 @@ export default function Hero() {
     },
   });
 
-  // Portrait — slides from right on desktop
   const portraitVariants = {
     hidden: {
       opacity: 0,
-      x: shouldReduceMotion ? 0 : 60,
-      scale: shouldReduceMotion ? 1 : 0.98,
+      y: shouldReduceMotion ? 0 : 40,
+      scale: shouldReduceMotion ? 1 : 0.95,
     },
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       scale: 1,
       transition: {
-        duration: shouldReduceMotion ? 0.4 : 0.9,
+        duration: shouldReduceMotion ? 0.4 : 1,
         ease: EASE,
-        delay: shouldReduceMotion ? 0 : 0.15,
+        delay: shouldReduceMotion ? 0 : 0.2,
+      },
+    },
+  };
+
+  const circleVariants = {
+    hidden: { opacity: 0, scale: shouldReduceMotion ? 1 : 0.85 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: shouldReduceMotion ? 0.4 : 1.1,
+        ease: EASE,
+        delay: shouldReduceMotion ? 0 : 0.1,
       },
     },
   };
@@ -72,14 +84,14 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center px-6 lg:px-8 pt-32 pb-20 overflow-hidden"
     >
-      {/* Ambient violet glow background */}
+      {/* Ambient background glows */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#8b5cf6]/20 rounded-full blur-[120px]" />
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#8b5cf6]/15 rounded-full blur-[130px]" />
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#8b5cf6]/10 rounded-full blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        {/* LEFT: Text — enters from LEFT on desktop */}
+        {/* LEFT: Text */}
         <motion.div
           variants={textContainer}
           initial="hidden"
@@ -100,7 +112,15 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline — strongest entrance, slightly longer */}
+          {/* Role label */}
+          <motion.p
+            variants={textItem(0.05)}
+            className="text-sm uppercase tracking-widest text-[#a78bfa] font-semibold mb-4"
+          >
+            AI Content Creator
+          </motion.p>
+
+          {/* Headline */}
           <motion.h1
             variants={{
               hidden: {
@@ -121,9 +141,9 @@ export default function Hero() {
             }}
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight text-balance"
           >
-            AI-Powered Video.{" "}
+            Content that gets{" "}
             <span className="bg-gradient-to-r from-[#8b5cf6] via-[#a78bfa] to-[#8b5cf6] bg-clip-text text-transparent">
-              Built to Get Attention.
+              attention.
             </span>
           </motion.h1>
 
@@ -132,9 +152,9 @@ export default function Hero() {
             variants={textItem(0.2)}
             className="text-lg text-[#a1a1aa] mt-6 max-w-xl mx-auto lg:mx-0 leading-relaxed"
           >
-            I create cinematic AI-generated videos, visual content, and
-            creative assets designed to help brands, creators, and businesses
-            stand out.
+            I create engaging AI-powered videos and visuals for brands,
+            products, and social media — content made for today's digital
+            platforms.
           </motion.p>
 
           {/* CTAs */}
@@ -160,46 +180,62 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* RIGHT: Portrait — enters from RIGHT on desktop */}
+        {/* RIGHT: Portrait with circle background */}
         <div className="order-1 lg:order-2 flex justify-center lg:justify-end relative">
-          <motion.div
-            variants={portraitVariants}
-            initial="hidden"
-            animate="visible"
-            style={shouldReduceMotion ? {} : { y: portraitY }}
-            className="relative"
-          >
-            {/* Violet glow behind portrait */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#8b5cf6] to-[#a78bfa] rounded-3xl blur-2xl opacity-30 scale-95" />
+          <div className="relative w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] lg:w-[480px] lg:h-[480px] flex items-center justify-center">
+            {/* Big violet gradient circle */}
+            <motion.div
+              variants={circleVariants}
+              initial="hidden"
+              animate="visible"
+              style={shouldReduceMotion ? {} : { y: circleY }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              {/* Outer subtle ring */}
+              <div className="absolute w-[95%] h-[95%] rounded-full border border-[#8b5cf6]/15" />
+              <div className="absolute w-[80%] h-[80%] rounded-full border border-[#8b5cf6]/10" />
 
-            {/* Portrait frame */}
-            <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden border border-[#26263a] bg-[#13131e] shadow-2xl">
+              {/* Main gradient circle */}
+              <div className="relative w-[75%] h-[75%] rounded-full bg-gradient-to-br from-[#8b5cf6] via-[#7c3aed] to-[#6d28d9] shadow-[0_0_100px_rgba(139,92,246,0.4)]">
+                {/* Inner highlight */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-transparent to-white/10" />
+              </div>
+
+              {/* Small floating dots */}
+              <div className="absolute top-[12%] left-[15%] w-3 h-3 rounded-full bg-[#8b5cf6]/70 blur-[1px]" />
+              <div className="absolute bottom-[18%] right-[20%] w-2 h-2 rounded-full bg-[#a78bfa]/60" />
+              <div className="absolute top-[25%] right-[12%] w-1.5 h-1.5 rounded-full bg-white/40" />
+            </motion.div>
+
+            {/* Portrait — floating over the circle */}
+            <motion.div
+              variants={portraitVariants}
+              initial="hidden"
+              animate="visible"
+              style={shouldReduceMotion ? {} : { y: portraitY }}
+              className="relative z-10 w-full h-full flex items-end justify-center"
+            >
               <img
-                src="/portrait.jpg"
-                alt="Kent Dayag — AI Video Creator"
-                className="w-full h-full object-cover"
+                src="/portrait.png"
+                alt="Kent Dayag — AI Content Creator"
+                className="w-[92%] h-[92%] object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
                 onError={(e) => {
-                  e.target.style.display = "none";
-                  e.target.parentElement.innerHTML =
-                    '<div class="w-full h-full flex items-center justify-center text-[#71717a] text-sm text-center px-4">Add portrait.jpg to /public folder</div>';
+                  // Fallback to .jpg if .png not found
+                  if (e.target.src.endsWith(".png")) {
+                    e.target.src = "/portrait.jpg";
+                  } else {
+                    e.target.style.display = "none";
+                    e.target.parentElement.innerHTML =
+                      '<div class="w-full h-full flex items-center justify-center text-[#71717a] text-sm text-center px-4">Add portrait.png (transparent) to /public folder</div>';
+                  }
                 }}
               />
-            </div>
-
-            {/* Decorative dots grid */}
-            <div className="absolute -bottom-6 -left-6 grid grid-cols-4 gap-2 opacity-30">
-              {[...Array(16)].map((_, i) => (
-                <div
-                  key={i}
-                  className="w-1.5 h-1.5 rounded-full bg-[#8b5cf6]"
-                />
-              ))}
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator — appears last, after everything settles */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
