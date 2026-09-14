@@ -216,20 +216,26 @@ export default function Hero() {
               className="relative z-10 w-full h-full flex items-end justify-center"
             >
               <img
-                src="/portrait.png"
-                alt="Kent Dayag — AI Content Creator"
-                className="w-[92%] h-[92%] object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
-                onError={(e) => {
-                  // Fallback to .jpg if .png not found
-                  if (e.target.src.endsWith(".png")) {
-                    e.target.src = "/portrait.jpg";
-                  } else {
-                    e.target.style.display = "none";
-                    e.target.parentElement.innerHTML =
-                      '<div class="w-full h-full flex items-center justify-center text-[#71717a] text-sm text-center px-4">Add portrait.png (transparent) to /public folder</div>';
-                  }
-                }}
-              />
+  src="/portrait.png"
+  alt="Kent Dayag — AI Content Creator"
+  className="w-[92%] h-[92%] object-contain object-bottom"
+  style={{
+    maskImage:
+      "linear-gradient(to bottom, black 0%, black 78%, rgba(0,0,0,0.6) 90%, transparent 100%)",
+    WebkitMaskImage:
+      "linear-gradient(to bottom, black 0%, black 78%, rgba(0,0,0,0.6) 90%, transparent 100%)",
+    filter: "drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))",
+  }}
+  onError={(e) => {
+    if (e.target.src.endsWith(".png")) {
+      e.target.src = "/portrait.jpg";
+    } else {
+      e.target.style.display = "none";
+      e.target.parentElement.innerHTML =
+        '<div class="w-full h-full flex items-center justify-center text-[#71717a] text-sm text-center px-4">Add portrait.png (transparent) to /public folder</div>';
+    }
+  }}
+/>
             </motion.div>
           </div>
         </div>

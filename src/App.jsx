@@ -62,7 +62,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#f5f5f7] antialiased">
+   <div className="min-h-screen text-[#f5f5f7] antialiased">
       <Navbar />
       <main>
         <Hero />

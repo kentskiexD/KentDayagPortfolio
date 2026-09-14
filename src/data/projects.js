@@ -1,107 +1,83 @@
-// Placeholder projects. Replace videoUrl, thumbnail, and text with your real AI content.
+// Real AI video projects.
 
 export const projects = [
-  // ===== AI VIDEOS (short-form) =====
+  // ===== PRODUCT VISUALS =====
   {
     id: 1,
-    title: "AI Product Reel",
-    category: "ai-video",
+    title: "This Polo Shirt Makes Casual Style Look So Easy",
+    category: "product-visuals",
     type: "Vertical",
     description:
-      "Short-form AI video for a product launch — built for Instagram Reels and TikTok with strong hooks and quick pacing.",
-    tools: ["AI Video", "Reels"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/vid1/1200/900",
+      "AI-generated short-form video showcasing a polo shirt for casual fashion content — built for Shorts, Reels, and TikTok.",
+    tools: ["AI Video", "Shorts"],
+    videoUrl: "/videos/polo-shirt.mp4",
+    youtubeUrl: "https://www.youtube.com/shorts/C_BUS3_b1mk",
+    thumbnail: "https://img.youtube.com/vi/C_BUS3_b1mk/maxresdefault.jpg",
+    originalImages: ["/images/originals/polo-shirt-1.jpg"],
+    originalLabel: "Original Product",
     size: "large",
   },
   {
     id: 2,
-    title: "Cinematic Short",
+    title: "What Happens to Your Brain While You Sleep?",
     category: "ai-video",
-    type: "Landscape",
+    type: "Vertical",
     description:
-      "A cinematic short-form AI video designed to capture attention in the first few seconds.",
-    tools: ["AI Video", "Shorts"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/vid2/1200/900",
+      "Short-form AI animated video exploring what happens inside the brain during sleep — educational and engaging.",
+    tools: ["AI Video", "Storytelling"],
+    videoUrl: "/videos/brain-sleep.mp4",
+    youtubeUrl: "https://www.youtube.com/shorts/bhA9l6cC028",
+    thumbnail: "https://img.youtube.com/vi/bhA9l6cC028/maxresdefault.jpg",
+    // no originals — storytelling video
     size: "medium",
   },
-
-  // ===== PRODUCT VISUALS =====
   {
     id: 3,
-    title: "Product Visual Concept",
+    title: "5 Dresses That Make Every Walk Look Stylish",
     category: "product-visuals",
-    type: "Landscape",
+    type: "Vertical",
     description:
-      "Eye-catching AI-generated product visuals for ads, promos, and brand content.",
-    tools: ["AI Visuals", "Product"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/prod1/1200/900",
+      "Fashion reel featuring 5 AI-generated dresses designed for everyday style — short-form content for social platforms.",
+    tools: ["AI Video", "Fashion"],
+    videoUrl: "/videos/dresses.mp4",
+    youtubeUrl: "https://www.youtube.com/shorts/St3j3HCCOCA",
+    thumbnail: "https://img.youtube.com/vi/St3j3HCCOCA/maxresdefault.jpg",
+    originalImages: [
+      "/images/originals/dress-1.jpg",
+      "/images/originals/dress-2.jpg",
+      "/images/originals/dress-3.jpg",
+      "/images/originals/dress-4.jpg",
+      "/images/originals/dress-5.jpg",
+    ],
+    originalLabel: "Original Dresses",
     size: "medium",
   },
   {
     id: 4,
-    title: "Product Ad Visual",
-    category: "product-visuals",
-    type: "Portrait",
-    description:
-      "Promotional AI visual built for a product advertisement — clean, modern, and attention-grabbing.",
-    tools: ["AI Visuals", "Ad"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/prod2/900/1200",
-    size: "small",
-  },
-
-  // ===== SOCIAL CONTENT =====
-  {
-    id: 5,
-    title: "Social Media Campaign",
+    title: "The Crispiest Fried Chicken — Golden, Crunchy & Delicious!",
     category: "social-content",
     type: "Vertical",
     description:
-      "AI-powered social media content designed for Instagram, Facebook, and campaign posts.",
-    tools: ["Instagram", "Facebook"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/social1/900/1200",
+      "Mouth-watering AI-generated food video — golden, crispy, and built for social media engagement.",
+    tools: ["AI Video", "Food"],
+    videoUrl: "/videos/fried-chicken.mp4",
+    youtubeUrl: "https://www.youtube.com/shorts/UvJLlqAHnYI",
+    thumbnail: "https://img.youtube.com/vi/UvJLlqAHnYI/maxresdefault.jpg",
+    // no originals — food video
     size: "small",
   },
   {
-    id: 6,
-    title: "Story Post Visual",
-    category: "social-content",
-    type: "Portrait",
+    id: 5,
+    title: "The Last Message",
+    category: "ai-video",
+    type: "Vertical",
     description:
-      "Short visual content made for story posts and quick social updates.",
-    tools: ["AI Visuals", "Story"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/social2/900/1200",
-    size: "small",
-  },
-
-  // ===== AI VOICEOVER =====
-  {
-    id: 7,
-    title: "Narrated AI Video",
-    category: "voiceover",
-    type: "Landscape",
-    description:
-      "Short-form AI video enhanced with AI voiceover, captions, and engaging storytelling.",
-    tools: ["Voiceover", "Captions"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/voice1/1200/900",
-    size: "medium",
-  },
-  {
-    id: 8,
-    title: "AI Voice Story",
-    category: "voiceover",
-    type: "Landscape",
-    description:
-      "A short narrative video combining AI visuals with natural-sounding AI narration.",
-    tools: ["Voiceover", "Story"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: "https://picsum.photos/seed/voice2/1200/900",
-    size: "medium",
+      "Short-form AI storytelling — a cinematic narrative scene built entirely with AI-generated visuals.",
+    tools: ["AI Video", "Storytelling"],
+    videoUrl: "/videos/last-message.mp4",
+    youtubeUrl: "https://www.youtube.com/shorts/uzI0N8bKZsg",
+    thumbnail: "https://img.youtube.com/vi/uzI0N8bKZsg/maxresdefault.jpg",
+    // no originals — storytelling video
+    size: "large",
   },
 ];

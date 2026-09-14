@@ -5,16 +5,12 @@ import VideoCard from "../components/VideoCard";
 import VideoModal from "../components/VideoModal";
 
 const EASE = [0.22, 1, 0.36, 1];
-
 const FILTERS = [
   { label: "All Work", value: "all" },
-  { label: "Commercial", value: "commercial" },
-  { label: "Social", value: "social" },
-  { label: "Character", value: "character" },
-  { label: "Storytelling", value: "story" },
-  { label: "Food", value: "food" },
+  { label: "AI Videos", value: "ai-video" },
+  { label: "Product Visuals", value: "product-visuals" },
+  { label: "Social Content", value: "social-content" },
 ];
-
 export default function VideoShowcase() {
   const [filter, setFilter] = useState("all");
   const [selected, setSelected] = useState(null);
