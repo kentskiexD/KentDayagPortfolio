@@ -33,11 +33,7 @@ export default function CTA() {
       id="contact"
       className="relative py-24 lg:py-32 px-6 lg:px-8 overflow-hidden"
     >
-      {/* Ambient glow background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#8b5cf6]/15 rounded-full blur-[140px]" />
-      </div>
-
+    
       <motion.div
         variants={containerVariants}
         initial="hidden"

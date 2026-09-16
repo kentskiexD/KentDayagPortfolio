@@ -34,8 +34,7 @@ export default function VideoShowcase() {
       id="work"
       className="relative py-24 lg:py-32 px-6 lg:px-8"
     >
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#8b5cf6]/10 rounded-full blur-[120px] -z-10" />
-
+    
       <div className="max-w-7xl mx-auto">
         {/* Header with scroll reveal */}
         <motion.div
@@ -147,7 +146,7 @@ export default function VideoShowcase() {
           className="mt-16 text-center"
         >
           <p className="text-[#a1a1aa] mb-4">
-            Want to see more or discuss a project?
+            Want to discuss a project?
           </p>
           <a
             href="#contact"
