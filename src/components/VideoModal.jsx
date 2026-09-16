@@ -1,3 +1,4 @@
+import { assetPath } from "../lib/assetPath";
 import { useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { X, ExternalLink } from "lucide-react";
@@ -216,23 +217,21 @@ export default function VideoModal({ project, onClose }) {
                   </span>
                 </a>
 
-              {project.youtubeUrl && (
-  <a
-    href={project.youtubeUrl}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex-1 min-w-[140px] border border-[#26263a] hover:border-red-500/60 hover:text-red-400 hover:bg-red-500/5 px-5 py-3.5 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2.5"
-  >
-    <img
-      src="/images/yt-logo.png"
-      alt="YouTube"
-      className="w-8 h-8 object-contain"
-    />
-    Watch on YouTube
-  </a>
-)}
-
-               
+                {project.youtubeUrl && (
+                  <a
+                    href={project.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 min-w-[140px] border border-[#26263a] hover:border-red-500/60 hover:text-red-400 hover:bg-red-500/5 px-5 py-3.5 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2.5"
+                  >
+                    <img
+                      src={assetPath("/images/yt-logo.png")}
+                      alt="YouTube"
+                      className="w-8 h-8 object-contain"
+                    />
+                    Watch on YouTube
+                  </a>
+                )}
               </div>
             </div>
           </motion.div>

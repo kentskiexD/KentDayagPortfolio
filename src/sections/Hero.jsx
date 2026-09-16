@@ -1,3 +1,4 @@
+import { assetPath } from "../lib/assetPath";
 import {
   motion,
   useReducedMotion,
@@ -212,7 +213,7 @@ export default function Hero() {
               className="relative z-10 w-full h-full flex items-end justify-center"
             >
               <img
-  src="/portrait.png"
+src={assetPath("/portrait.png")}
   alt="Kent Dayag — AI Content Creator"
   className="w-[92%] h-[92%] object-contain object-bottom"
   style={{
@@ -223,14 +224,14 @@ export default function Hero() {
     filter: "drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))",
   }}
   onError={(e) => {
-    if (e.target.src.endsWith(".png")) {
-      e.target.src = "/portrait.jpg";
-    } else {
-      e.target.style.display = "none";
-      e.target.parentElement.innerHTML =
-        '<div class="w-full h-full flex items-center justify-center text-[#71717a] text-sm text-center px-4">Add portrait.png (transparent) to /public folder</div>';
-    }
-  }}
+  if (e.target.src.endsWith(".png")) {
+    e.target.src = assetPath("/portrait.jpg");
+  } else {
+    e.target.style.display = "none";
+    e.target.parentElement.innerHTML =
+      '<div class="w-full h-full flex items-center justify-center text-[#71717a] text-sm text-center px-4">Add portrait.png to /public folder</div>';
+  }
+}}
 />
             </motion.div>
           </div>

@@ -1,4 +1,5 @@
 // Real AI video projects.
+import { assetPath } from "../lib/assetPath";
 
 export const projects = [
   // ===== PRODUCT VISUALS =====
@@ -10,10 +11,10 @@ export const projects = [
     description:
       "AI-generated short-form video showcasing a polo shirt for casual fashion content — built for Shorts, Reels, and TikTok.",
     tools: ["AI Video", "Shorts"],
-    videoUrl: "/videos/polo-shirt.mp4",
+    videoUrl: assetPath("/videos/polo-shirt.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/C_BUS3_b1mk",
     thumbnail: "https://img.youtube.com/vi/C_BUS3_b1mk/maxresdefault.jpg",
-    originalImages: ["/images/originals/polo-shirt-1.jpg"],
+    originalImages: [assetPath("/images/originals/polo-shirt-1.jpg")],
     originalLabel: "Original Product",
     size: "large",
   },
@@ -25,7 +26,7 @@ export const projects = [
     description:
       "Short-form AI animated video exploring what happens inside the brain during sleep — educational and engaging.",
     tools: ["AI Video", "Storytelling"],
-    videoUrl: "/videos/brain-sleep.mp4",
+    videoUrl: assetPath("/videos/brain-sleep.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/bhA9l6cC028",
     thumbnail: "https://img.youtube.com/vi/bhA9l6cC028/maxresdefault.jpg",
     // no originals — storytelling video
@@ -39,15 +40,15 @@ export const projects = [
     description:
       "Fashion reel featuring 5 AI-generated dresses designed for everyday style — short-form content for social platforms.",
     tools: ["AI Video", "Fashion"],
-    videoUrl: "/videos/dresses.mp4",
+    videoUrl: assetPath("/videos/dresses.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/St3j3HCCOCA",
     thumbnail: "https://img.youtube.com/vi/St3j3HCCOCA/maxresdefault.jpg",
     originalImages: [
-      "/images/originals/dress-1.jpg",
-      "/images/originals/dress-2.jpg",
-      "/images/originals/dress-3.jpg",
-      "/images/originals/dress-4.jpg",
-      "/images/originals/dress-5.jpg",
+      assetPath("/images/originals/dress-1.jpg"),
+      assetPath("/images/originals/dress-2.jpg"),
+      assetPath("/images/originals/dress-3.jpg"),
+      assetPath("/images/originals/dress-4.jpg"),
+      assetPath("/images/originals/dress-5.jpg"),
     ],
     originalLabel: "Original Dresses",
     size: "medium",
@@ -60,7 +61,7 @@ export const projects = [
     description:
       "Mouth-watering AI-generated food video — golden, crispy, and built for social media engagement.",
     tools: ["AI Video", "Food"],
-    videoUrl: "/videos/fried-chicken.mp4",
+    videoUrl: assetPath("/videos/fried-chicken.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/UvJLlqAHnYI",
     thumbnail: "https://img.youtube.com/vi/UvJLlqAHnYI/maxresdefault.jpg",
     // no originals — food video
@@ -74,7 +75,7 @@ export const projects = [
     description:
       "Short-form AI storytelling — a cinematic narrative scene built entirely with AI-generated visuals.",
     tools: ["AI Video", "Storytelling"],
-    videoUrl: "/videos/last-message.mp4",
+    videoUrl: assetPath("/videos/last-message.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/uzI0N8bKZsg",
     thumbnail: "https://img.youtube.com/vi/uzI0N8bKZsg/maxresdefault.jpg",
     // no originals — storytelling video
@@ -120,7 +121,7 @@ export const projects = [
     description:
       "Filipino-style no-bake Mango Float made with ripe mangoes, graham crackers, cream, and condensed milk — a quick, creamy dessert for any occasion.",
     tools: ["AI Video", "Food"],
-    videoUrl: "/videos/mango-float.mp4",
+    videoUrl: assetPath("/videos/mango-float.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/RfpjdgTGLzI",
     thumbnail: "https://img.youtube.com/vi/RfpjdgTGLzI/maxresdefault.jpg",
     // no originals — food video
@@ -134,13 +135,13 @@ export const projects = [
     description:
       "A cinematic Chinese fantasy short — a woman saves a wounded stranger, only to discover he is a legendary celestial dragon.",
     tools: ["AI Video", "Storytelling"],
-    videoUrl: "/videos/she-saved-a-dragon.mp4",
+    videoUrl: assetPath("/videos/she-saved-a-dragon.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/yVDzz0j5Uu4",
     thumbnail: "https://img.youtube.com/vi/yVDzz0j5Uu4/maxresdefault.jpg",
     // no originals — storytelling video
     size: "large",
   },
-    {
+  {
     id: 10,
     title: "This Perfume Smells Like Luxury",
     category: "product-visuals",
@@ -148,10 +149,10 @@ export const projects = [
     description:
       "A cinematic AI-generated perfume commercial inspired by elegance, mystery, and timeless sophistication.",
     tools: ["AI Video", "Product"],
-    videoUrl: "/videos/perfume-luxury.mp4",
+    videoUrl: assetPath("/videos/perfume-luxury.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/sFCFNPqowJI",
     thumbnail: "https://img.youtube.com/vi/sFCFNPqowJI/maxresdefault.jpg",
-    originalImages: ["/images/originals/perfume-1.jpeg"],
+    originalImages: [assetPath("/images/originals/perfume-1.jpeg")],
     originalLabel: "Original Product",
     size: "medium",
   },
