@@ -29,7 +29,6 @@ export const projects = [
     videoUrl: assetPath("/videos/brain-sleep.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/bhA9l6cC028",
     thumbnail: "https://img.youtube.com/vi/bhA9l6cC028/maxresdefault.jpg",
-    // no originals — storytelling video
     size: "medium",
   },
   {
@@ -64,7 +63,6 @@ export const projects = [
     videoUrl: assetPath("/videos/fried-chicken.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/UvJLlqAHnYI",
     thumbnail: "https://img.youtube.com/vi/UvJLlqAHnYI/maxresdefault.jpg",
-    // no originals — food video
     size: "small",
   },
   {
@@ -78,7 +76,6 @@ export const projects = [
     videoUrl: assetPath("/videos/last-message.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/uzI0N8bKZsg",
     thumbnail: "https://img.youtube.com/vi/uzI0N8bKZsg/maxresdefault.jpg",
-    // no originals — storytelling video
     size: "large",
   },
 
@@ -94,7 +91,6 @@ export const projects = [
     videoUrl: "https://www.youtube.com/embed/ch6rmTuH5KE",
     youtubeUrl: "https://youtu.be/ch6rmTuH5KE",
     thumbnail: "https://img.youtube.com/vi/ch6rmTuH5KE/maxresdefault.jpg",
-    // no originals — informational video
     size: "large",
   },
   {
@@ -108,7 +104,6 @@ export const projects = [
     videoUrl: "https://www.youtube.com/embed/JxPf-vBKUcA",
     youtubeUrl: "https://youtu.be/JxPf-vBKUcA",
     thumbnail: "https://img.youtube.com/vi/JxPf-vBKUcA/maxresdefault.jpg",
-    // no originals — historical video
     size: "medium",
   },
 
@@ -124,7 +119,6 @@ export const projects = [
     videoUrl: assetPath("/videos/mango-float.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/RfpjdgTGLzI",
     thumbnail: "https://img.youtube.com/vi/RfpjdgTGLzI/maxresdefault.jpg",
-    // no originals — food video
     size: "medium",
   },
   {
@@ -138,7 +132,6 @@ export const projects = [
     videoUrl: assetPath("/videos/she-saved-a-dragon.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/yVDzz0j5Uu4",
     thumbnail: "https://img.youtube.com/vi/yVDzz0j5Uu4/maxresdefault.jpg",
-    // no originals — storytelling video
     size: "large",
   },
   {
@@ -154,6 +147,60 @@ export const projects = [
     thumbnail: "https://img.youtube.com/vi/sFCFNPqowJI/maxresdefault.jpg",
     originalImages: [assetPath("/images/originals/perfume-1.jpeg")],
     originalLabel: "Original Product",
+    size: "medium",
+  },
+
+  // ===== UGC / AI INFLUENCER =====
+  {
+    id: 11,
+    title: "Ayskie — AI Influencer Character Demo",
+    category: "ugc",
+    type: "Portrait",
+    description:
+      "A photorealistic AI influencer character created with generative AI — showcasing AI character consistency, realistic video generation, voice, and lip-sync.",
+    tools: ["AI Character", "Generative AI"],
+    videoUrl: "https://www.youtube.com/embed/SE4XxARWvEE",
+    youtubeUrl: "https://www.youtube.com/shorts/SE4XxARWvEE",
+    thumbnail: "https://img.youtube.com/vi/SE4XxARWvEE/maxresdefault.jpg",
+    size: "large",
+  },
+  {
+    id: 12,
+    title: "Who Even Are You?",
+    category: "ugc",
+    type: "Portrait",
+    description:
+      "AI influencer video showcasing character consistency, realistic facial animation, lip-sync, and AI voice generation — same character across every scene.",
+    tools: ["AI Character", "Lip-Sync"],
+    videoUrl: "https://www.youtube.com/embed/CdZdqfHI2Go",
+    youtubeUrl: "https://www.youtube.com/shorts/CdZdqfHI2Go",
+    thumbnail: "https://img.youtube.com/vi/CdZdqfHI2Go/maxresdefault.jpg",
+    size: "medium",
+  },
+  {
+    id: 13,
+    title: "My Simple Everyday Makeup Routine",
+    category: "ugc",
+    type: "Portrait",
+    description:
+      "GRWM beauty content featuring Ayskie, an AI influencer — natural makeup routine with realistic AI character consistency, video generation, and lip-sync.",
+    tools: ["AI Influencer", "Beauty"],
+    videoUrl: "https://www.youtube.com/embed/u0i9tp5Jx8c",
+    youtubeUrl: "https://www.youtube.com/shorts/u0i9tp5Jx8c",
+    thumbnail: "https://img.youtube.com/vi/u0i9tp5Jx8c/maxresdefault.jpg",
+    size: "medium",
+  },
+  {
+    id: 14,
+    title: "Garlic Butter Shrimp With Me",
+    category: "ugc",
+    type: "Portrait",
+    description:
+      "AI-generated cooking content — a POV-style garlic butter shrimp recipe with an AI influencer host. Authentic UGC feel, built for TikTok and Reels.",
+    tools: ["AI Influencer", "Food"],
+    videoUrl: "https://www.youtube.com/embed/S5PjkNp7Ga4",
+    youtubeUrl: "https://www.youtube.com/shorts/S5PjkNp7Ga4",
+    thumbnail: "https://img.youtube.com/vi/S5PjkNp7Ga4/maxresdefault.jpg",
     size: "medium",
   },
 ];

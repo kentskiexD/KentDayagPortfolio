@@ -10,7 +10,9 @@ const FILTERS = [
   { label: "AI Videos", value: "ai-video" },
   { label: "Product Visuals", value: "product-visuals" },
   { label: "Social Content", value: "social-content" },
+  { label: "UGC", value: "ugc" },
 ];
+
 export default function VideoShowcase() {
   const [filter, setFilter] = useState("all");
   const [selected, setSelected] = useState(null);
@@ -34,7 +36,6 @@ export default function VideoShowcase() {
       id="work"
       className="relative py-24 lg:py-32 px-6 lg:px-8"
     >
-    
       <div className="max-w-7xl mx-auto">
         {/* Header with scroll reveal */}
         <motion.div

@@ -34,13 +34,14 @@ export default function VideoModal({ project, onClose }) {
   const hasOriginals =
     project?.originalImages && project.originalImages.length > 0;
 
-  const categoryLabel =
-    {
-      "ai-video": "AI Video",
-      "product-visuals": "Product Visual",
-      "social-content": "Social Content",
-    }[project?.category] || project?.category;
-
+const categoryLabel =
+  {
+    "ai-video": "AI Video",
+    "product-visuals": "Product Visual",
+    "social-content": "Social Content",
+    ugc: "UGC",
+  }[project?.category] || project?.category;
+  
   return (
     <AnimatePresence>
       {project && (
