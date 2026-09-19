@@ -155,7 +155,7 @@ export const projects = [
     id: 11,
     title: "Ayskie — AI Influencer Character Demo",
     category: "ugc",
-    type: "Portrait",
+    type: "Vertical",
     description:
       "A photorealistic AI influencer character created with generative AI — showcasing AI character consistency, realistic video generation, voice, and lip-sync.",
     tools: ["AI Character", "Generative AI"],
@@ -168,7 +168,7 @@ export const projects = [
     id: 12,
     title: "Who Even Are You?",
     category: "ugc",
-    type: "Portrait",
+    type: "Vertical",
     description:
       "AI influencer video showcasing character consistency, realistic facial animation, lip-sync, and AI voice generation — same character across every scene.",
     tools: ["AI Character", "Lip-Sync"],
@@ -181,7 +181,7 @@ export const projects = [
     id: 13,
     title: "My Simple Everyday Makeup Routine",
     category: "ugc",
-    type: "Portrait",
+    type: "Vertical",
     description:
       "GRWM beauty content featuring Ayskie, an AI influencer — natural makeup routine with realistic AI character consistency, video generation, and lip-sync.",
     tools: ["AI Influencer", "Beauty"],
@@ -194,13 +194,39 @@ export const projects = [
     id: 14,
     title: "Garlic Butter Shrimp With Me",
     category: "ugc",
-    type: "Portrait",
+    type: "Vertical",
     description:
       "AI-generated cooking content — a POV-style garlic butter shrimp recipe with an AI influencer host. Authentic UGC feel, built for TikTok and Reels.",
     tools: ["AI Influencer", "Food"],
     videoUrl: "https://www.youtube.com/embed/S5PjkNp7Ga4",
     youtubeUrl: "https://www.youtube.com/shorts/S5PjkNp7Ga4",
     thumbnail: "https://img.youtube.com/vi/S5PjkNp7Ga4/maxresdefault.jpg",
+    size: "medium",
+  },
+  {
+    id: 15,
+    title: "The Shawarma You'll Crave After One Bite",
+    category: "social-content",
+    type: "Vertical",
+    description:
+      "A mouth-watering AI-generated shawarma commercial — juicy grilled chicken, toasted pita, and creamy garlic sauce. Built for social media ads.",
+    tools: ["AI Video", "Food"],
+    videoUrl: "https://www.youtube.com/embed/m86KRubwwaw",
+    youtubeUrl: "https://www.youtube.com/shorts/m86KRubwwaw",
+    thumbnail: "https://img.youtube.com/vi/m86KRubwwaw/maxresdefault.jpg",
+    size: "medium",
+  },
+  {
+    id: 16,
+    title: "This Smash Burger Looks TOO Good to Resist",
+    category: "social-content",
+    type: "Vertical",
+    description:
+      "A cinematic AI-generated smash burger commercial — crispy caramelized beef, melted cheese, and a toasted brioche bun. Built for food ads and Reels.",
+    tools: ["AI Video", "Food"],
+    videoUrl: "https://www.youtube.com/embed/6bTI9wIH-rU",
+    youtubeUrl: "https://www.youtube.com/shorts/6bTI9wIH-rU",
+    thumbnail: "https://img.youtube.com/vi/6bTI9wIH-rU/maxresdefault.jpg",
     size: "medium",
   },
 ];
