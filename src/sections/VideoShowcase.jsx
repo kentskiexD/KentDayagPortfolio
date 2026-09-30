@@ -119,8 +119,8 @@ export default function VideoShowcase() {
           ))}
         </motion.div>
 
-        {/* Grid + Pagination wrapper — reserves consistent height */}
-        <div className="flex flex-col min-h-[2400px] md:min-h-[1600px] lg:min-h-[900px]">
+        {/* Grid + Pagination wrapper */}
+        <div className="flex flex-col lg:min-h-[900px]">
           {/* Grid with staggered reveal */}
           {visible.length === 0 ? (
             <div className="text-center py-20 text-[#71717a]">
@@ -166,7 +166,7 @@ export default function VideoShowcase() {
             </motion.div>
           )}
 
-          {/* Pagination — pinned to bottom of reserved space */}
+          {/* Pagination — natural flow on mobile, pinned on desktop */}
           {totalPages > 1 && (
             <motion.div
               initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
@@ -176,7 +176,7 @@ export default function VideoShowcase() {
                   : { opacity: 0, y: shouldReduceMotion ? 0 : 15 }
               }
               transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
-              className="mt-auto pt-12 flex justify-center items-center gap-2 flex-wrap"
+              className="mt-12 lg:mt-auto lg:pt-12 flex justify-center items-center gap-2 flex-wrap"
             >
               {/* Prev button */}
               <button
