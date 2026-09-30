@@ -150,7 +150,7 @@ export const projects = [
     size: "medium",
   },
 
-  // ===== UGC / AI INFLUENCER =====
+  // ===== UGC / AI INFLUENCER (YouTube) =====
   {
     id: 11,
     title: "Ayskie — AI Influencer Character Demo",
@@ -203,6 +203,8 @@ export const projects = [
     thumbnail: "https://img.youtube.com/vi/S5PjkNp7Ga4/maxresdefault.jpg",
     size: "medium",
   },
+
+  // ===== FOOD COMMERCIALS =====
   {
     id: 15,
     title: "The Shawarma You'll Crave After One Bite",
@@ -227,6 +229,60 @@ export const projects = [
     videoUrl: "https://www.youtube.com/embed/6bTI9wIH-rU",
     youtubeUrl: "https://www.youtube.com/shorts/6bTI9wIH-rU",
     thumbnail: "https://img.youtube.com/vi/6bTI9wIH-rU/maxresdefault.jpg",
+    size: "medium",
+  },
+
+  // ===== UGC / AI INFLUENCER (TikTok only) =====
+    {
+    id: 17,
+    title: "Okay… But Why Does This Look Kinda Cute?",
+    category: "ugc",
+    type: "Vertical",
+    description:
+      "A playful Pikachu-inspired fashion look — cozy meets bold. AI-generated UGC fashion content for TikTok.",
+    tools: ["AI UGC", "Fashion"],
+    videoUrl: assetPath("/videos/pikachu.mp4"),              // ← Updated
+    tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689357112589274388",
+    thumbnail: assetPath("/images/ugc/pikachu.JPG"),
+    size: "medium",
+  },
+  {
+    id: 18,
+    title: "Mew, But Make It Fashion 💗",
+    category: "ugc",
+    type: "Vertical",
+    description:
+      "A soft pink Mew-inspired outfit — cute, on-trend, and UGC-ready. Would you wear this?",
+    tools: ["AI UGC", "Fashion"],
+    videoUrl: assetPath("/videos/mew.mp4"),                  // ← Updated
+    tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689379837768764692",
+    thumbnail: assetPath("/images/ugc/mew.JPG"),
+    size: "medium",
+  },
+  {
+    id: 19,
+    title: "A Cute Plaid Moment 🤎",
+    category: "ugc",
+    type: "Vertical",
+    description:
+      "Cozy, classy, and effortless — a plaid dress UGC fashion short with a warm, on-trend vibe.",
+    tools: ["AI UGC", "Fashion"],
+    videoUrl: assetPath("/videos/plaid.mp4"),                // ← Updated
+    tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689383005906865428",
+    thumbnail: assetPath("/images/ugc/plaid.JPG"),
+    size: "medium",
+  },
+  {
+    id: 20,
+    title: "Comfy, Cute & Effortlessly Stylish 💙",
+    category: "ugc",
+    type: "Vertical",
+    description:
+      "Cozy pajama set UGC short — soft, relaxed, and aesthetic. Perfect for sleepwear or lounge content.",
+    tools: ["AI UGC", "Loungewear"],
+    videoUrl: assetPath("/videos/pajama.mp4"),               // ← Updated
+    tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689387765900889364",
+    thumbnail: assetPath("/images/ugc/pajama.JPG"),
     size: "medium",
   },
 ];

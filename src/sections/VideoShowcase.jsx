@@ -1,10 +1,12 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { projects } from "../data/projects";
 import VideoCard from "../components/VideoCard";
 import VideoModal from "../components/VideoModal";
 
 const EASE = [0.22, 1, 0.36, 1];
+const ITEMS_PER_PAGE = 6;
+
 const FILTERS = [
   { label: "All Work", value: "all" },
   { label: "AI Videos", value: "ai-video" },
@@ -16,6 +18,7 @@ const FILTERS = [
 export default function VideoShowcase() {
   const [filter, setFilter] = useState("all");
   const [selected, setSelected] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
@@ -25,10 +28,35 @@ export default function VideoShowcase() {
   const isGridInView = useInView(gridRef, { once: true, amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
 
-  const visible =
+  // Filter projects by category
+  const filtered =
     filter === "all"
       ? projects
       : projects.filter((p) => p.category === filter);
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const visible = filtered.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  // Reset to page 1 when filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter]);
+
+  // Handle page change with smooth scroll to grid top
+  const handlePageChange = (page) => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+    if (gridRef.current) {
+      const yOffset = -100;
+      const y =
+        gridRef.current.getBoundingClientRect().top +
+        window.scrollY +
+        yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   return (
     <section
@@ -91,49 +119,114 @@ export default function VideoShowcase() {
           ))}
         </motion.div>
 
-        {/* Grid with staggered reveal */}
-        {visible.length === 0 ? (
-          <div className="text-center py-20 text-[#71717a]">
-            No projects in this category yet.
-          </div>
-        ) : (
-          <motion.div
-            ref={gridRef}
-            initial="hidden"
-            animate={isGridInView ? "visible" : "hidden"}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: shouldReduceMotion ? 0 : 0.08,
+        {/* Grid + Pagination wrapper — reserves consistent height */}
+        <div className="flex flex-col min-h-[2400px] md:min-h-[1600px] lg:min-h-[900px]">
+          {/* Grid with staggered reveal */}
+          {visible.length === 0 ? (
+            <div className="text-center py-20 text-[#71717a]">
+              No projects in this category yet.
+            </div>
+          ) : (
+            <motion.div
+              ref={gridRef}
+              initial="hidden"
+              animate={isGridInView ? "visible" : "hidden"}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: shouldReduceMotion ? 0 : 0.08,
+                  },
                 },
-              },
-            }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-auto"
-          >
-            {visible.map((project) => (
-              <motion.div
-                key={project.id}
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    y: shouldReduceMotion ? 0 : 30,
-                  },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: { duration: 0.7, ease: EASE },
-                  },
-                }}
+              }}
+              key={`${filter}-${currentPage}`}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-auto"
+            >
+              {visible.map((project) => (
+                <motion.div
+                  key={project.id}
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                      y: shouldReduceMotion ? 0 : 30,
+                    },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.7, ease: EASE },
+                    },
+                  }}
+                >
+                  <VideoCard
+                    project={project}
+                    onClick={() => setSelected(project)}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Pagination — pinned to bottom of reserved space */}
+          {totalPages > 1 && (
+            <motion.div
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
+              animate={
+                isGridInView
+                  ? { opacity: 1, y: 0 }
+                  : { opacity: 0, y: shouldReduceMotion ? 0 : 15 }
+              }
+              transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
+              className="mt-auto pt-12 flex justify-center items-center gap-2 flex-wrap"
+            >
+              {/* Prev button */}
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
+                  currentPage === 1
+                    ? "border-[#26263a] text-[#4a4a5c] cursor-not-allowed opacity-50"
+                    : "border-[#26263a] text-[#a1a1aa] hover:border-[#8b5cf6] hover:text-white hover:bg-[#8b5cf6]/10"
+                }`}
+                aria-label="Previous page"
               >
-                <VideoCard
-                  project={project}
-                  onClick={() => setSelected(project)}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+                ← Prev
+              </button>
+
+              {/* Page number buttons */}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`w-10 h-10 rounded-full text-sm font-semibold transition-all duration-300 border ${
+                      currentPage === page
+                        ? "bg-[#8b5cf6] border-[#8b5cf6] text-white shadow-[0_0_20px_rgba(139,92,246,0.5)]"
+                        : "border-[#26263a] text-[#a1a1aa] hover:border-[#8b5cf6] hover:text-white hover:bg-[#8b5cf6]/10"
+                    }`}
+                    aria-label={`Go to page ${page}`}
+                    aria-current={currentPage === page ? "page" : undefined}
+                  >
+                    {page}
+                  </button>
+                )
+              )}
+
+              {/* Next button */}
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
+                  currentPage === totalPages
+                    ? "border-[#26263a] text-[#4a4a5c] cursor-not-allowed opacity-50"
+                    : "border-[#26263a] text-[#a1a1aa] hover:border-[#8b5cf6] hover:text-white hover:bg-[#8b5cf6]/10"
+                }`}
+                aria-label="Next page"
+              >
+                Next →
+              </button>
+            </motion.div>
+          )}
+        </div>
 
         {/* Bottom CTA */}
         <motion.div

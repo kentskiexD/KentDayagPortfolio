@@ -34,14 +34,14 @@ export default function VideoModal({ project, onClose }) {
   const hasOriginals =
     project?.originalImages && project.originalImages.length > 0;
 
-const categoryLabel =
-  {
-    "ai-video": "AI Video",
-    "product-visuals": "Product Visual",
-    "social-content": "Social Content",
-    ugc: "UGC",
-  }[project?.category] || project?.category;
-  
+  const categoryLabel =
+    {
+      "ai-video": "AI Video",
+      "product-visuals": "Product Visual",
+      "social-content": "Social Content",
+      ugc: "UGC",
+    }[project?.category] || project?.category;
+
   return (
     <AnimatePresence>
       {project && (
@@ -123,23 +123,45 @@ const categoryLabel =
                       }
                     >
                       {isLocalVideo ? (
-                        <video
-                          src={project.videoUrl}
-                          controls
-                          autoPlay
-                          playsInline
-                          preload="metadata"
-                          className="w-full h-full object-contain rounded-lg shadow-[0_0_60px_rgba(0,0,0,0.6)]"
-                        />
-                      ) : (
-                        <iframe
-                          src={project.videoUrl}
-                          title={project.title}
-                          className="w-full h-full rounded-lg shadow-[0_0_60px_rgba(0,0,0,0.6)]"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowFullScreen
-                        />
-                      )}
+  <video
+    src={project.videoUrl}
+    controls
+    autoPlay
+    playsInline
+    preload="metadata"
+    className="w-full h-full object-contain rounded-lg shadow-[0_0_60px_rgba(0,0,0,0.6)]"
+  />
+) : project.videoUrl?.includes("tiktok.com") ? (
+  /* TikTok videos can't embed — show CTA instead */
+  <div className="w-full h-full rounded-lg bg-gradient-to-br from-[#1c1c2a] to-[#0a0a0f] border border-cyan-400/20 flex flex-col items-center justify-center gap-5 p-6 text-center">
+    <span className="text-6xl">♪</span>
+    <div>
+      <p className="text-white font-semibold text-lg mb-1">
+        Available on TikTok
+      </p>
+      <p className="text-[#a1a1aa] text-sm max-w-xs">
+        Click below to watch this UGC video on TikTok
+      </p>
+    </div>
+    <a
+      href={project.videoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-7 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2.5"
+    >
+      <span className="text-lg">♪</span>
+      Watch on TikTok
+    </a>
+  </div>
+) : (
+  <iframe
+    src={project.videoUrl}
+    title={project.title}
+    className="w-full h-full rounded-lg shadow-[0_0_60px_rgba(0,0,0,0.6)]"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  />
+)}
                     </div>
                   </div>
                 </div>
@@ -231,6 +253,18 @@ const categoryLabel =
                       className="w-8 h-8 object-contain"
                     />
                     Watch on YouTube
+                  </a>
+                )}
+
+                {project.tiktokUrl && (
+                  <a
+                    href={project.tiktokUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 min-w-[140px] border border-[#26263a] hover:border-cyan-400/60 hover:text-cyan-400 hover:bg-cyan-500/5 px-5 py-3.5 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2.5"
+                  >
+                    <span className="text-xl">♪</span>
+                    Watch on TikTok
                   </a>
                 )}
               </div>
