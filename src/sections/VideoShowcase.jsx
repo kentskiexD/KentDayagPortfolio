@@ -20,6 +20,9 @@ export default function VideoShowcase() {
   const [selected, setSelected] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Shuffle projects ONLY on initial load for "All Work"
+  const [shuffledProjects] = useState(() => [...projects].sort(() => Math.random() - 0.5));
+
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const gridRef = useRef(null);
@@ -28,10 +31,10 @@ export default function VideoShowcase() {
   const isGridInView = useInView(gridRef, { once: true, amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
 
-  // Filter projects by category
+  // Filter projects by category (use shuffled list for "all")
   const filtered =
     filter === "all"
-      ? projects
+      ? shuffledProjects 
       : projects.filter((p) => p.category === filter);
 
   // Pagination calculations
@@ -120,7 +123,7 @@ export default function VideoShowcase() {
         </motion.div>
 
         {/* Grid + Pagination wrapper */}
-        <div className="flex flex-col lg:min-h-[900px]">
+        <div className="flex flex-col">
           {/* Grid with staggered reveal */}
           {visible.length === 0 ? (
             <div className="text-center py-20 text-[#71717a]">
@@ -166,7 +169,7 @@ export default function VideoShowcase() {
             </motion.div>
           )}
 
-          {/* Pagination — natural flow on mobile, pinned on desktop */}
+          {/* Pagination — closer spacing on all screens */}
           {totalPages > 1 && (
             <motion.div
               initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
@@ -176,13 +179,13 @@ export default function VideoShowcase() {
                   : { opacity: 0, y: shouldReduceMotion ? 0 : 15 }
               }
               transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
-              className="mt-12 lg:mt-auto lg:pt-12 flex justify-center items-center gap-2 flex-wrap"
+              className="mt-10 flex justify-center items-center gap-1.5 sm:gap-2 flex-wrap"
             >
               {/* Prev button */}
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 border ${
                   currentPage === 1
                     ? "border-[#26263a] text-[#4a4a5c] cursor-not-allowed opacity-50"
                     : "border-[#26263a] text-[#a1a1aa] hover:border-[#8b5cf6] hover:text-white hover:bg-[#8b5cf6]/10"
@@ -198,7 +201,7 @@ export default function VideoShowcase() {
                   <button
                     key={page}
                     onClick={() => handlePageChange(page)}
-                    className={`w-10 h-10 rounded-full text-sm font-semibold transition-all duration-300 border ${
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 border ${
                       currentPage === page
                         ? "bg-[#8b5cf6] border-[#8b5cf6] text-white shadow-[0_0_20px_rgba(139,92,246,0.5)]"
                         : "border-[#26263a] text-[#a1a1aa] hover:border-[#8b5cf6] hover:text-white hover:bg-[#8b5cf6]/10"
@@ -215,7 +218,7 @@ export default function VideoShowcase() {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 border ${
                   currentPage === totalPages
                     ? "border-[#26263a] text-[#4a4a5c] cursor-not-allowed opacity-50"
                     : "border-[#26263a] text-[#a1a1aa] hover:border-[#8b5cf6] hover:text-white hover:bg-[#8b5cf6]/10"

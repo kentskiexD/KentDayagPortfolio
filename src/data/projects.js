@@ -152,6 +152,42 @@ export const projects = [
 
   // ===== UGC / AI INFLUENCER (YouTube) =====
   {
+    id: 21,
+    title: "Why Ginger Tea is a Popular Drink for Wellness",
+    category: "ugc",
+    type: "Vertical",
+    description: "Have you ever wondered why ginger tea is a popular drink for wellness? Discover the traditional uses of ginger and simple ways to enjoy it at home.",
+    tools: ["AI UGC", "Health"],
+    videoUrl: "https://www.youtube.com/embed/cvmeNG4Yxj4",
+    youtubeUrl: "https://www.youtube.com/shorts/cvmeNG4Yxj4",
+    thumbnail: "https://img.youtube.com/vi/cvmeNG4Yxj4/maxresdefault.jpg",
+    size: "large",
+  },
+  {
+    id: 22,
+    title: "3 Warning Signs of High Blood Sugar",
+    category: "ugc",
+    type: "Vertical",
+    description: "Are you always thirsty, feeling unusually tired, or experiencing blurry vision? These can be possible warning signs of high blood sugar that you shouldn't ignore.",
+    tools: ["AI UGC", "Health"],
+    videoUrl: "https://www.youtube.com/embed/K5S-tCdCDrk",
+    youtubeUrl: "https://www.youtube.com/shorts/K5S-tCdCDrk",
+    thumbnail: "https://img.youtube.com/vi/K5S-tCdCDrk/maxresdefault.jpg",
+    size: "large",
+  },
+  {
+    id: 23,
+    title: "Girl, Let's Talk About Knowing Your Worth ❤️",
+    category: "ugc",
+    type: "Vertical",
+    description: "Stop chasing mixed signals. Stop settling for the bare minimum. You deserve love, respect, and consistency.",
+    tools: ["AI UGC", "Advice"],
+    videoUrl: "https://www.youtube.com/embed/TQLd9WgKzS0",
+    youtubeUrl: "https://www.youtube.com/shorts/TQLd9WgKzS0",
+    thumbnail: "https://img.youtube.com/vi/TQLd9WgKzS0/maxresdefault.jpg",
+    size: "large",
+  },
+  {
     id: 11,
     title: "Ayskie — AI Influencer Character Demo",
     category: "ugc",
@@ -232,16 +268,16 @@ export const projects = [
     size: "medium",
   },
 
-  // ===== UGC / AI INFLUENCER (TikTok only) =====
-    {
+  // ===== FASHION PRODUCT VISUALS (TikTok) =====
+  {
     id: 17,
     title: "Okay… But Why Does This Look Kinda Cute?",
-    category: "ugc",
+    category: "product-visuals",
     type: "Vertical",
     description:
       "A playful Pikachu-inspired fashion look — cozy meets bold. AI-generated UGC fashion content for TikTok.",
-    tools: ["AI UGC", "Fashion"],
-    videoUrl: assetPath("/videos/pikachu.mp4"),              // ← Updated
+    tools: ["AI Video", "Fashion"],
+    videoUrl: assetPath("/videos/pikachu.mp4"),
     tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689357112589274388",
     thumbnail: assetPath("/images/ugc/pikachu.JPG"),
     size: "medium",
@@ -249,12 +285,12 @@ export const projects = [
   {
     id: 18,
     title: "Mew, But Make It Fashion 💗",
-    category: "ugc",
+    category: "product-visuals",
     type: "Vertical",
     description:
       "A soft pink Mew-inspired outfit — cute, on-trend, and UGC-ready. Would you wear this?",
-    tools: ["AI UGC", "Fashion"],
-    videoUrl: assetPath("/videos/mew.mp4"),                  // ← Updated
+    tools: ["AI Video", "Fashion"],
+    videoUrl: assetPath("/videos/mew.mp4"),
     tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689379837768764692",
     thumbnail: assetPath("/images/ugc/mew.JPG"),
     size: "medium",
@@ -262,25 +298,27 @@ export const projects = [
   {
     id: 19,
     title: "A Cute Plaid Moment 🤎",
-    category: "ugc",
+    category: "product-visuals",
     type: "Vertical",
     description:
       "Cozy, classy, and effortless — a plaid dress UGC fashion short with a warm, on-trend vibe.",
-    tools: ["AI UGC", "Fashion"],
-    videoUrl: assetPath("/videos/plaid.mp4"),                // ← Updated
+    tools: ["AI Video", "Fashion"],
+    videoUrl: assetPath("/videos/plaid.mp4"),
     tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689383005906865428",
     thumbnail: assetPath("/images/ugc/plaid.JPG"),
     size: "medium",
   },
+
+  // ===== FASHION PRODUCT VISUALS (TikTok) =====
   {
     id: 20,
     title: "Comfy, Cute & Effortlessly Stylish 💙",
-    category: "ugc",
+    category: "product-visuals",
     type: "Vertical",
     description:
       "Cozy pajama set UGC short — soft, relaxed, and aesthetic. Perfect for sleepwear or lounge content.",
     tools: ["AI UGC", "Loungewear"],
-    videoUrl: assetPath("/videos/pajama.mp4"),               // ← Updated
+    videoUrl: assetPath("/videos/pajama.mp4"),
     tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689387765900889364",
     thumbnail: assetPath("/images/ugc/pajama.JPG"),
     size: "medium",
