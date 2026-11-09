@@ -8,6 +8,7 @@ import About from "./sections/About";
 import Services from "./sections/Services";
 import WhyMe from "./sections/WhyMe";
 import CTA from "./sections/CTA";
+import CustomCursor from "./components/CustomCursor";
 
 export default function App() {
   const lenisRef = useRef(null);
@@ -62,17 +63,22 @@ export default function App() {
   }, []);
 
   return (
-   <div className="min-h-screen text-[#f5f5f7] antialiased">
-      <Navbar />
-      <main>
-        <Hero />
-        <VideoShowcase />
-        <About />
-        <Services />
-        <WhyMe />
-        <CTA />
-      </main>
-      <Footer />
+    <div className="min-h-screen text-[#f5f5f7] antialiased relative">
+      <CustomCursor />
+      
+      {/* Content Wrapper */}
+      <div className="relative z-10">
+        <Navbar />
+        <main>
+          <Hero />
+          <VideoShowcase />
+          <About />
+          <Services />
+          <WhyMe />
+          <CTA />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

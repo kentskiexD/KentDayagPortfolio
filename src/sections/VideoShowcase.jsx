@@ -85,8 +85,23 @@ export default function VideoShowcase() {
           </span>
           <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight mt-3 text-balance">
             Videos that{" "}
-            <span className="bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] bg-clip-text text-transparent">
-              stop the scroll
+            <span className="relative inline-block italic">
+              <motion.span
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : { backgroundPosition: ["200% center", "-200% center"] }
+                }
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  repeatType: "mirror",
+                }}
+                className="bg-[linear-gradient(90deg,#4c1d95_0%,#8b5cf6_20%,#c4b5fd_40%,#e9d5ff_50%,#c4b5fd_60%,#8b5cf6_80%,#4c1d95_100%)] bg-[length:250%_auto] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(139,92,246,0.4)] inline-block pb-[0.1em] pr-[0.05em] will-change-[background-position] transform-gpu"
+              >
+                stop the scroll
+              </motion.span>
             </span>
             .
           </h2>
@@ -96,7 +111,7 @@ export default function VideoShowcase() {
           </p>
         </motion.div>
 
-        {/* Filter tabs */}
+                {/* Filter tabs */}
         <motion.div
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
           animate={
@@ -105,17 +120,14 @@ export default function VideoShowcase() {
               : { opacity: 0, y: shouldReduceMotion ? 0 : 15 }
           }
           transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
-          className="flex flex-wrap gap-2 mb-10"
+          className="flex flex-wrap gap-3 mb-10"
         >
           {FILTERS.map((f) => (
             <button
               key={f.value}
               onClick={() => setFilter(f.value)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
-                filter === f.value
-                  ? "bg-[#8b5cf6] border-[#8b5cf6] text-white shadow-[0_0_25px_rgba(139,92,246,0.4)]"
-                  : "bg-transparent border-[#26263a] text-[#a1a1aa] hover:border-[#8b5cf6]/50 hover:text-white"
-              }`}
+              /* 👇 THIS APPLIES THE GLASSY MOVING LIGHT EFFECT */
+              className={`glass-pill-btn ${filter === f.value ? "active" : ""}`}
             >
               {f.label}
             </button>
@@ -169,7 +181,7 @@ export default function VideoShowcase() {
             </motion.div>
           )}
 
-          {/* Pagination — closer spacing on all screens */}
+                    {/* Pagination — closer spacing on all screens */}
           {totalPages > 1 && (
             <motion.div
               initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
@@ -179,17 +191,13 @@ export default function VideoShowcase() {
                   : { opacity: 0, y: shouldReduceMotion ? 0 : 15 }
               }
               transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
-              className="mt-10 flex justify-center items-center gap-1.5 sm:gap-2 flex-wrap"
+              className="mt-12 flex justify-center items-center gap-2 flex-wrap"
             >
               {/* Prev button */}
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 border ${
-                  currentPage === 1
-                    ? "border-[#26263a] text-[#4a4a5c] cursor-not-allowed opacity-50"
-                    : "border-[#26263a] text-[#a1a1aa] hover:border-[#8b5cf6] hover:text-white hover:bg-[#8b5cf6]/10"
-                }`}
+                className="glass-pill-btn px-4 py-2"
                 aria-label="Previous page"
               >
                 ← Prev
@@ -201,10 +209,8 @@ export default function VideoShowcase() {
                   <button
                     key={page}
                     onClick={() => handlePageChange(page)}
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 border ${
-                      currentPage === page
-                        ? "bg-[#8b5cf6] border-[#8b5cf6] text-white shadow-[0_0_20px_rgba(139,92,246,0.5)]"
-                        : "border-[#26263a] text-[#a1a1aa] hover:border-[#8b5cf6] hover:text-white hover:bg-[#8b5cf6]/10"
+                    className={`glass-pill-btn glass-page-btn ${
+                      currentPage === page ? "active" : ""
                     }`}
                     aria-label={`Go to page ${page}`}
                     aria-current={currentPage === page ? "page" : undefined}
@@ -218,11 +224,7 @@ export default function VideoShowcase() {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 border ${
-                  currentPage === totalPages
-                    ? "border-[#26263a] text-[#4a4a5c] cursor-not-allowed opacity-50"
-                    : "border-[#26263a] text-[#a1a1aa] hover:border-[#8b5cf6] hover:text-white hover:bg-[#8b5cf6]/10"
-                }`}
+                className="glass-pill-btn px-4 py-2"
                 aria-label="Next page"
               >
                 Next →

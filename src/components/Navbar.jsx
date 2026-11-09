@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { assetPath } from "../lib/assetPath";
+import { Sparkles } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -30,10 +32,7 @@ export default function Navbar() {
           }
         });
       },
-      {
-        rootMargin: "-40% 0px -55% 0px",
-        threshold: 0,
-      }
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
     );
 
     sections.forEach((s) => observer.observe(s));
@@ -48,56 +47,60 @@ export default function Navbar() {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[#8b5cf6]/20 ${
         scrolled
-          ? "bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-[#26263a]"
-          : "bg-transparent"
+          ? "bg-[#0a0a0f]/80 backdrop-blur-sm shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
+          : "bg-[#0a0a0f]/10 backdrop-blur-sm"
       }`}
     >
+      {/* ✨ The Running Light - Permanently Visible */}
+      <div className="navbar-light-track" />
+
       <div
         className={`max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center transition-all duration-300 ${
-          scrolled ? "py-3.5" : "py-5"
+          scrolled ? "py-3" : "py-5"
         }`}
       >
-        <a
-          href="#home"
-          className="text-lg font-bold tracking-tight text-white"
-        >
-          Kent<span className="text-[#8b5cf6]">.</span>
+        {/* LOGO */}
+        <a href="#home" className="flex items-center">
+          <img 
+            src={assetPath("/images/logo.png")} 
+            alt="Kent Dayag Logo" 
+            className="h-10 w-auto object-contain" 
+          />
         </a>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* DESKTOP NAV */}
+        <div className="hidden md:flex items-center gap-6">
           {links.map((l) => {
             const isActive = activeSection === l.id;
             return (
               <a
                 key={l.href}
                 href={l.href}
-                className={`group relative text-sm font-medium transition-colors duration-300 ${
+                className={`group relative text-sm font-medium transition-all duration-300 ${
                   isActive
-                    ? "text-white"
-                    : "text-[#a1a1aa] hover:text-white"
+                    ? "nav-pill nav-pill-active"
+                    : "text-[#a1a1aa] hover:text-white px-4 py-2"
                 }`}
               >
+                {/* Show the diamond ONLY if active */}
+                {isActive && (
+                  <div className="w-1.5 h-1.5 rotate-45 bg-white shadow-[0_0_8px_#ffffff] rounded-[1px]" />
+                )}
                 {l.label}
-                {/* Underline indicator */}
-                <span
-                  className={`absolute left-0 -bottom-1 h-px bg-[#8b5cf6] transition-all duration-300 ${
-                    isActive
-                      ? "w-full"
-                      : "w-0 group-hover:w-full"
-                  }`}
-                />
               </a>
             );
           })}
+
+          {/* HIRE ME BUTTON */}
           <a
             href="#contact"
-            className="ml-4 text-sm font-medium bg-[#8b5cf6] hover:bg-[#7c3aed] text-white px-5 py-2 rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98]"
+            className="ml-4 text-sm font-bold bg-transparent hover:bg-[#8b5cf6]/10 text-white px-6 py-2 rounded-full transition-all duration-300 border-2 border-[#8b5cf6] shadow-[0_0_15px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.6)] flex items-center gap-2"
           >
             Hire Me
+            <span className="text-[#a78bfa]">›</span>
           </a>
         </div>
 
@@ -108,21 +111,9 @@ export default function Navbar() {
           aria-label="Toggle menu"
         >
           <div className="w-6 h-5 flex flex-col justify-between">
-            <span
-              className={`h-0.5 w-full bg-white transition-transform duration-300 ${
-                open ? "rotate-45 translate-y-2" : ""
-              }`}
-            />
-            <span
-              className={`h-0.5 w-full bg-white transition-opacity duration-300 ${
-                open ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`h-0.5 w-full bg-white transition-transform duration-300 ${
-                open ? "-rotate-45 -translate-y-2" : ""
-              }`}
-            />
+            <span className={`h-0.5 w-full bg-white transition-transform duration-300 ${open ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`h-0.5 w-full bg-white transition-opacity duration-300 ${open ? "opacity-0" : ""}`} />
+            <span className={`h-0.5 w-full bg-white transition-transform duration-300 ${open ? "-rotate-45 -translate-y-2" : ""}`} />
           </div>
         </button>
       </div>
@@ -147,7 +138,7 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="bg-[#8b5cf6] hover:bg-[#7c3aed] text-white px-5 py-3 rounded-full text-center font-medium mt-2 transition-colors"
+            className="bg-[#8b5cf6] text-white px-5 py-3 rounded-full text-center font-bold mt-2"
           >
             Hire Me
           </a>

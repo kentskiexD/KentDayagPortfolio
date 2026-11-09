@@ -2,20 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =========================================
+   BASE STYLES & GLOBALS
+   ========================================= */
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: #0a0a0f;
   color: #f5f5f7;
   overflow-x: hidden;
-  background-image:
-    linear-gradient(rgba(139, 92, 246, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.06) 1px, transparent 1px);
-  background-size: 64px 64px;
+  
+  /* Background Image Setup */
+  background-image: url('/images/bg-dark.jpg');
+  background-size: cover;
+  background-position: center;
   background-attachment: fixed;
+  background-repeat: no-repeat;
 }
+
+/* Dark overlay to keep the text and videos readable */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.50); 
+  z-index: -1;
+  pointer-events: none;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -49,12 +67,11 @@ body {
 .glow-violet {
   box-shadow: 0 0 40px rgba(139, 92, 246, 0.15);
 }
-
 .glow-violet-strong {
   box-shadow: 0 0 60px rgba(139, 92, 246, 0.3);
 }
 
-/* ---- Smooth transitions for interactive elements ---- */
+/* Smooth transitions for interactive elements */
 a,
 button {
   transition-property: color, background-color, border-color, opacity,
@@ -63,26 +80,318 @@ button {
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ---- Lenis smooth scroll support ---- */
+/* Lenis smooth scroll support */
 html.lenis,
 html.lenis body {
   height: auto;
 }
-
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
-
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
-
 .lenis.lenis-stopped {
   overflow: hidden;
 }
 
-/* ---- Reduced motion accessibility ---- */
+/* =========================================
+   PREMIUM FANTASY BUTTONS (WITH MOVING LIGHT)
+   ========================================= */
+
+.fantasy-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.85rem 2.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 15px 100%, 0% 50%);
+  background: #0a0a0fa9; 
+  border: none;
+  z-index: 1;
+}
+
+.fantasy-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #4c1d95 0%, #a78bfa 25%, #ffffff 50%, #a78bfa 75%, #4c1d95 100%);
+  background-size: 200% auto;
+  clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 15px 100%, 0% 50%);
+  z-index: -2;
+  animation: borderLight 3s linear infinite;
+}
+
+@keyframes borderLight {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.fantasy-btn::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: rgba(15, 10, 25, 0.7);
+  backdrop-filter: blur(10px);
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0% 50%);
+  z-index: -1;
+}
+
+.fantasy-btn:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.6));
+}
+
+.fantasy-btn-primary::after {
+  background: linear-gradient(90deg, #4c1d95, #7c3aed);
+}
+.fantasy-btn-secondary::after {
+  background: rgba(20, 10, 35, 0.8);
+}
+.fantasy-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; 
+  z-index: 2;
+}
+
+/* =========================================
+   PREMIUM NAVBAR PILL
+   ========================================= */
+
+.nav-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1.2rem;
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 10px 100%, 0% 50%);
+  transition: all 0.3s ease;
+  background: rgba(15, 10, 25, 0.37);
+  backdrop-filter: blur(10px);
+}
+
+.nav-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(76, 29, 149, 0.5), rgba(167, 139, 250, 0.6), rgba(76, 29, 149, 0.5));
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 10px 100%, 0% 50%);
+  z-index: -1;
+  margin: 1.5px; 
+}
+
+.nav-pill-active {
+  color: white !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+}
+
+.nav-pill:hover::before {
+  background: linear-gradient(90deg, #6d28d9, #c084fc, #6d28d9);
+}
+
+/* =========================================
+   NAVBAR LIGHT SWEEP
+   ========================================= */
+
+.navbar-light-track {
+  position: absolute;
+  pointer-events: none;
+  overflow: hidden;
+  bottom: -1px; 
+  left: 0;
+  right: 0;
+  height: 1px;
+  filter: blur(1.5px); 
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.navbar-light-track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 20%,
+    rgba(167, 139, 250, 0.2) 35%,
+    rgba(233, 213, 255, 0.8) 50%, 
+    rgba(167, 139, 250, 0.2) 65%,
+    transparent 80%,
+    transparent 100%
+  );
+  background-size: 300% 100%; 
+  background-repeat: no-repeat;
+  animation: navbarLightSweep 7s ease-in-out infinite alternate; 
+}
+
+@keyframes navbarLightSweep {
+  0% { background-position: 150% center; }
+  100% { background-position: -150% center; }
+}
+
+.navbar-light-track.navbar-light-through {
+  bottom: 0;
+  top: 0;
+  height: auto;
+}
+.navbar-light-track.navbar-light-through::before {
+  opacity: 0.5;
+}
+
+/* =========================================
+   GLASS PILL BUTTON (WITH MOVING LIGHT)
+   ========================================= */
+
+.glass-pill-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.5rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #a1a1aa;
+  background: rgba(20, 10, 35, 0.4);
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  z-index: 1;
+  border: none;
+}
+
+.glass-pill-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #4c1d95 0%, #a78bfa 25%, #ffffff 50%, #a78bfa 75%, #4c1d95 100%);
+  background-size: 200% auto;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: borderLight 3s linear infinite;
+}
+
+.glass-pill-btn::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 9999px;
+  background: rgba(15, 10, 25, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
+
+.glass-pill-btn:hover {
+  color: white;
+  transform: translateY(-1px);
+  filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.4));
+}
+.glass-pill-btn:hover::before {
+  opacity: 1;
+}
+
+.glass-pill-btn.active {
+  color: white;
+  filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.6));
+}
+.glass-pill-btn.active::before {
+  opacity: 1;
+}
+
+.glass-pill-btn > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Pagination */
+.glass-page-btn {
+  border-radius: 9999px;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  font-size: 0.875rem;
+}
+.glass-page-btn::before,
+.glass-page-btn::after {
+  border-radius: 9999px;
+}
+
+.glass-pill-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: none !important;
+}
+.glass-pill-btn:disabled:hover::before {
+  opacity: 0;
+}
+/* =========================================
+   SLOW MOVING LIGHT BORDER (VIDEO CARDS) - ALL EDGES
+   ========================================= */
+
+.video-card-light-border {
+  position: relative;
+}
+
+.video-card-light-border::before {
+  content: "";
+  position: absolute;
+  /* 👇 inset: -1px expands the light slightly OUTSIDE the card 
+     so the rounded corners don't clip it */
+  inset: -1px; 
+  border-radius: inherit;
+  
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    transparent 20%,
+    rgba(167, 139, 250, 0.6) 40%, 
+    rgba(255, 255, 255, 1) 50%, 
+    rgba(167, 139, 250, 0.6) 60%, 
+    transparent 80%,
+    transparent 100%
+  );
+  background-size: 250% 100%;
+  
+  /* The mask magic that leaves ONLY the border */
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  
+  padding: 1.5px; /* Border thickness */
+  opacity: 1; 
+  pointer-events: none;
+  z-index: 10;
+  
+  /* 6 second slow sweep */
+  animation: borderLightSweep 6s ease-in-out infinite alternate;
+}
+
+@keyframes borderLightSweep {
+  0% { background-position: 150% center; }
+  100% { background-position: -150% center; }
+}
+/* =========================================
+   ACCESSIBILITY & MISC
+   ========================================= */
+
 @media (prefers-reduced-motion: reduce) {
+  .navbar-light-track::before,
+  .video-card-light-border::before {
+    animation: none;
+    opacity: 0;
+  }
+
   html {
     scroll-behavior: auto;
   }
@@ -94,5 +403,13 @@ html.lenis body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Force hide default cursor on desktop */
+/* Force hide default cursor on desktop */
+@media (min-width: 1024px) {
+  html, body, a, button, div, iframe, video {
+    cursor: none !important;
   }
 }

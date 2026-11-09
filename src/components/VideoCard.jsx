@@ -1,16 +1,16 @@
 export default function VideoCard({ project, onClick }) {
- const categoryLabel =
-  {
-    "ai-video": "AI Video",
-    "product-visuals": "Product Visual",
-    "social-content": "Social Content",
-    ugc: "UGC",
-  }[project.category] || project.category;
+  const categoryLabel =
+    {
+      "ai-video": "AI Video",
+      "product-visuals": "Product Visual",
+      "social-content": "Social Content",
+      ugc: "UGC",
+    }[project.category] || project.category;
 
   return (
     <div
       onClick={onClick}
-      className="group relative rounded-2xl overflow-hidden cursor-pointer bg-[#13131e] border border-[#26263a] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-[#8b5cf6]/60 hover:-translate-y-1.5 hover:shadow-[0_20px_60px_-15px_rgba(139,92,246,0.4)]"
+      className="group relative rounded-2xl overflow-hidden cursor-pointer bg-[#13131e] border border-[#26263a] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-transparent hover:-translate-y-1.5 hover:shadow-[0_20px_60px_-15px_rgba(139,92,246,0.4)] video-card-light-border"
     >
       {/* Media area — uniform aspect ratio for clean grid */}
       <div className="relative overflow-hidden aspect-[4/3]">
@@ -74,7 +74,7 @@ export default function VideoCard({ project, onClick }) {
             </span>
           ))}
         </div>
-        <span className="text-xs font-medium text-[#8b5cf6] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+        <span className="text-xs font-medium text-[#8b5cf6] flex items-center gap-1 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-400">
           View Project
           <span className="transition-transform duration-300 group-hover:translate-x-0.5">
             →
