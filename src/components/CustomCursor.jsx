@@ -5,17 +5,36 @@ import { assetPath } from "../lib/assetPath";
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [clicks, setClicks] = useState([]);
+  
+  // 🌟 State to track if the video modal is open
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // 🌟 State to track if it's a desktop device (has a mouse/trackpad)
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    // Check if the device has a fine pointer (mouse) and is wide enough
+    const checkDevice = () => {
+      const isPointerFine = window.matchMedia("(pointer: fine)").matches;
+      const isWideScreen = window.innerWidth >= 1024;
+      setIsDesktop(isPointerFine && isWideScreen);
+    };
+
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+
     const updateMousePosition = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
     const handleClick = (e) => {
+      // Only create ripples if we are on desktop
+      if (!window.matchMedia("(pointer: fine)").matches) return;
+      
       const id = Date.now();
       setClicks((prev) => [...prev, { id, x: e.clientX, y: e.clientY }]);
 
-      // 🔄 Increased to 2500ms (2.5 seconds) to give the water time to fully fade
+      // Increased to 2500ms (2.5 seconds) to give the water time to fully fade
       setTimeout(() => {
         setClicks((prev) => prev.filter((click) => click.id !== id));
       }, 2500);
@@ -24,11 +43,22 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", updateMousePosition);
     window.addEventListener("mousedown", handleClick);
 
+    // Observer to watch for the modal-open class on the body
+    const observer = new MutationObserver(() => {
+      setIsModalOpen(document.body.classList.contains("modal-open"));
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
     return () => {
+      window.removeEventListener("resize", checkDevice);
       window.removeEventListener("mousemove", updateMousePosition);
       window.removeEventListener("mousedown", handleClick);
+      observer.disconnect();
     };
   }, []);
+
+  // 🌟 If on mobile OR if the modal is open, completely hide the custom cursor
+  if (!isDesktop || isModalOpen) return null;
 
   return (
     <>
@@ -40,12 +70,11 @@ export default function CustomCursor() {
             initial={{ opacity: 1 }}
             animate={{ opacity: 0 }}
             exit={{ opacity: 0 }}
-            // Slower container fade (2 seconds)
             transition={{ duration: 2, ease: "easeOut" }}
             className="fixed pointer-events-none z-[999998]"
             style={{ left: click.x, top: click.y }}
           >
-            {/* Outer Ripple - Slower & wider expansion */}
+            {/* Outer Ripple */}
             <motion.div
               initial={{ scale: 0, opacity: 0.9 }}
               animate={{ scale: 3.5, opacity: 0 }}
@@ -53,7 +82,7 @@ export default function CustomCursor() {
               className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-[#06b6d4]"
             />
             
-            {/* Inner Ripple - Medium speed */}
+            {/* Inner Ripple */}
             <motion.div
               initial={{ scale: 0, opacity: 0.8 }}
               animate={{ scale: 2, opacity: 0 }}
@@ -61,7 +90,7 @@ export default function CustomCursor() {
               className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border border-white"
             />
             
-            {/* Central Splash - Pops and fades smoothly */}
+            {/* Central Splash */}
             <motion.div
               initial={{ scale: 0.5, opacity: 1 }}
               animate={{ scale: 1.5, opacity: 0 }}

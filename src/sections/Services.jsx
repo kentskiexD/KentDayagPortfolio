@@ -11,7 +11,6 @@ const services = [
     description:
       "Short, engaging AI videos created to capture attention and communicate your idea quickly.",
     tags: ["Reels", "TikTok", "Shorts"],
-    size: "large", // spans 7 columns
   },
   {
     icon: ImageIcon,
@@ -19,7 +18,6 @@ const services = [
     description:
       "Eye-catching AI visuals for products, advertisements, promotions, and brand content.",
     tags: ["Products", "Ads", "Brand"],
-    size: "small", // spans 5 columns
   },
   {
     icon: Share2,
@@ -27,7 +25,6 @@ const services = [
     description:
       "AI-powered images and videos made for social media posts, campaigns, Reels, and promotional content.",
     tags: ["Instagram", "Facebook", "Campaigns"],
-    size: "wide", // spans 12 columns
   },
 ];
 
@@ -62,6 +59,14 @@ export default function Services() {
       y: 0,
       transition: { duration: 0.7, ease: EASE },
     },
+  };
+
+  // 🌟 Smooth floating hover effect
+  const cardHover = {
+    scale: 1.03,
+    y: -8,
+    boxShadow: "0px 20px 40px -10px rgba(139, 92, 246, 0.4)",
+    transition: { duration: 0.8, ease: "easeOut" } 
   };
 
   return (
@@ -127,8 +132,24 @@ export default function Services() {
           </span>
           <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight mt-3 text-balance">
             AI Content{" "}
-            <span className="bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] bg-clip-text text-transparent">
-              I Can Create
+            {/* 🌟 Running Light Text */}
+            <span className="relative inline-block">
+              <motion.span
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : { backgroundPosition: ["200% center", "-200% center"] }
+                }
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  repeatType: "mirror",
+                }}
+                className="bg-[linear-gradient(90deg,#8b5cf6_0%,#a78bfa_25%,#ffffff_50%,#a78bfa_75%,#8b5cf6_100%)] bg-[length:250%_auto] bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(139,92,246,0.3)] inline-block pb-[0.1em] will-change-[background-position] transform-gpu"
+              >
+                I Can Create
+              </motion.span>
             </span>
           </h2>
           <p className="text-[#a1a1aa] mt-5 text-lg leading-relaxed">
@@ -137,76 +158,81 @@ export default function Services() {
           </p>
         </motion.div>
 
-        {/* Bento grid — 12 columns on desktop */}
+        {/* Clean 3-Column Grid */}
         <motion.div
           variants={gridVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
           {services.map((service, i) => {
             const Icon = service.icon;
-
-            // Bento layout for desktop
-            const spanClass =
-              service.size === "large"
-                ? "md:col-span-7"
-                : service.size === "small"
-                ? "md:col-span-5"
-                : "md:col-span-12";
 
             return (
               <motion.div
                 key={service.title}
                 variants={cardVariants}
-                className={`group relative p-7 lg:p-8 rounded-2xl bg-gradient-to-br from-[#13131e] to-[#0f0f18] border border-[#26263a] hover:border-[#8b5cf6]/50 transition-all duration-500 hover:-translate-y-1 overflow-hidden ${spanClass}`}
-                style={{
-                  transitionProperty: "transform, border-color, box-shadow",
-                  transitionDuration: "500ms",
-                  transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
-                }}
+                whileHover={shouldReduceMotion ? {} : cardHover}
+                className="group relative p-7 lg:p-8 rounded-2xl bg-[#13131e]/80 border border-[#26263a] backdrop-blur-xl overflow-hidden flex flex-col cursor-default"
               >
-                {/* Inner subtle gradient glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#8b5cf6]/5 to-transparent rounded-2xl pointer-events-none" />
-
-                {/* Decorative light streak on hover */}
-                <div className="absolute top-0 left-0 h-px w-0 group-hover:w-full bg-gradient-to-r from-transparent via-[#8b5cf6]/60 to-transparent transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+                {/* 🌟 Running Light Border */}
+                <div className="absolute top-0 left-0 right-0 h-[1.5px] pointer-events-none overflow-hidden opacity-40 group-hover:opacity-100 transition-opacity duration-500">
+                  <motion.div
+                    animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+                    transition={{ 
+                      duration: 12,
+                      repeat: Infinity, 
+                      ease: "easeInOut",
+                      delay: i * 1.5
+                    }}
+                    className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#4c1d95_25%,#8b5cf6_45%,#ffffff_50%,#8b5cf6_55%,#4c1d95_75%,transparent_100%)] bg-[length:200%_auto]"
+                  />
+                </div>
 
                 {/* Content */}
-                <div className="relative">
-                  {/* Icon */}
-                  <div className="w-14 h-14 rounded-xl bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 flex items-center justify-center mb-6 group-hover:bg-[#8b5cf6]/20 group-hover:border-[#8b5cf6]/40 transition-colors duration-500">
+                <div className="relative z-10 flex flex-col h-full">
+                  {/* 🌟 Glowing Icon Container */}
+                  <div className="relative w-14 h-14 rounded-xl bg-[#1e1e2d] border border-[#8b5cf6]/30 flex items-center justify-center mb-6 group-hover:bg-[#8b5cf6]/10 transition-colors duration-400 overflow-hidden">
+                    <div className="absolute inset-0 bg-[#8b5cf6]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
                     <Icon
-                      className="w-6 h-6 text-[#a78bfa]"
+                      className="w-6 h-6 text-[#a78bfa] relative z-10"
                       strokeWidth={1.75}
                     />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl lg:text-2xl font-bold text-white leading-tight mb-3">
+                  <h3 className="text-xl font-bold text-white leading-tight mb-3">
                     {service.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-[#a1a1aa] leading-relaxed mb-5 max-w-2xl">
+                  <p className="text-[#a1a1aa] text-sm leading-relaxed mb-6 flex-grow">
                     {service.description}
                   </p>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
+                  {/* 🌟 Upgraded Tags with Running Light */}
+                  <div className="flex flex-wrap gap-2 mt-auto">
                     {service.tags.map((tag) => (
-                      <span
+                      <div
                         key={tag}
-                        className="text-[10px] uppercase tracking-wider font-medium px-2.5 py-1 rounded-md bg-[#26263a] text-[#a1a1aa] group-hover:bg-[#8b5cf6]/10 group-hover:text-[#a78bfa] transition-colors duration-500"
+                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#1e1e2d] border border-[#8b5cf6]/20 backdrop-blur-md"
                       >
-                        {tag}
-                      </span>
+                        {/* Running Light Circle */}
+                        <div className="relative flex items-center justify-center w-1.5 h-1.5">
+                          <div className="absolute inset-0 bg-[#8b5cf6] rounded-full shadow-[0_0_8px_#8b5cf6] opacity-40" />
+                          <motion.div
+                            animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+                            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute inset-0 rounded-full bg-[linear-gradient(90deg,transparent_0%,#8b5cf6_40%,#ffffff_50%,#8b5cf6_60%,transparent_100%)] bg-[length:200%_auto]"
+                          />
+                        </div>
+                        <span className="text-[10px] uppercase tracking-wider font-bold text-[#d4d4d8]">
+                          {tag}
+                        </span>
+                      </div>
                     ))}
                   </div>
                 </div>
-
-                {/* Hover glow shadow */}
-                <div className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_50px_rgba(139,92,246,0.18)]" />
               </motion.div>
             );
           })}
@@ -229,22 +255,68 @@ export default function Services() {
         >
           <h3 className="text-2xl lg:text-3xl font-bold text-white">
             Have an idea?{" "}
-            <span className="bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] bg-clip-text text-transparent">
-              Let's create it.
+            {/* 🌟 Faster Running Light Text for CTA */}
+            <span className="relative inline-block">
+              <motion.span
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : { backgroundPosition: ["200% center", "-200% center"] }
+                }
+                transition={{
+                  duration: 8, // Sped up from 12 to 8 seconds
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  repeatType: "mirror",
+                }}
+                className="bg-[linear-gradient(90deg,#8b5cf6_0%,#a78bfa_25%,#ffffff_50%,#a78bfa_75%,#8b5cf6_100%)] bg-[length:250%_auto] bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(139,92,246,0.3)] inline-block pb-[0.1em] will-change-[background-position] transform-gpu"
+              >
+                Let's create it.
+              </motion.span>
             </span>
           </h3>
           <p className="text-[#a1a1aa] mt-3 max-w-xl mx-auto">
             Tell me what you have in mind and let's turn it into engaging
             AI-powered content.
           </p>
+          
+          {/* 🌟 Upgraded Start a Project Button */}
           <a
             href="#contact"
-            className="group inline-flex items-center gap-2 mt-6 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white px-7 py-3.5 rounded-full font-semibold transition-all duration-300 hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] hover:scale-[1.02] active:scale-[0.98]"
+            className="mt-8 relative group inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:scale-105 hover:bg-[#8b5cf6]/20 bg-[#8b5cf6]/10"
           >
-            Start a Project
-            <span className="group-hover:translate-x-1 transition-transform duration-300">
+            {/* The Running Light Border ONLY */}
+            <div className="absolute inset-0 pointer-events-none rounded-full overflow-hidden">
+              <motion.div
+                animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 rounded-full bg-[linear-gradient(90deg,transparent_0%,#4c1d95_25%,#8b5cf6_45%,#ffffff_50%,#8b5cf6_55%,#4c1d95_75%,transparent_100%)] bg-[length:200%_auto]"
+                style={{
+                  padding: '1.5px',
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude',
+                }}
+              />
+            </div>
+
+            <span className="relative z-10">Start a Project</span>
+
+            {/* 🌟 Smooth Slow Pulse Arrow (Pointing Right) */}
+            <motion.span
+              animate={{
+                scale: [1, 1.15, 1],
+                x: [0, 4, 0] // Gently nudges to the right as it pulses
+              }}
+              transition={{
+                duration: 3, // Slow and smooth
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="relative z-10 text-[#a78bfa] font-bold ml-1 origin-center"
+            >
               →
-            </span>
+            </motion.span>
           </a>
         </motion.div>
       </div>

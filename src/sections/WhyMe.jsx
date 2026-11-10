@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { Zap, Target, Bot, TrendingUp, Eye } from "lucide-react";
+import { Zap, Target, Bot, TrendingUp, Eye, Code2 } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -35,6 +35,12 @@ const benefits = [
     description:
       "Pacing, color, sound, and story — every frame is considered before delivery.",
   },
+  {
+    icon: Code2,
+    title: "Programming & Automation",
+    description:
+      "Custom scripts and code to automate workflows, build tools, and bring digital ideas to life.",
+  },
 ];
 
 export default function WhyMe() {
@@ -42,54 +48,129 @@ export default function WhyMe() {
   const leftRef = useRef(null);
   const rightRef = useRef(null);
 
-  const isLeftInView = useInView(leftRef, { once: true, amount: 0.3 });
+  const isLeftInView = useInView(leftRef, { once: true, amount: 0.1 });
   const isRightInView = useInView(rightRef, { once: true, amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
+
+  // 🌟 Smooth floating hover effect
+  const cardHover = {
+    scale: 1.02,
+    y: -6,
+    boxShadow: "0px 15px 30px -10px rgba(139, 92, 246, 0.3)",
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 lg:py-32 px-6 lg:px-8"
+      className="relative py-24 lg:py-32 px-6 lg:px-8 overflow-visible" 
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left: Sticky heading */}
-          <motion.div
-            ref={leftRef}
-            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
-            animate={
-              isLeftInView
-                ? { opacity: 1, y: 0 }
-                : { opacity: 0, y: shouldReduceMotion ? 0 : 30 }
-            }
-            transition={{ duration: 0.7, ease: EASE }}
-            className="lg:col-span-5 lg:sticky lg:top-32 self-start"
-          >
-            <span className="text-xs uppercase tracking-widest text-[#8b5cf6] font-semibold">
-              Why Work With Me
-            </span>
-            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight mt-3 text-balance">
-              Not just{" "}
-              <span className="bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] bg-clip-text text-transparent">
-                another edit
-              </span>
-              .
-            </h2>
-            <p className="text-[#a1a1aa] mt-6 text-lg leading-relaxed max-w-md">
-              AI is a tool. Direction is the difference. Here's what you get
-              when we work together.
-            </p>
-
-            <a
-              href="#contact"
-              className="group inline-flex items-center gap-2 mt-8 text-[#8b5cf6] hover:text-[#a78bfa] font-semibold transition-colors duration-300"
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left: Sticky heading with masked meteors */}
+          <div className="lg:col-span-5 lg:sticky lg:top-32 self-start w-full relative">
+            
+            {/* 🌠 Meteor Container */}
+            <div 
+              className="absolute top-[-150px] -left-20 w-[120%] h-[120%] overflow-hidden -z-10 pointer-events-none opacity-90"
+              style={{
+                maskImage: "linear-gradient(to bottom, black 40%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 100%)"
+              }}
             >
-              Let's discuss your project
-              <span className="group-hover:translate-x-1 transition-transform duration-300">
-                →
+              {!shouldReduceMotion && (
+                <>
+                  {/* Meteor 1 */}
+                  <motion.div
+                    animate={{ x: [0, 400], y: [0, 400], opacity: [0, 1, 1, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: [0.45, 0.05, 0.55, 0.95], delay: 0.5 }}
+                    className="absolute top-[10%] left-[20%]"
+                  >
+                    <div className="relative w-[2px] h-32 bg-gradient-to-b from-transparent via-[#a78bfa]/80 to-[#8b5cf6] rounded-full -rotate-[45deg] origin-top shadow-[0_0_8px_#8b5cf6]">
+                      {/* Soft natural head */}
+                      <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white rounded-full blur-[1.5px] shadow-[0_0_15px_#ffffff,0_0_25px_#8b5cf6,0_0_40px_#a78bfa]" />
+                    </div>
+                  </motion.div>
+                  
+                  {/* Meteor 2 */}
+                  <motion.div
+                    animate={{ x: [0, 300], y: [0, 300], opacity: [0, 1, 1, 0] }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeIn", delay: 2 }}
+                    className="absolute top-[30%] left-[40%]"
+                  >
+                    <div className="relative w-[3px] h-28 bg-gradient-to-b from-transparent via-[#c4b5fd]/80 to-white rounded-full -rotate-[45deg] origin-top shadow-[0_0_10px_#a78bfa]">
+                      {/* Soft natural head */}
+                      <div className="absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-white rounded-full blur-[2px] shadow-[0_0_20px_#ffffff,0_0_35px_#8b5cf6,0_0_50px_#a78bfa]" />
+                    </div>
+                  </motion.div>
+
+                  {/* Meteor 3 */}
+                  <motion.div
+                    animate={{ x: [0, 200], y: [0, 200], opacity: [0, 0.9, 0.9, 0] }}
+                    transition={{ duration: 1.8, repeat: Infinity, ease: "easeIn", delay: 4 }}
+                    className="absolute top-[15%] left-[10%]"
+                  >
+                    <div className="relative w-[1.5px] h-16 bg-gradient-to-b from-transparent via-[#a78bfa] to-white rounded-full -rotate-[45deg] origin-top">
+                      {/* Soft natural head */}
+                      <div className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-white rounded-full blur-[1px] shadow-[0_0_12px_#ffffff,0_0_25px_#8b5cf6]" />
+                    </div>
+                  </motion.div>
+
+                  {/* Meteor 4 */}
+                  <motion.div
+                    animate={{ x: [0, 500], y: [0, 500], opacity: [0, 1, 1, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: [0.45, 0.05, 0.55, 0.95], delay: 1.5 }}
+                    className="absolute top-[50%] left-[0%]"
+                  >
+                    <div className="relative w-[2px] h-40 bg-gradient-to-b from-transparent via-[#8b5cf6]/80 to-[#c4b5fd] rounded-full -rotate-[45deg] origin-top shadow-[0_0_10px_#4c1d95]">
+                      {/* Soft natural head */}
+                      <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white rounded-full blur-[1.5px] shadow-[0_0_15px_#ffffff,0_0_30px_#8b5cf6,0_0_45px_#a78bfa]" />
+                    </div>
+                  </motion.div>
+                </>
+              )}
+            </div>
+
+            {/* The Text Content */}
+            <motion.div
+              ref={leftRef}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
+              animate={
+                isLeftInView
+                  ? { opacity: 1, y: 0 }
+                  : { opacity: 0, y: shouldReduceMotion ? 0 : 30 }
+              }
+              transition={{ duration: 0.7, ease: EASE }}
+              className="relative z-10"
+            >
+              <span className="text-xs uppercase tracking-widest text-[#8b5cf6] font-semibold">
+                Why Work With Me
               </span>
-            </a>
-          </motion.div>
+              
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight mt-3 text-balance">
+                Not just{" "}
+                <span className="bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] bg-clip-text text-transparent">
+                  another edit
+                </span>
+                .
+              </h2>
+
+              <p className="text-[#a1a1aa] mt-6 text-lg leading-relaxed max-w-md">
+                AI is a tool. Direction is the difference. Whether it's creative content or custom code, here's what you get when we work together.
+              </p>
+
+              <a
+                href="#contact"
+                className="group inline-flex items-center gap-2 mt-8 text-[#8b5cf6] hover:text-[#a78bfa] font-semibold transition-colors duration-300"
+              >
+                Let's discuss your project
+                <span className="group-hover:translate-x-1 transition-transform duration-300">
+                  →
+                </span>
+              </a>
+            </motion.div>
+          </div>
 
           {/* Right: Benefits list */}
           <motion.div
@@ -120,25 +201,57 @@ export default function WhyMe() {
                       transition: { duration: 0.6, ease: EASE },
                     },
                   }}
-                  className="group flex gap-5 p-6 rounded-2xl bg-[#13131e] border border-[#26263a] hover:border-[#8b5cf6]/50 transition-colors duration-400"
+                  whileHover={shouldReduceMotion ? {} : cardHover}
+                  className="group relative flex gap-5 p-6 rounded-2xl bg-[#13131e]/80 border border-[#26263a] backdrop-blur-xl overflow-hidden cursor-default"
                 >
-                  <div className="shrink-0">
-                    <div className="w-12 h-12 rounded-xl bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 flex items-center justify-center group-hover:bg-[#8b5cf6]/20 transition-colors duration-400">
+                  {/* 🌟 Running Light Border (Top) */}
+                  <div className="absolute top-0 left-0 right-0 h-[1.5px] pointer-events-none overflow-hidden opacity-40 group-hover:opacity-100 transition-opacity duration-500">
+                    <motion.div
+                      animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+                      transition={{ 
+                        duration: 12, 
+                        repeat: Infinity, 
+                        ease: "easeInOut",
+                        delay: i * 1.5
+                      }}
+                      className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#4c1d95_25%,#8b5cf6_45%,#ffffff_50%,#8b5cf6_55%,#4c1d95_75%,transparent_100%)] bg-[length:200%_auto]"
+                    />
+                  </div>
+
+                  <div className="shrink-0 relative z-10">
+                    {/* 🌟 Glowing Icon Container */}
+                    <div className="relative w-12 h-12 rounded-xl bg-[#1e1e2d] border border-[#8b5cf6]/30 flex items-center justify-center group-hover:bg-[#8b5cf6]/10 transition-colors duration-400 overflow-hidden">
+                      <div className="absolute inset-0 bg-[#8b5cf6]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
                       <Icon
-                        className="w-5 h-5 text-[#a78bfa]"
+                        className="w-5 h-5 text-[#a78bfa] relative z-10"
                         strokeWidth={1.75}
                       />
                     </div>
                   </div>
 
-                  <div className="flex-1">
+                  <div className="flex-1 relative z-10">
                     <div className="flex items-baseline gap-3 mb-1">
+                      
+                      {/* Reverted Number */}
                       <span className="text-xs font-mono text-[#71717a]">
                         0{i + 1}
                       </span>
-                      <h3 className="text-lg font-bold text-white leading-tight">
+
+                      {/* 🌟 Title with Gentle Heartbeat Scale Effect */}
+                      <motion.h3 
+                        animate={shouldReduceMotion ? {} : {
+                          scale: [1, 1.02, 1]
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: i * 0.3
+                        }}
+                        className="text-lg font-bold text-white leading-tight origin-left"
+                      >
                         {b.title}
-                      </h3>
+                      </motion.h3>
                     </div>
                     <p className="text-[#a1a1aa] text-sm leading-relaxed">
                       {b.description}

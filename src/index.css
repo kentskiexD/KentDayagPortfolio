@@ -405,11 +405,42 @@ html.lenis body {
     scroll-behavior: auto !important;
   }
 }
+/* =========================================
+   CURSOR LOGIC
+   ========================================= */
 
-/* Force hide default cursor on desktop */
-/* Force hide default cursor on desktop */
+/* 1. Default state: Hide normal cursor everywhere on desktop */
 @media (min-width: 1024px) {
-  html, body, a, button, div, iframe, video {
+  html, body {
     cursor: none !important;
   }
+  
+  /* Hide it on all elements EXCEPT when the modal is open */
+  body:not(.modal-open) *, 
+  body:not(.modal-open) a, 
+  body:not(.modal-open) button, 
+  body:not(.modal-open) div, 
+  body:not(.modal-open) iframe {
+    cursor: none !important;
+  }
+}
+
+/* 2. Modal state: Show the standard ARROW inside the modal */
+body.modal-open,
+body.modal-open *,
+body.modal-open div,
+body.modal-open h2,
+body.modal-open p,
+body.modal-open span,
+body.modal-open img,
+body.modal-open iframe,
+body.modal-open video {
+  cursor: default !important; /* 'default' forces the arrow, not the hand */
+}
+
+/* 3. Only show the HAND POINTER on the specific clickable things (like the close button) */
+body.modal-open button,
+body.modal-open a,
+body.modal-open .cursor-pointer {
+  cursor: pointer !important;
 }

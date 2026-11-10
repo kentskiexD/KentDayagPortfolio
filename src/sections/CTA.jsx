@@ -33,88 +33,137 @@ export default function CTA() {
       id="contact"
       className="relative py-24 lg:py-32 px-6 lg:px-8 overflow-hidden"
     >
-    
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="max-w-4xl mx-auto text-center"
-      >
-        {/* Badge */}
+      <div className="max-w-4xl mx-auto relative z-10">
+        
+        {/* 🌟 Very Faded Minimal Glass Container */}
         <motion.div
-          variants={itemVariants}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#8b5cf6]/30 bg-[#8b5cf6]/10 backdrop-blur-sm mb-8"
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
+          transition={{ duration: 0.8, ease: EASE }}
+          className="relative p-8 sm:p-12 lg:p-16 rounded-[2.5rem] bg-white/[0.01] border border-white/[0.001] backdrop-blur-sm overflow-hidden"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-          </span>
-          <span className="text-xs text-[#a78bfa] font-medium">
-            Currently accepting new projects
-          </span>
-        </motion.div>
+          {/* Extremely subtle top border running light */}
+          <div className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none overflow-hidden opacity-20">
+            <motion.div
+              animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#4c1d95_25%,#8b5cf6_45%,#ffffff_50%,#8b5cf6_55%,#4c1d95_75%,transparent_100%)] bg-[length:200%_auto]"
+            />
+          </div>
 
-        {/* Headline */}
-        <motion.h2
-          variants={itemVariants}
-          className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.05] text-balance"
-        >
-          Have an idea for your{" "}
-          <span className="bg-gradient-to-r from-[#8b5cf6] via-[#a78bfa] to-[#8b5cf6] bg-clip-text text-transparent">
-            next video
-          </span>
-          ?
-        </motion.h2>
-
-        {/* Subtext */}
-        <motion.p
-          variants={itemVariants}
-          className="text-lg lg:text-xl text-[#a1a1aa] mt-6 max-w-2xl mx-auto leading-relaxed"
-        >
-          Let's turn your idea into something people want to watch.
-        </motion.p>
-
-        {/* Buttons */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-wrap gap-4 justify-center mt-10"
-        >
-          <a
-            href="mailto:dayagkent09@gmail.com?subject=Project%20Inquiry"
-            className="group bg-[#8b5cf6] hover:bg-[#7c3aed] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-[0_0_50px_rgba(139,92,246,0.5)] hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2"
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="relative z-10 text-center flex flex-col items-center"
           >
-            Start a Project
-            <span className="group-hover:translate-x-1 transition-transform duration-300">
-              →
-            </span>
-          </a>
-          <a
-            href="mailto:dayagkent09@gmail.com"
-            className="border border-[#26263a] hover:border-[#8b5cf6] hover:text-[#a78bfa] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-          >
-            dayagkent09@gmail.com
-          </a>
-        </motion.div>
+            {/* Badge */}
+            <motion.div
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#8b5cf6]/30 bg-[#8b5cf6]/10 backdrop-blur-sm mb-8"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+              </span>
+              <span className="text-xs text-[#a78bfa] font-medium tracking-wide">
+                Currently accepting new projects
+              </span>
+            </motion.div>
 
-        {/* Trust line */}
-        <motion.div
-          variants={itemVariants}
-          className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-[#71717a]"
-        >
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#8b5cf6]" />
-            Fast turnaround
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#8b5cf6]" />
-            Cinematic quality
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#8b5cf6]" />
-            Custom direction
-          </div>
+            {/* Headline with Running Light */}
+            <motion.h2
+              variants={itemVariants}
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.05] text-balance"
+            >
+              Have an idea for your{" "}
+              <span className="relative inline-block">
+                <motion.span
+                  animate={shouldReduceMotion ? {} : { backgroundPosition: ["200% center", "-200% center"] }}
+                  transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
+                  className="bg-[linear-gradient(90deg,#8b5cf6_0%,#a78bfa_25%,#ffffff_50%,#a78bfa_75%,#8b5cf6_100%)] bg-[length:250%_auto] bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(139,92,246,0.3)] inline-block pb-[0.1em] will-change-[background-position] transform-gpu"
+                >
+                  next video
+                </motion.span>
+              </span>
+              ?
+            </motion.h2>
+
+            {/* Subtext */}
+            <motion.p
+              variants={itemVariants}
+              className="text-lg lg:text-xl text-[#a1a1aa] mt-6 max-w-2xl mx-auto leading-relaxed"
+            >
+              Let's turn your idea into something people want to watch.
+            </motion.p>
+
+            {/* Buttons */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center mt-10 w-full sm:w-auto"
+            >
+              {/* Primary Button (Running Light Border) */}
+              <a
+                href="mailto:dayagkent09@gmail.com?subject=Project%20Inquiry"
+                className="group relative inline-flex items-center justify-center gap-2.5 rounded-full px-8 py-4 text-base font-bold text-white transition-all duration-300 hover:scale-105 hover:bg-[#8b5cf6]/20 bg-[#8b5cf6]/10"
+              >
+                {/* The Running Light Border ONLY */}
+                <div className="absolute inset-0 pointer-events-none rounded-full overflow-hidden">
+                  <motion.div
+                    animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0 rounded-full bg-[linear-gradient(90deg,transparent_0%,#4c1d95_25%,#8b5cf6_45%,#ffffff_50%,#8b5cf6_55%,#4c1d95_75%,transparent_100%)] bg-[length:200%_auto]"
+                    style={{
+                      padding: '1.5px',
+                      WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                      WebkitMaskComposite: 'xor',
+                      maskComposite: 'exclude',
+                    }}
+                  />
+                </div>
+                <span className="relative z-10">Start a Project</span>
+                {/* Smooth Heartbeat Arrow */}
+                <motion.span
+                  animate={{ scale: [1, 1.15, 1], x: [0, 4, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative z-10 text-[#a78bfa] font-bold ml-1 origin-center"
+                >
+                  →
+                </motion.span>
+              </a>
+
+              {/* Secondary Button (Glass) */}
+              <a
+                href="mailto:dayagkent09@gmail.com"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-white bg-white/[0.02] border border-white/[0.05] hover:border-[#8b5cf6]/50 hover:bg-white/[0.05] transition-all duration-300 hover:scale-105 backdrop-blur-md"
+              >
+                dayagkent09@gmail.com
+              </a>
+            </motion.div>
+
+            {/* Trust line with Running Light Dots */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-[#a1a1aa]"
+            >
+              {["Fast turnaround", "Cinematic quality", "Custom direction"].map((text, i) => (
+                <div key={text} className="flex items-center gap-2">
+                  {/* Running Light Dot */}
+                  <div className="relative flex items-center justify-center w-1.5 h-1.5">
+                    <div className="absolute inset-0 bg-[#8b5cf6] rounded-full shadow-[0_0_8px_#8b5cf6] opacity-40" />
+                    <motion.div
+                      animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+                      transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: i * 1.5 }}
+                      className="absolute inset-0 rounded-full bg-[linear-gradient(90deg,transparent_0%,#8b5cf6_40%,#ffffff_50%,#8b5cf6_60%,transparent_100%)] bg-[length:200%_auto]"
+                    />
+                  </div>
+                  {text}
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
