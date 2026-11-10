@@ -98,8 +98,8 @@ export default function VideoModal({ project, onClose }) {
             {isDirectVideo ? (
               <video
                 src={finalEmbedUrl}
-                poster={project.thumbnail} // 🌟 Shows the thumbnail instantly while buffering
-                preload="auto"              // 🌟 Tells browser to start loading immediately
+                poster={project.thumbnail}
+                preload="auto"
                 controls
                 autoPlay
                 playsInline
@@ -168,7 +168,7 @@ export default function VideoModal({ project, onClose }) {
             </p>
           </div>
 
-          {/* 3. THE ORIGINAL IMAGES */}
+                    {/* 3. THE ORIGINAL IMAGES */}
           {hasOriginalImages && (
             <div className="mt-auto border-t border-white/10 pt-4">
               <p className="text-[#a78bfa] text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
@@ -178,10 +178,9 @@ export default function VideoModal({ project, onClose }) {
               
               <div className="flex flex-wrap gap-2 sm:gap-3">
                 {project.originalImages.map((img, index) => {
-                  let imgSrc = img;
-                  if (!img.startsWith("http") && !img.startsWith("/")) {
-                    imgSrc = assetPath(`/images/orignals/${img}`);
-                  }
+                  // 🌟 THE FIX: Just use the string directly. 
+                  // projects.js already formatted it perfectly!
+                  const imgSrc = img;
 
                   return (
                     <div 
@@ -193,6 +192,7 @@ export default function VideoModal({ project, onClose }) {
                         alt={`Original ${index + 1}`} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                         onError={(e) => {
+                          console.error("Failed image URL:", imgSrc); // Check console for exact URL
                           e.target.onerror = null; 
                           e.target.src = "https://placehold.co/150x150/13131e/8b5cf6?text=Missing";
                         }}

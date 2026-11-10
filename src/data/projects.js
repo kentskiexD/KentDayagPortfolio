@@ -14,13 +14,13 @@ export const projects = [
     youtubeUrl: "https://youtu.be/V-UQhQ7fgKs",
     thumbnail: "https://img.youtube.com/vi/V-UQhQ7fgKs/maxresdefault.jpg",
     originalImages: [
-      assetPath("/images/originals/mens-shirt.jpg"),
-      assetPath("/images/originals/mens-shorts.jpg")
+      assetPath("/images/originals/mens-shirt.webp"),  // ✅ Changed to .webp
+      assetPath("/images/originals/mens-shorts.webp") // ✅ Changed to .webp
     ],
     originalLabel: "Original Products",
     size: "medium",
   },
-  {
+    {
     id: 25,
     title: "Burgundy Floral Puff Sleeve Mini Dress",
     category: "product-visuals",
@@ -30,8 +30,7 @@ export const projects = [
     videoUrl: "https://www.youtube.com/embed/rXZ5BKi_2iQ",
     youtubeUrl: "https://www.youtube.com/shorts/rXZ5BKi_2iQ",
     thumbnail: "https://img.youtube.com/vi/rXZ5BKi_2iQ/maxresdefault.jpg",
-    originalImages: [assetPath("/images/originals/burgundy-dress.jpg")],
-    originalLabel: "Original Product",
+    // 🌟 originalImages removed completely
     size: "medium",
   },
   {
