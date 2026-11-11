@@ -55,7 +55,7 @@ export default function Navbar() {
           : "bg-[#0a0a0f]/20 backdrop-blur-md py-5"
       }`}
     >
-      {/* ✨ Smooth Running Light on the Bottom Border (SUPER SLOW) */}
+      {/* ✨ Smooth Running Light on the Bottom Border */}
       <div className="absolute bottom-0 left-0 right-0 h-[1px] pointer-events-none overflow-hidden">
         <motion.div
           animate={{ backgroundPosition: ["200% center", "-200% center"] }}
@@ -66,15 +66,58 @@ export default function Navbar() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center transition-all duration-300">
         
-        {/* LEFT: Desktop Logo (Elegant & Glowing) */}
+        {/* LEFT: Desktop Logo with Infinite Light Hexagon */}
         <a href="#home" className="hidden md:flex items-center group relative cursor-pointer z-10">
-          {/* Subtle background glow behind the logo on hover */}
-          <div className="absolute inset-0 bg-[#8b5cf6]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-          <img
-            src={assetPath("/images/logo.png")}
-            alt="Kent Dayag Logo"
-            className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105 relative z-10"
-          />
+          
+          {/* 🌟 The Smaller Teal Shield Container */}
+          <div className="relative flex items-center justify-center w-10 h-10 transition-transform duration-300 group-hover:scale-105">
+            
+            {/* Glowing Teal Background Aura */}
+            <div className="absolute inset-0 bg-[#06b6d4]/20 blur-md rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+            {/* Static Hexagon Background */}
+            <div 
+              className="absolute inset-0 border border-[#06b6d4]/30 bg-[#0a0a0f]/60 backdrop-blur-sm transition-colors duration-300 group-hover:border-[#06b6d4]/50"
+              style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+            />
+
+            {/* 🌊 Infinite Running Light Wave */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none" 
+              viewBox="0 0 100 100"
+            >
+              <defs>
+                <linearGradient id="fadeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="transparent" />
+                  <stop offset="40%" stopColor="#06b6d4" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#22d3ee" />
+                </linearGradient>
+              </defs>
+
+              {/* 🌟 FIXED CONTINUOUS LOOP MATH: 
+                  Perimeter of hexagon with radius 46 is roughly 276.
+                  We set the gap to exactly match the perimeter so it loops perfectly. */}
+              <motion.polygon
+                points="50,2 96,26 96,74 50,98 4,74 4,26"
+                fill="none"
+                stroke="url(#fadeGradient)"
+                strokeWidth="1.5" 
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                initial={{ strokeDasharray: "80 196", strokeDashoffset: 0 }} // 80 (light) + 196 (gap) = 276 total
+                animate={{ strokeDashoffset: -276 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                style={{ filter: "drop-shadow(0 0 2px rgba(6, 182, 212, 0.6))" }}
+              />
+            </svg>
+            
+            {/* The Logo Image inside the Shield */}
+            <img
+              src={assetPath("/images/logo.png")}
+              alt="Kent Dayag Logo"
+              className="relative z-10 w-10 h-10 object-contain"
+            />
+          </div>
         </a>
 
         {/* RIGHT: Nav Links & Hire Me Button */}
@@ -103,25 +146,24 @@ export default function Navbar() {
                 
                 {/* Hover underline for inactive links */}
                 {!isActive && (
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gradient-to-r from-transparent via-[#a78bfa] to-transparent transition-all duration-300 group-hover:w-1/2 opacity-0 group-hover:opacity-100" />
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gradient-to-r from-transparent via-[#06b6d4] to-transparent transition-all duration-300 group-hover:w-1/2 opacity-0 group-hover:opacity-100" />
                 )}
               </a>
             );
           })}
 
-          {/* HIRE ME BUTTON (Running Light Border + Glowing Star) */}
+          {/* HIRE ME BUTTON */}
           <a
             href="#contact"
-            className="ml-4 relative group rounded-full px-6 py-2 flex items-center gap-2.5 text-sm font-bold text-white transition-all duration-300 hover:scale-105 hover:bg-[#8b5cf6]/20 bg-[#8b5cf6]/10"
+            className="ml-4 relative group rounded-full px-6 py-2 flex items-center gap-2.5 text-sm font-bold text-white transition-all duration-300 hover:scale-105 hover:bg-[#06b6d4]/10 bg-[#06b6d4]/5"
           >
-            {/* The Running Light Border ONLY */}
             <div className="absolute inset-0 pointer-events-none rounded-full overflow-hidden">
               <motion.div
                 animate={{ backgroundPosition: ["200% center", "-200% center"] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 rounded-full bg-[linear-gradient(90deg,transparent_0%,#4c1d95_25%,#8b5cf6_45%,#ffffff_50%,#8b5cf6_55%,#4c1d95_75%,transparent_100%)] bg-[length:200%_auto]"
+                className="absolute inset-0 rounded-full bg-[linear-gradient(90deg,transparent_0%,#0e7490_25%,#06b6d4_45%,#ffffff_50%,#06b6d4_55%,#0e7490_75%,transparent_100%)] bg-[length:200%_auto]"
                 style={{
-                  padding: '1.5px', // Thickness of the border
+                  padding: '1.5px', 
                   WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   WebkitMaskComposite: 'xor',
                   maskComposite: 'exclude',
@@ -129,15 +171,15 @@ export default function Navbar() {
               />
             </div>
 
-            {/* 🌟 Single Glowing Star Icon */}
+            {/* 🌟 Single Glowing Star Icon (TEAL) */}
             <motion.svg
               animate={{
                 scale: [1, 1.15, 1],
                 opacity: [0.8, 1, 0.8],
                 filter: [
-                  "drop-shadow(0 0 2px rgba(167,139,250,0.6))",
-                  "drop-shadow(0 0 8px rgba(167,139,250,1))",
-                  "drop-shadow(0 0 2px rgba(167,139,250,0.6))"
+                  "drop-shadow(0 0 2px rgba(6,182,212,0.6))",
+                  "drop-shadow(0 0 8px rgba(6,182,212,1))",
+                  "drop-shadow(0 0 2px rgba(6,182,212,0.6))"
                 ]
               }}
               transition={{
@@ -147,7 +189,7 @@ export default function Navbar() {
               }}
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-4 h-4 text-[#a78bfa] relative z-10"
+              className="w-4 h-4 text-[#06b6d4] relative z-10"
             >
               <path d="M12 0C12 6.627 17.373 12 24 12C17.373 12 12 17.373 12 24C12 17.373 6.627 12 0 12C6.627 12 12 6.627 12 0Z" />
             </motion.svg>
@@ -211,9 +253,9 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="mt-4 relative overflow-hidden rounded-xl bg-[#8b5cf6] text-white px-5 py-4 text-center font-bold flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(139,92,246,0.4)]"
+            className="mt-4 relative overflow-hidden rounded-xl bg-[#06b6d4] text-white px-5 py-4 text-center font-bold flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.4)]"
           >
-            {/* Mobile Single Glowing Star */}
+            {/* Mobile Single Glowing Star (TEAL) */}
             <motion.svg
               animate={{ scale: [1, 1.15, 1], opacity: [0.8, 1, 0.8] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}

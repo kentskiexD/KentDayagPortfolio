@@ -1,17 +1,29 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Hero from "./sections/Hero";
+import FeaturedBillboard from "./sections/FeaturedBillboard"; // 🌟 Import the marquee
 import VideoShowcase from "./sections/VideoShowcase";
 import About from "./sections/About";
 import Services from "./sections/Services";
 import WhyMe from "./sections/WhyMe";
 import CTA from "./sections/CTA";
 import CustomCursor from "./components/CustomCursor";
+import VideoModal from "./components/VideoModal"; // 🌟 Import the modal
+import { projects } from "./data/projects"; // 🌟 Import your data
 
 export default function App() {
   const lenisRef = useRef(null);
+
+  // 🌟 Pick the array of your best videos for the marquee
+  // Change these IDs to any project you want to feature
+  const showcaseProjects = projects.filter((p) => 
+    [5, 9, 10, 25].includes(p.id) 
+  );
+  
+  // 🌟 State to open the video modal
+  const [selectedBillboard, setSelectedBillboard] = useState(null);
 
   useEffect(() => {
     // Respect reduced motion
@@ -71,6 +83,13 @@ export default function App() {
         <Navbar />
         <main>
           <Hero />
+          
+          {/* 🌟 MARQUEE / BILLBOARD SECTION (Passes the array) */}
+          <FeaturedBillboard 
+            projects={showcaseProjects} 
+            onPlay={(project) => setSelectedBillboard(project)} 
+          />
+          
           <VideoShowcase />
           <About />
           <Services />
@@ -79,6 +98,14 @@ export default function App() {
         </main>
         <Footer />
       </div>
+
+      {/* 🌟 Render the modal if any Billboard video is clicked */}
+      {selectedBillboard && (
+        <VideoModal 
+          project={selectedBillboard} 
+          onClose={() => setSelectedBillboard(null)} 
+        />
+      )}
     </div>
   );
 }

@@ -6,14 +6,10 @@ export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [clicks, setClicks] = useState([]);
   
-  // 🌟 State to track if the video modal is open
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  // 🌟 State to track if it's a desktop device (has a mouse/trackpad)
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    // Check if the device has a fine pointer (mouse) and is wide enough
     const checkDevice = () => {
       const isPointerFine = window.matchMedia("(pointer: fine)").matches;
       const isWideScreen = window.innerWidth >= 1024;
@@ -28,13 +24,11 @@ export default function CustomCursor() {
     };
 
     const handleClick = (e) => {
-      // Only create ripples if we are on desktop
       if (!window.matchMedia("(pointer: fine)").matches) return;
       
       const id = Date.now();
-      setClicks((prev) => [...prev, { id, x: e.clientX, y: e.clientY }]);
+      setClicks((prev) => [...prev, { id, x: e.clientX + 2, y: e.clientY + 2 }]);
 
-      // Increased to 2500ms (2.5 seconds) to give the water time to fully fade
       setTimeout(() => {
         setClicks((prev) => prev.filter((click) => click.id !== id));
       }, 2500);
@@ -43,7 +37,6 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", updateMousePosition);
     window.addEventListener("mousedown", handleClick);
 
-    // Observer to watch for the modal-open class on the body
     const observer = new MutationObserver(() => {
       setIsModalOpen(document.body.classList.contains("modal-open"));
     });
@@ -57,49 +50,76 @@ export default function CustomCursor() {
     };
   }, []);
 
-  // 🌟 If on mobile OR if the modal is open, completely hide the custom cursor
   if (!isDesktop || isModalOpen) return null;
 
   return (
     <>
-      {/* 🌊 Water Ripple Effect */}
-      <AnimatePresence>
-        {clicks.map((click) => (
-          <motion.div
-            key={click.id}
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-            className="fixed pointer-events-none z-[999998]"
-            style={{ left: click.x, top: click.y }}
-          >
-            {/* Outer Ripple */}
+      {/* 🌊 Water Ripple Effect (Z-0) */}
+      <div className="fixed inset-0 pointer-events-none z-0 outline-none">
+        <AnimatePresence>
+          {clicks.map((click) => (
             <motion.div
-              initial={{ scale: 0, opacity: 0.9 }}
-              animate={{ scale: 3.5, opacity: 0 }}
+              key={click.id}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 0 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 2, ease: "easeOut" }}
-              className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-[#06b6d4]"
-            />
-            
-            {/* Inner Ripple */}
-            <motion.div
-              initial={{ scale: 0, opacity: 0.8 }}
-              animate={{ scale: 2, opacity: 0 }}
-              transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }}
-              className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border border-white"
-            />
-            
-            {/* Central Splash */}
-            <motion.div
-              initial={{ scale: 0.5, opacity: 1 }}
-              animate={{ scale: 1.5, opacity: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-[#06b6d4] rounded-full blur-[1px]"
-            />
-          </motion.div>
-        ))}
-      </AnimatePresence>
+              className="fixed pointer-events-none"
+              style={{ left: click.x, top: click.y }}
+            >
+              <motion.div
+                initial={{ scale: 0, opacity: 0.9 }}
+                animate={{ scale: 3.5, opacity: 0 }}
+                transition={{ duration: 2, ease: "easeOut" }}
+                className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-[#06b6d4]"
+              />
+              
+              <motion.div
+                initial={{ scale: 0, opacity: 0.8 }}
+                animate={{ scale: 2, opacity: 0 }}
+                transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }}
+                className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border border-white"
+              />
+              
+              <motion.div
+                initial={{ scale: 0.5, opacity: 1 }}
+                animate={{ scale: 1.5, opacity: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-[#06b6d4] rounded-full blur-[1px]"
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* ⚡ THE SMALL DIAGONAL DOT TRAIL */}
+      {[0.1, 0.2, 0.3, 0.4, 0.5].map((delay, index) => (
+        <motion.div
+          key={index}
+          className="fixed top-0 left-0 pointer-events-none z-[999997]"
+          animate={{
+            x: mousePosition.x,
+            y: mousePosition.y,
+          }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 450 - (index * 40), 
+            damping: 30 + (index * 5),     
+            mass: 0.1 
+          }}
+        >
+          {/* The Tiny Dot */}
+          <div 
+            className="absolute top-[2px] left-[2px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#06b6d4]"
+            style={{ 
+              width: 5 - (index * 0.8),   // 5px down to 1.8px
+              height: 5 - (index * 0.8), 
+              opacity: 0.6 - (index * 0.1), // Fades out quickly
+              boxShadow: "0 0 6px #06b6d4", // Subtle glow
+            }} 
+          />
+        </motion.div>
+      ))}
 
       {/* ⚔️ THE MAIN CURSOR */}
       <motion.div
@@ -110,13 +130,13 @@ export default function CustomCursor() {
         }}
         transition={{ type: "spring", stiffness: 1000, damping: 40, mass: 0.1 }}
       >
-        {/* 🔮 Orbiting Spherical Rings */}
-        <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-7 h-7 flex items-center justify-center">
+        {/* 🔮 Orbiting Rings at the Top-Left Tip */}
+        <div className="absolute top-[2px] left-[2px] -translate-x-1/2 -translate-y-1/2 pointer-events-none w-5 h-5 flex items-center justify-center">
           
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0 rounded-full border-2 border-dashed border-[#06b6d4]/80" 
+            className="absolute inset-0 rounded-full border border-dashed border-[#06b6d4]/80" 
           />
 
           <motion.div
@@ -125,25 +145,34 @@ export default function CustomCursor() {
               rotate: { duration: 4, repeat: Infinity, ease: "linear" },
               scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
             }}
-            className="absolute inset-1 rounded-full border border-[#06b6d4]/50"
+            className="absolute inset-0.5 rounded-full border border-[#06b6d4]/50"
           />
           
           <motion.div
             animate={{ opacity: [0.3, 0.6, 0.3] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-2 rounded-full bg-[#06b6d4] blur-sm"
+            className="absolute inset-1 rounded-full bg-[#06b6d4] blur-[2px]"
           />
         </div>
 
-        {/* ⚔️ The Sword Image */}
-        <img 
-          src={assetPath("/images/cursor.png")} 
-          alt="cursor"
-          className="relative z-10 w-10 h-10 object-contain"
-          style={{
-            filter: "drop-shadow(0px 0px 12px rgba(6, 182, 212, 1)) drop-shadow(0px 0px 25px rgba(6, 181, 212, 0.44))",
+        {/* ⚔️ The Sword Image with Pulsing Aura */}
+        <motion.div
+          animate={{
+            filter: [
+              "drop-shadow(0px 0px 10px rgba(6, 182, 212, 0.8)) drop-shadow(0px 0px 20px rgba(6, 182, 212, 0.4))",
+              "drop-shadow(0px 0px 20px rgba(6, 182, 212, 1)) drop-shadow(0px 0px 40px rgba(6, 182, 212, 0.6))",
+              "drop-shadow(0px 0px 10px rgba(6, 182, 212, 0.8)) drop-shadow(0px 0px 20px rgba(6, 182, 212, 0.4))"
+            ]
           }}
-        />
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="relative z-10"
+        >
+          <img 
+            src={assetPath("/images/cursor-final.png")} 
+            alt="cursor"
+            className="w-12 h-12 object-contain pointer-events-none outline-none"
+          />
+        </motion.div>
       </motion.div>
     </>
   );

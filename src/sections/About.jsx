@@ -78,12 +78,12 @@ export default function About() {
   // Helper class for the running light text effect
   const runningLightText = "bg-[linear-gradient(90deg,#8b5cf6_0%,#a78bfa_25%,#ffffff_50%,#a78bfa_75%,#8b5cf6_100%)] bg-[length:250%_auto] bg-clip-text text-transparent inline-block pb-[0.1em] will-change-[background-position] transform-gpu";
 
-  // 🌟 Hover animation setup for smooth floating in and out
+  // 🌟 Hover animation setup (Snappy, fast return)
   const cardHover = {
     scale: 1.04,
     y: -8,
-    boxShadow: "0px 20px 40px -10px rgba(139, 92, 246, 0.4)",
-    transition: { duration: 0.8, ease: "easeOut" } // Takes 0.8s to return, making it drift back slowly
+    boxShadow: "0px 20px 40px -10px rgba(6, 182, 212, 0.4)", // Teal shadow
+    transition: { duration: 0.3, ease: "easeOut" } 
   };
 
   return (
@@ -92,87 +92,55 @@ export default function About() {
       id="about"
       className="relative py-24 lg:py-32 px-6 lg:px-8 overflow-hidden"
     >
-      {/* 🌠 Natural Asteroid Shower (Top Left Diagonal) */}
+      {/* 🌠 Natural Asteroid Shower (NOW TEAL) */}
       <div className="absolute top-0 left-0 w-[800px] h-[600px] -z-10 pointer-events-none overflow-hidden opacity-70">
         {!shouldReduceMotion && (
           <>
             {/* Asteroid 1 (Deep trail) */}
             <motion.div
-              animate={{ 
-                x: [0, 400], 
-                y: [0, 400], 
-                opacity: [0, 1, 1, 0] 
-              }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity, 
-                ease: [0.45, 0.05, 0.55, 0.95], // Smoother acceleration
-                delay: 0.5 
-              }}
+              animate={{ x: [0, 400], y: [0, 400], opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: [0.45, 0.05, 0.55, 0.95], delay: 0.5 }}
               className="absolute top-[0%] left-[5%]"
             >
-              <div className="relative w-[1.5px] h-32 bg-gradient-to-b from-transparent via-[#8b5cf6]/40 to-[#a78bfa] rounded-full -rotate-[45deg] origin-top">
-                <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white rounded-full shadow-[0_0_15px_#ffffff,0_0_25px_#8b5cf6]" />
+              {/* 🌟 Changed to Teal */}
+              <div className="relative w-[1.5px] h-32 bg-gradient-to-b from-transparent via-[#06b6d4]/40 to-[#22d3ee] rounded-full -rotate-[45deg] origin-top">
+                <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white rounded-full shadow-[0_0_15px_#ffffff,0_0_25px_#06b6d4]" />
               </div>
             </motion.div>
             
             {/* Asteroid 2 (Thick and bright) */}
             <motion.div
-              animate={{ 
-                x: [0, 300], 
-                y: [0, 300], 
-                opacity: [0, 1, 1, 0] 
-              }}
-              transition={{ 
-                duration: 2.5, 
-                repeat: Infinity, 
-                ease: "easeIn", 
-                delay: 2 
-              }}
+              animate={{ x: [0, 300], y: [0, 300], opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeIn", delay: 2 }}
               className="absolute top-[10%] left-[25%]"
             >
-              <div className="relative w-[2.5px] h-28 bg-gradient-to-b from-transparent via-[#8b5cf6]/50 to-white rounded-full -rotate-[45deg] origin-top">
-                <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-white rounded-full shadow-[0_0_20px_#ffffff,0_0_30px_#8b5cf6]" />
+              {/* 🌟 Changed to Teal */}
+              <div className="relative w-[2.5px] h-28 bg-gradient-to-b from-transparent via-[#06b6d4]/50 to-white rounded-full -rotate-[45deg] origin-top">
+                <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-white rounded-full shadow-[0_0_20px_#ffffff,0_0_30px_#06b6d4]" />
               </div>
             </motion.div>
 
             {/* Asteroid 3 (Fast, tiny) */}
             <motion.div
-              animate={{ 
-                x: [0, 200], 
-                y: [0, 200], 
-                opacity: [0, 0.8, 0.8, 0] 
-              }}
-              transition={{ 
-                duration: 1.8, 
-                repeat: Infinity, 
-                ease: "easeIn", 
-                delay: 4 
-              }}
+              animate={{ x: [0, 200], y: [0, 200], opacity: [0, 0.8, 0.8, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeIn", delay: 4 }}
               className="absolute top-[25%] left-[10%]"
             >
-              <div className="relative w-[1px] h-16 bg-gradient-to-b from-transparent via-[#a78bfa]/50 to-white rounded-full -rotate-[45deg] origin-top">
-                <div className="absolute -bottom-1 -right-1 w-1 h-1 bg-white rounded-full shadow-[0_0_10px_#ffffff,0_0_15px_#8b5cf6]" />
+              {/* 🌟 Changed to Teal */}
+              <div className="relative w-[1px] h-16 bg-gradient-to-b from-transparent via-[#22d3ee]/50 to-white rounded-full -rotate-[45deg] origin-top">
+                <div className="absolute -bottom-1 -right-1 w-1 h-1 bg-white rounded-full shadow-[0_0_10px_#ffffff,0_0_15px_#06b6d4]" />
               </div>
             </motion.div>
 
             {/* Asteroid 4 (Slow, long streak) */}
             <motion.div
-              animate={{ 
-                x: [0, 500], 
-                y: [0, 500], 
-                opacity: [0, 1, 1, 0] 
-              }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity, 
-                ease: [0.45, 0.05, 0.55, 0.95], 
-                delay: 1.5 
-              }}
+              animate={{ x: [0, 500], y: [0, 500], opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: [0.45, 0.05, 0.55, 0.95], delay: 1.5 }}
               className="absolute top-[-10%] left-[-10%]"
             >
-              <div className="relative w-[1.5px] h-40 bg-gradient-to-b from-transparent via-[#4c1d95]/40 to-[#a78bfa] rounded-full -rotate-[45deg] origin-top">
-                <div className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_12px_#ffffff,0_0_20px_#8b5cf6]" />
+              {/* 🌟 Changed to Teal */}
+              <div className="relative w-[1.5px] h-40 bg-gradient-to-b from-transparent via-[#0e7490]/40 to-[#22d3ee] rounded-full -rotate-[45deg] origin-top">
+                <div className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_12px_#ffffff,0_0_20px_#06b6d4]" />
               </div>
             </motion.div>
           </>
@@ -201,20 +169,14 @@ export default function About() {
                 visible: {
                   opacity: 1,
                   y: 0,
-                  transition: {
-                    duration: 0.7,
-                    ease: EASE,
-                    delay: shouldReduceMotion ? 0 : 0.1,
-                  },
+                  transition: { duration: 0.7, ease: EASE, delay: shouldReduceMotion ? 0 : 0.1 },
                 },
               }}
               className="text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight mt-3 text-balance flex items-start"
             >
               <span>Hi, I'm&nbsp;</span>
               
-              {/* Relative container for Kent + Emoji */}
               <span className="relative inline-block">
-                {/* The Running Light Text for Kent */}
                 <motion.span
                   animate={shouldReduceMotion ? {} : { backgroundPosition: ["200% center", "-200% center"] }}
                   transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
@@ -223,18 +185,9 @@ export default function About() {
                   Kent
                 </motion.span>
                 
-                {/* Waving Hand Animation */}
                 <motion.span
-                  animate={shouldReduceMotion ? {} : { 
-                    rotate: [0, 20, -10, 20, -10, 0],
-                    opacity: [0.4, 1, 0.4] 
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    repeatDelay: 1.5,
-                    ease: "easeInOut",
-                  }}
+                  animate={shouldReduceMotion ? {} : { rotate: [0, 20, -10, 20, -10, 0], opacity: [0.4, 1, 0.4] }}
+                  transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1.5, ease: "easeInOut" }}
                   className="absolute -top-5 -right-8 text-xl lg:text-2xl origin-[70%_70%] z-20 pointer-events-none"
                   style={{ WebkitTextFillColor: "initial", WebkitTextStroke: "0px" }}
                 >
@@ -245,12 +198,8 @@ export default function About() {
               <span className="text-white">.</span>
             </motion.h2>
             
-            <motion.p
-              variants={leftItem}
-              className="text-lg text-white leading-relaxed mt-8"
-            >
+            <motion.p variants={leftItem} className="text-lg text-white leading-relaxed mt-8">
               I'm a{" "}
-              {/* Running Light Text for BSIT */}
               <motion.span
                 animate={shouldReduceMotion ? {} : { backgroundPosition: ["200% center", "-200% center"] }}
                 transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", repeatType: "mirror", delay: 2 }}
@@ -259,7 +208,6 @@ export default function About() {
                 BSIT graduate, Cum Laude
               </motion.span>
               ,{" "}
-              {/* Running Light Text for AI Content Creator */}
               <motion.span
                 animate={shouldReduceMotion ? {} : { backgroundPosition: ["200% center", "-200% center"] }}
                 transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", repeatType: "mirror", delay: 4 }}
@@ -270,29 +218,20 @@ export default function About() {
               , and <span className="text-[#a78bfa] font-medium">Programmer</span> blending creativity with technology.
             </motion.p>
 
-            <motion.p
-              variants={leftItem}
-              className="text-[#a1a1aa] text-lg leading-relaxed mt-5"
-            >
+            <motion.p variants={leftItem} className="text-[#a1a1aa] text-lg leading-relaxed mt-5">
               I build <span className="text-white font-medium">AI-driven videos, visuals, and social creatives</span> that help brands stand out. I also write code to automate workflows, build interactive experiences, and bring digital ideas to life.
             </motion.p>
 
-            <motion.p
-              variants={leftItem}
-              className="text-[#a1a1aa] text-lg leading-relaxed mt-5"
-            >
+            <motion.p variants={leftItem} className="text-[#a1a1aa] text-lg leading-relaxed mt-5">
               By combining creative direction, editing, and programming, I turn simple concepts into polished content and functional digital solutions.
             </motion.p>
 
-            <motion.p
-              variants={leftItem}
-              className="text-[#a1a1aa] text-lg leading-relaxed mt-5"
-            >
+            <motion.p variants={leftItem} className="text-[#a1a1aa] text-lg leading-relaxed mt-5">
               Whether you need a short Reel, an AI product visual, or a custom script, I can bring your idea to life.
             </motion.p>
           </motion.div>
 
-          {/* RIGHT: Highlights */}
+          {/* RIGHT: Highlights (TEAL) */}
           <motion.div
             variants={rightContainer}
             initial="hidden"
@@ -307,9 +246,9 @@ export default function About() {
                     key={item.title}
                     variants={rightItem}
                     whileHover={shouldReduceMotion ? {} : cardHover}
-                    className="group relative p-6 rounded-2xl bg-[#13131e]/80 border border-[#26263a] backdrop-blur-xl overflow-hidden cursor-default"
+                    className="group relative p-6 rounded-2xl bg-[#13131e]/80 border border-[#26263a] hover:border-[#06b6d4]/50 backdrop-blur-xl transition-all duration-500 overflow-hidden cursor-default"
                   >
-                    {/* 🌟 Running Light Border */}
+                    {/* 🌟 Running Light Border (TEAL) */}
                     <div className="absolute top-0 left-0 right-0 h-[1.5px] pointer-events-none overflow-hidden opacity-40 group-hover:opacity-100 transition-opacity duration-500">
                       <motion.div
                         animate={{ backgroundPosition: ["200% center", "-200% center"] }}
@@ -319,23 +258,28 @@ export default function About() {
                           ease: "easeInOut",
                           delay: index * 1.5
                         }}
-                        className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#4c1d95_25%,#8b5cf6_45%,#ffffff_50%,#8b5cf6_55%,#4c1d95_75%,transparent_100%)] bg-[length:200%_auto]"
+                        className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#0e7490_25%,#06b6d4_45%,#ffffff_50%,#06b6d4_55%,#0e7490_75%,transparent_100%)] bg-[length:200%_auto]"
                       />
                     </div>
 
-                    {/* 🌟 Glowing Icon Container */}
-                    <div className="relative w-12 h-12 rounded-xl bg-[#1e1e2d] border border-[#8b5cf6]/30 flex items-center justify-center mb-5 group-hover:bg-[#8b5cf6]/10 transition-colors duration-400 overflow-hidden">
-                      <div className="absolute inset-0 bg-[#8b5cf6]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                    {/* 🌟 Glowing Icon Container (TEAL) */}
+                    <div className="relative w-12 h-12 rounded-xl bg-[#1e1e2d] border border-[#06b6d4]/30 flex items-center justify-center mb-5 group-hover:bg-[#06b6d4]/10 transition-colors duration-400 overflow-hidden">
+                      <div className="absolute inset-0 bg-[#06b6d4]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
                       <Icon
-                        className="w-5 h-5 text-[#a78bfa] relative z-10"
+                        className="w-5 h-5 text-[#06b6d4] relative z-10"
                         strokeWidth={1.75}
                       />
                     </div>
 
-                    {/* 🌟 Title with Gentle Heartbeat Scale Effect */}
+                    {/* 🌟 Title with Gentle Heartbeat Scale Effect & Teal Glow */}
                     <motion.p 
                       animate={shouldReduceMotion ? {} : {
-                        scale: [1, 1.03, 1]
+                        scale: [1, 1.03, 1],
+                        textShadow: [
+                          "0 0 4px rgba(6, 182, 212, 0.1)",
+                          "0 0 15px rgba(6, 182, 212, 0.6)",
+                          "0 0 4px rgba(6, 182, 212, 0.1)"
+                        ]
                       }}
                       transition={{
                         duration: 3,

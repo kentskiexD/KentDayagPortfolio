@@ -21,7 +21,6 @@ export default function Hero() {
   
   const portraitY = useTransform(scrollYProgress, [0, 1], [0, -30]);
   
-  // 🌟 Fade out the scroll indicator as you scroll down
   const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scrollIndicatorY = useTransform(scrollYProgress, [0, 0.2], [0, 20]);
 
@@ -84,12 +83,70 @@ export default function Hero() {
           variants={textContainer}
           initial="hidden"
           animate="visible"
-          className="order-2 lg:order-1 text-center lg:text-left"
+          className="order-2 lg:order-1 text-center lg:text-left relative"
         >
-          {/* 🏆 Premium Badge with Text-Only Heartbeat */}
+          
+          {/* 🌠 TEAL METEOR SHOWER (BEHIND THE TEXT) */}
+          <div 
+            className="absolute top-[-150px] -left-40 w-[700px] h-[600px] -z-10 pointer-events-none opacity-60"
+            style={{
+              maskImage: "linear-gradient(to bottom, black 40%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 100%)"
+            }}
+          >
+            {!shouldReduceMotion && (
+              <>
+                {/* Meteor 1 */}
+                <motion.div
+                  animate={{ x: [0, 400], y: [0, 400], opacity: [0, 1, 1, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: [0.45, 0.05, 0.55, 0.95], delay: 1 }}
+                  className="absolute top-[10%] left-[20%]"
+                >
+                  <div className="relative w-[2px] h-32 bg-gradient-to-b from-transparent via-[#06b6d4]/80 to-[#22d3ee] rounded-full -rotate-[45deg] origin-top shadow-[0_0_8px_#06b6d4]">
+                    <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white rounded-full blur-[1.5px] shadow-[0_0_15px_#ffffff,0_0_25px_#06b6d4,0_0_40px_#22d3ee]" />
+                  </div>
+                </motion.div>
+                
+                {/* Meteor 2 */}
+                <motion.div
+                  animate={{ x: [0, 300], y: [0, 300], opacity: [0, 1, 1, 0] }}
+                  transition={{ duration: 2.8, repeat: Infinity, ease: "easeIn", delay: 3 }}
+                  className="absolute top-[30%] left-[40%]"
+                >
+                  <div className="relative w-[3px] h-28 bg-gradient-to-b from-transparent via-[#06b6d4]/80 to-white rounded-full -rotate-[45deg] origin-top shadow-[0_0_10px_#22d3ee]">
+                    <div className="absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-white rounded-full blur-[2px] shadow-[0_0_20px_#ffffff,0_0_35px_#06b6d4,0_0_50px_#22d3ee]" />
+                  </div>
+                </motion.div>
+
+                {/* Meteor 3 */}
+                <motion.div
+                  animate={{ x: [0, 200], y: [0, 200], opacity: [0, 0.9, 0.9, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeIn", delay: 5 }}
+                  className="absolute top-[15%] left-[10%]"
+                >
+                  <div className="relative w-[1.5px] h-16 bg-gradient-to-b from-transparent via-[#22d3ee] to-white rounded-full -rotate-[45deg] origin-top">
+                    <div className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-white rounded-full blur-[1px] shadow-[0_0_12px_#ffffff,0_0_25px_#06b6d4]" />
+                  </div>
+                </motion.div>
+
+                {/* Meteor 4 */}
+                <motion.div
+                  animate={{ x: [0, 500], y: [0, 500], opacity: [0, 1, 1, 0] }}
+                  transition={{ duration: 4.5, repeat: Infinity, ease: [0.45, 0.05, 0.55, 0.95], delay: 0.5 }}
+                  className="absolute top-[50%] left-[0%]"
+                >
+                  <div className="relative w-[2px] h-40 bg-gradient-to-b from-transparent via-[#06b6d4]/80 to-[#22d3ee] rounded-full -rotate-[45deg] origin-top shadow-[0_0_10px_#0e7490]">
+                    <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white rounded-full blur-[1.5px] shadow-[0_0_15px_#ffffff,0_0_30px_#06b6d4,0_0_45px_#22d3ee]" />
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </div>
+
+          {/* Premium Badge */}
           <motion.div
             variants={textItem(0)}
-            className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full fantasy-glass mb-8"
+            className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full fantasy-glass mb-8 relative z-10"
           >
             <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -114,11 +171,10 @@ export default function Hero() {
           {/* Headline */}
           <motion.h1
             variants={textItem(0.1)}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight text-balance"
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight text-balance relative z-10"
           >
             Content that gets{" "}
             <span className="relative inline-block italic">
-              {/* Animated "running light" text */}
              <motion.span
   animate={
     shouldReduceMotion
@@ -135,9 +191,8 @@ export default function Hero() {
 >
   attention.
 </motion.span>
-              {/* Single Clean Sparkle Icon */}
               <svg
-                className="absolute -top-6 -right-10 w-8 h-8 text-[#a78bfa] animate-pulse drop-shadow-[0_0_10px_rgba(139,92,246,0.8)]"
+                className="absolute -top-6 -right-10 w-8 h-8 text-[#06b6d4] animate-pulse drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
@@ -147,12 +202,11 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          {/* 🏆 Ornamental Divider (Light Sweeps Inward) */}
+          {/* Ornamental Divider */}
           <motion.div
             variants={textItem(0.15)}
-            className="flex items-center justify-center lg:justify-start gap-5 mt-8 mb-6 opacity-80"
+            className="flex items-center justify-center lg:justify-start gap-5 mt-8 mb-6 opacity-80 relative z-10"
           >
-            {/* Left Line - Light sweeps from Left to Center */}
             <div className="relative h-[1px] w-20 sm:w-32 bg-[#8b5cf6]/20 overflow-hidden">
               <motion.div
                 animate={{ backgroundPosition: ["200% center", "0% center"] }}
@@ -160,8 +214,6 @@ export default function Hero() {
                 className="absolute inset-0 bg-[linear-gradient(90deg,#4c1d95_0%,#a78bfa_25%,#ffffff_50%,#a78bfa_75%,#4c1d95_100%)] bg-[length:200%_auto]"
               />
             </div>
-
-            {/* Center Diamond (Spin + Pulse) */}
             <motion.div
               animate={{
                 rotate: [45, 405],
@@ -180,8 +232,6 @@ export default function Hero() {
               }}
               className="w-2.5 h-2.5 border border-[#a78bfa] bg-[#8b5cf6]/20"
             />
-
-            {/* Right Line - Light sweeps from Right to Center */}
             <div className="relative h-[1px] w-20 sm:w-32 bg-[#8b5cf6]/20 overflow-hidden">
               <motion.div
                 animate={{ backgroundPosition: ["0% center", "200% center"] }}
@@ -191,22 +241,19 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Description */}
           <motion.p
             variants={textItem(0.2)}
-            className="text-lg text-[#a1a1aa] mt-6 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+            className="text-lg text-[#a1a1aa] mt-6 max-w-xl mx-auto lg:mx-0 leading-relaxed relative z-10"
           >
             I create engaging AI-powered videos and visuals for brands,
             products, and social media — content made for today's digital
             platforms.
           </motion.p>
 
-                   {/* 🏆 Fantasy Pill Buttons (Responsive Size) */}
           <motion.div
             variants={textItem(0.3)}
-            className="flex flex-wrap gap-3 sm:gap-4 mt-10 justify-center lg:justify-start"
+            className="flex flex-wrap gap-3 sm:gap-4 mt-10 justify-center lg:justify-start relative z-10"
           >
-            {/* Primary Button */}
             <a 
               href="#work" 
               className="fantasy-btn fantasy-btn-primary group text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5"
@@ -220,7 +267,6 @@ export default function Hero() {
               </span>
             </a>
 
-            {/* Secondary Button */}
             <a 
               href="#contact" 
               className="fantasy-btn fantasy-btn-secondary group text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5"
@@ -235,93 +281,86 @@ export default function Hero() {
         <div className="order-1 lg:order-2 flex justify-center lg:justify-end relative">
           <div className="relative w-[320px] h-[380px] sm:w-[400px] sm:h-[460px] lg:w-[480px] lg:h-[540px] flex items-end justify-center select-none">
             
-                         {/* Floating Particles */}
+            {/* 🌟 THE GLOWING PARTICLES (RESTORED) */}
             {!shouldReduceMotion && (
               <div className="absolute inset-0 pointer-events-none z-0 overflow-visible">
                 
-                {/* Particle 1 - Purple */}
+                {/* Particle 1 - Teal */}
                 <motion.div
                   animate={{ y: [100, -300], x: [0, 20, -20, 0], opacity: [0, 1, 1, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute top-[60%] left-[10%] flex items-center justify-center"
                 >
-                  {/* The Ripple Trace (Left behind when the particle pulses) */}
                   <motion.div
                     animate={{ scale: [1, 1, 3], opacity: [0, 0.8, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity, times: [0, 0.3, 1], ease: "easeOut" }}
-                    className="absolute w-3 h-3 rounded-full border border-[#8b5cf6] shadow-[0_0_10px_#8b5cf6]"
+                    className="absolute w-3 h-3 rounded-full border border-[#06b6d4] shadow-[0_0_10px_#06b6d4]"
                   />
-                  
-                  {/* The Particle (Pulses up and leaves the trace) */}
                   <motion.div
                     animate={{ scale: [1, 1.5, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative w-3 h-3 rounded-full overflow-hidden shadow-[0_0_15px_rgba(139,92,246,0.8)] z-10"
+                    className="relative w-3 h-3 rounded-full overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.8)] z-10"
                   >
                     <motion.div
                       animate={{ backgroundPosition: ["200% center", "-200% center"] }}
                       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#8b5cf6_30%,#ffffff_50%,#8b5cf6_70%,transparent_100%)] bg-[length:200%_auto] blur-[1px]"
+                      className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#06b6d4_30%,#ffffff_50%,#06b6d4_70%,transparent_100%)] bg-[length:200%_auto] blur-[1px]"
                     />
                   </motion.div>
                 </motion.div>
 
-                {/* Particle 2 - Deep Violet */}
+                {/* Particle 2 - Deep Cyan */}
                 <motion.div
                   animate={{ y: [100, -350], x: [0, -15, 15, 0], opacity: [0, 1, 1, 0] }}
                   transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
                   className="absolute top-[70%] right-[15%] flex items-center justify-center"
                 >
-                  {/* The Ripple Trace */}
                   <motion.div
                     animate={{ scale: [1, 1, 3.5], opacity: [0, 0.8, 0] }}
                     transition={{ duration: 1.8, repeat: Infinity, times: [0, 0.3, 1], ease: "easeOut" }}
-                    className="absolute w-3.5 h-3.5 rounded-full border border-[#4c1d95] shadow-[0_0_10px_#4c1d95]"
+                    className="absolute w-3.5 h-3.5 rounded-full border border-[#0e7490] shadow-[0_0_10px_#0e7490]"
                   />
-                  
-                  {/* The Particle */}
                   <motion.div
                     animate={{ scale: [1, 1.4, 1] }}
                     transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative w-3.5 h-3.5 rounded-full overflow-hidden shadow-[0_0_20px_rgba(76,29,149,0.8)] z-10"
+                    className="relative w-3.5 h-3.5 rounded-full overflow-hidden shadow-[0_0_20px_rgba(14,116,144,0.8)] z-10"
                   >
                     <motion.div
                       animate={{ backgroundPosition: ["-200% center", "200% center"] }}
                       transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#4c1d95_30%,#a78bfa_50%,#4c1d95_70%,transparent_100%)] bg-[length:200%_auto] blur-[1px]"
+                      className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#0e7490_30%,#22d3ee_50%,#0e7490_70%,transparent_100%)] bg-[length:200%_auto] blur-[1px]"
                     />
                   </motion.div>
                 </motion.div>
 
-                {/* Particle 3 - Light Lavender */}
+                {/* Particle 3 - Light Cyan */}
                 <motion.div
                   animate={{ y: [150, -400], x: [0, 25, -25, 0], opacity: [0, 0.8, 0.8, 0] }}
                   transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
                   className="absolute top-[50%] left-[40%] flex items-center justify-center"
                 >
-                  {/* The Ripple Trace */}
                   <motion.div
                     animate={{ scale: [1, 1, 3], opacity: [0, 0.8, 0] }}
                     transition={{ duration: 1.4, repeat: Infinity, times: [0, 0.3, 1], ease: "easeOut" }}
-                    className="absolute w-2.5 h-2.5 rounded-full border border-[#a78bfa] shadow-[0_0_10px_#a78bfa]"
+                    className="absolute w-2.5 h-2.5 rounded-full border border-[#22d3ee] shadow-[0_0_10px_#22d3ee]"
                   />
-                  
-                  {/* The Particle */}
                   <motion.div
                     animate={{ scale: [1, 1.6, 1] }}
                     transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative w-2.5 h-2.5 rounded-full overflow-hidden shadow-[0_0_15px_rgba(167,139,250,0.8)] z-10"
+                    className="relative w-2.5 h-2.5 rounded-full overflow-hidden shadow-[0_0_15px_rgba(34,211,238,0.8)] z-10"
                   >
                     <motion.div
                       animate={{ backgroundPosition: ["200% center", "-200% center"] }}
                       transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#a78bfa_30%,#ffffff_50%,#a78bfa_70%,transparent_100%)] bg-[length:200%_auto] blur-[1px]"
+                      className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#22d3ee_30%,#ffffff_50%,#22d3ee_70%,transparent_100%)] bg-[length:200%_auto] blur-[1px]"
                     />
                   </motion.div>
                 </motion.div>
                 
               </div>
             )}
+
+            {/* Portrait */}
             <motion.div
               variants={portraitVariants}
               initial="hidden"
@@ -353,36 +392,24 @@ export default function Hero() {
 
       </div>
 
-      {/* 🏆 Perfectly Centered Fantasy Scroll Indicator (NOW FIXED & FADES OUT) */}
+      {/* Scroll Indicator (Teal) */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        // 🌟 Style overrides the opacity based on scroll
         style={{ opacity: scrollIndicatorOpacity, y: scrollIndicatorY }}
         transition={{ delay: 1.1, duration: 0.7, ease: EASE }}
         className="fixed bottom-6 inset-x-0 hidden md:flex items-center justify-center pointer-events-none z-40"
       >
         <div className="flex items-center justify-center">
-          
-          {/* Left Line - Animated Light */}
-          <div className="relative h-[1px] w-24 sm:w-32 bg-[#8b5cf6]/20 overflow-hidden">
+          <div className="relative h-[1px] w-24 sm:w-32 bg-[#06b6d4]/20 overflow-hidden">
             <motion.div
               animate={{ backgroundPosition: ["200% center", "-200% center"] }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-                repeatType: "mirror",
-              }}
-              className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#4c1d95_20%,#8b5cf6_35%,#ffffff_50%,#8b5cf6_65%,#4c1d95_80%,transparent_100%)] bg-[length:250%_auto]"
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
+              className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#0e7490_20%,#06b6d4_35%,#ffffff_50%,#06b6d4_65%,#0e7490_80%,transparent_100%)] bg-[length:250%_auto]"
             />
           </div>
-
-          {/* Left Diamond */}
-          <div className="mx-4 w-2 h-2 rotate-45 bg-[#a78bfa] shadow-[0_0_10px_#a78bfa,0_0_20px_#8b5cf6]" />
-
-          {/* The Mouse Capsule */}
-          <div className="relative w-7 h-11 rounded-full border border-[#8b5cf6]/60 bg-[#0a0a0f]/80 backdrop-blur-sm flex justify-center pt-2 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+          <div className="mx-4 w-2 h-2 rotate-45 bg-[#06b6d4] shadow-[0_0_10px_#06b6d4,0_0_20px_#0e7490]" />
+          <div className="relative w-7 h-11 rounded-full border border-[#06b6d4]/60 bg-[#0a0a0f]/80 backdrop-blur-sm flex justify-center pt-2 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
             <motion.svg
               animate={{ y: [0, 6, 0], opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -391,7 +418,7 @@ export default function Hero() {
               height="12"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#a78bfa"
+              stroke="#06b6d4"
               strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -399,24 +426,14 @@ export default function Hero() {
               <path d="M12 5v14M19 12l-7 7-7-7" />
             </motion.svg>
           </div>
-
-          {/* Right Diamond */}
-          <div className="mx-4 w-2 h-2 rotate-45 bg-[#a78bfa] shadow-[0_0_10px_#a78bfa,0_0_20px_#8b5cf6]" />
-
-          {/* Right Line - Animated Light */}
-          <div className="relative h-[1px] w-24 sm:w-32 bg-[#8b5cf6]/20 overflow-hidden">
+          <div className="mx-4 w-2 h-2 rotate-45 bg-[#06b6d4] shadow-[0_0_10px_#06b6d4,0_0_20px_#0e7490]" />
+          <div className="relative h-[1px] w-24 sm:w-32 bg-[#06b6d4]/20 overflow-hidden">
             <motion.div
               animate={{ backgroundPosition: ["-200% center", "200% center"] }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-                repeatType: "mirror",
-              }}
-              className="absolute inset-0 bg-[linear-gradient(270deg,transparent_0%,#4c1d95_20%,#8b5cf6_35%,#ffffff_50%,#8b5cf6_65%,#4c1d95_80%,transparent_100%)] bg-[length:250%_auto]"
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
+              className="absolute inset-0 bg-[linear-gradient(270deg,transparent_0%,#0e7490_20%,#06b6d4_35%,#ffffff_50%,#06b6d4_65%,#0e7490_80%,transparent_100%)] bg-[length:250%_auto]"
             />
           </div>
-          
         </div>
       </motion.div>
     </section>

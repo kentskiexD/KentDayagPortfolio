@@ -102,12 +102,13 @@ export default function VideoShowcase() {
             Videos that{" "}
             <span className="relative inline-block italic">
               <motion.span
-                animate={shouldReduceMotion ? {} : { backgroundPosition: ["200% center", "-200% center"] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
-                className="bg-[linear-gradient(90deg,#4c1d95_0%,#8b5cf6_20%,#c4b5fd_40%,#e9d5ff_50%,#c4b5fd_60%,#8b5cf6_80%,#4c1d95_100%)] bg-[length:250%_auto] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(139,92,246,0.4)] inline-block pb-[0.1em] pr-[0.05em] will-change-[background-position] transform-gpu"
-              >
-                stop the scroll
-              </motion.span>
+  animate={shouldReduceMotion ? {} : { backgroundPosition: ["200% center", "-200% center"] }}
+  transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
+  // 🌟 CHANGED: pr-[0.05em] to pr-[0.2em] to give the italic "l" more room
+  className="bg-[linear-gradient(90deg,#4c1d95_0%,#8b5cf6_20%,#c4b5fd_40%,#e9d5ff_50%,#c4b5fd_60%,#8b5cf6_80%,#4c1d95_100%)] bg-[length:250%_auto] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(139,92,246,0.4)] inline-block pb-[0.1em] pr-[0.2em] will-change-[background-position] transform-gpu"
+>
+  stop the scroll
+</motion.span>
             </span>
             .
           </h2>

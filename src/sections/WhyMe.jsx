@@ -52,12 +52,12 @@ export default function WhyMe() {
   const isRightInView = useInView(rightRef, { once: true, amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
 
-  // 🌟 Smooth floating hover effect
+  // 🌟 Smooth floating hover effect (Teal Shadow)
   const cardHover = {
     scale: 1.02,
     y: -6,
-    boxShadow: "0px 15px 30px -10px rgba(139, 92, 246, 0.3)",
-    transition: { duration: 0.8, ease: "easeOut" }
+    boxShadow: "0px 15px 30px -10px rgba(6, 182, 212, 0.4)",
+    transition: { duration: 0.4, ease: "easeOut" }
   };
 
   return (
@@ -71,7 +71,7 @@ export default function WhyMe() {
           {/* Left: Sticky heading with masked meteors */}
           <div className="lg:col-span-5 lg:sticky lg:top-32 self-start w-full relative">
             
-            {/* 🌠 Meteor Container */}
+            {/* 🌠 Meteor Container (NOW TEAL) */}
             <div 
               className="absolute top-[-150px] -left-20 w-[120%] h-[120%] overflow-hidden -z-10 pointer-events-none opacity-90"
               style={{
@@ -87,9 +87,9 @@ export default function WhyMe() {
                     transition={{ duration: 3, repeat: Infinity, ease: [0.45, 0.05, 0.55, 0.95], delay: 0.5 }}
                     className="absolute top-[10%] left-[20%]"
                   >
-                    <div className="relative w-[2px] h-32 bg-gradient-to-b from-transparent via-[#a78bfa]/80 to-[#8b5cf6] rounded-full -rotate-[45deg] origin-top shadow-[0_0_8px_#8b5cf6]">
-                      {/* Soft natural head */}
-                      <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white rounded-full blur-[1.5px] shadow-[0_0_15px_#ffffff,0_0_25px_#8b5cf6,0_0_40px_#a78bfa]" />
+                    {/* 🌟 Teal Trail */}
+                    <div className="relative w-[2px] h-32 bg-gradient-to-b from-transparent via-[#06b6d4]/80 to-[#22d3ee] rounded-full -rotate-[45deg] origin-top shadow-[0_0_8px_#06b6d4]">
+                      <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white rounded-full blur-[1.5px] shadow-[0_0_15px_#ffffff,0_0_25px_#06b6d4,0_0_40px_#22d3ee]" />
                     </div>
                   </motion.div>
                   
@@ -99,9 +99,9 @@ export default function WhyMe() {
                     transition={{ duration: 2.5, repeat: Infinity, ease: "easeIn", delay: 2 }}
                     className="absolute top-[30%] left-[40%]"
                   >
-                    <div className="relative w-[3px] h-28 bg-gradient-to-b from-transparent via-[#c4b5fd]/80 to-white rounded-full -rotate-[45deg] origin-top shadow-[0_0_10px_#a78bfa]">
-                      {/* Soft natural head */}
-                      <div className="absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-white rounded-full blur-[2px] shadow-[0_0_20px_#ffffff,0_0_35px_#8b5cf6,0_0_50px_#a78bfa]" />
+                    {/* 🌟 Teal Trail */}
+                    <div className="relative w-[3px] h-28 bg-gradient-to-b from-transparent via-[#06b6d4]/80 to-white rounded-full -rotate-[45deg] origin-top shadow-[0_0_10px_#22d3ee]">
+                      <div className="absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-white rounded-full blur-[2px] shadow-[0_0_20px_#ffffff,0_0_35px_#06b6d4,0_0_50px_#22d3ee]" />
                     </div>
                   </motion.div>
 
@@ -111,9 +111,9 @@ export default function WhyMe() {
                     transition={{ duration: 1.8, repeat: Infinity, ease: "easeIn", delay: 4 }}
                     className="absolute top-[15%] left-[10%]"
                   >
-                    <div className="relative w-[1.5px] h-16 bg-gradient-to-b from-transparent via-[#a78bfa] to-white rounded-full -rotate-[45deg] origin-top">
-                      {/* Soft natural head */}
-                      <div className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-white rounded-full blur-[1px] shadow-[0_0_12px_#ffffff,0_0_25px_#8b5cf6]" />
+                    {/* 🌟 Teal Trail */}
+                    <div className="relative w-[1.5px] h-16 bg-gradient-to-b from-transparent via-[#22d3ee] to-white rounded-full -rotate-[45deg] origin-top">
+                      <div className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-white rounded-full blur-[1px] shadow-[0_0_12px_#ffffff,0_0_25px_#06b6d4]" />
                     </div>
                   </motion.div>
 
@@ -123,9 +123,9 @@ export default function WhyMe() {
                     transition={{ duration: 4, repeat: Infinity, ease: [0.45, 0.05, 0.55, 0.95], delay: 1.5 }}
                     className="absolute top-[50%] left-[0%]"
                   >
-                    <div className="relative w-[2px] h-40 bg-gradient-to-b from-transparent via-[#8b5cf6]/80 to-[#c4b5fd] rounded-full -rotate-[45deg] origin-top shadow-[0_0_10px_#4c1d95]">
-                      {/* Soft natural head */}
-                      <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white rounded-full blur-[1.5px] shadow-[0_0_15px_#ffffff,0_0_30px_#8b5cf6,0_0_45px_#a78bfa]" />
+                    {/* 🌟 Teal Trail */}
+                    <div className="relative w-[2px] h-40 bg-gradient-to-b from-transparent via-[#06b6d4]/80 to-[#22d3ee] rounded-full -rotate-[45deg] origin-top shadow-[0_0_10px_#0e7490]">
+                      <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white rounded-full blur-[1.5px] shadow-[0_0_15px_#ffffff,0_0_30px_#06b6d4,0_0_45px_#22d3ee]" />
                     </div>
                   </motion.div>
                 </>
@@ -172,7 +172,7 @@ export default function WhyMe() {
             </motion.div>
           </div>
 
-          {/* Right: Benefits list */}
+          {/* Right: Benefits list (NOW TEAL) */}
           <motion.div
             ref={rightRef}
             initial="hidden"
@@ -202,9 +202,9 @@ export default function WhyMe() {
                     },
                   }}
                   whileHover={shouldReduceMotion ? {} : cardHover}
-                  className="group relative flex gap-5 p-6 rounded-2xl bg-[#13131e]/80 border border-[#26263a] backdrop-blur-xl overflow-hidden cursor-default"
+                  className="group relative flex gap-5 p-6 rounded-2xl bg-[#13131e]/80 border border-[#26263a] hover:border-[#06b6d4]/50 backdrop-blur-xl transition-colors duration-500 overflow-hidden cursor-default"
                 >
-                  {/* 🌟 Running Light Border (Top) */}
+                  {/* 🌟 Running Light Border (TEAL) */}
                   <div className="absolute top-0 left-0 right-0 h-[1.5px] pointer-events-none overflow-hidden opacity-40 group-hover:opacity-100 transition-opacity duration-500">
                     <motion.div
                       animate={{ backgroundPosition: ["200% center", "-200% center"] }}
@@ -214,16 +214,16 @@ export default function WhyMe() {
                         ease: "easeInOut",
                         delay: i * 1.5
                       }}
-                      className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#4c1d95_25%,#8b5cf6_45%,#ffffff_50%,#8b5cf6_55%,#4c1d95_75%,transparent_100%)] bg-[length:200%_auto]"
+                      className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,#0e7490_25%,#06b6d4_45%,#ffffff_50%,#06b6d4_55%,#0e7490_75%,transparent_100%)] bg-[length:200%_auto]"
                     />
                   </div>
 
                   <div className="shrink-0 relative z-10">
-                    {/* 🌟 Glowing Icon Container */}
-                    <div className="relative w-12 h-12 rounded-xl bg-[#1e1e2d] border border-[#8b5cf6]/30 flex items-center justify-center group-hover:bg-[#8b5cf6]/10 transition-colors duration-400 overflow-hidden">
-                      <div className="absolute inset-0 bg-[#8b5cf6]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                    {/* 🌟 Glowing Icon Container (TEAL) */}
+                    <div className="relative w-12 h-12 rounded-xl bg-[#1e1e2d] border border-[#06b6d4]/30 flex items-center justify-center group-hover:bg-[#06b6d4]/10 transition-colors duration-400 overflow-hidden">
+                      <div className="absolute inset-0 bg-[#06b6d4]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
                       <Icon
-                        className="w-5 h-5 text-[#a78bfa] relative z-10"
+                        className="w-5 h-5 text-[#06b6d4] relative z-10"
                         strokeWidth={1.75}
                       />
                     </div>

@@ -12,10 +12,25 @@ export default function VideoCard({ project, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="group relative rounded-2xl overflow-hidden cursor-pointer bg-[#13131e] border border-[#26263a] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-transparent hover:-translate-y-1.5 hover:shadow-[0_20px_60px_-15px_rgba(139,92,246,0.4)] video-card-light-border"
+      className="group relative rounded-2xl overflow-hidden cursor-pointer bg-[#13131e] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_20px_60px_-15px_rgba(6,182,212,0.4)]"
     >
+      {/* 🌟 TEAL RUNNING LIGHT BORDER (Custom for this card) */}
+      <div className="absolute inset-0 pointer-events-none rounded-2xl overflow-hidden opacity-40 group-hover:opacity-100 transition-opacity duration-500 z-20">
+        <motion.div
+          animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 rounded-2xl bg-[linear-gradient(90deg,transparent_0%,#0e7490_25%,#06b6d4_45%,#ffffff_50%,#06b6d4_55%,#0e7490_75%,transparent_100%)] bg-[length:200%_auto]"
+          style={{
+            padding: '1.5px', 
+            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+            WebkitMaskComposite: 'xor',
+            maskComposite: 'exclude',
+          }}
+        />
+      </div>
+
       {/* Media area — uniform aspect ratio for clean grid */}
-      <div className="relative overflow-hidden aspect-[4/3]">
+      <div className="relative overflow-hidden aspect-[4/3] z-10">
         <img
           src={project.thumbnail}
           alt={project.title}
@@ -26,7 +41,7 @@ export default function VideoCard({ project, onClick }) {
         {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/30 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
 
-        {/* Category badge top-left (Now with Ping Dot) */}
+        {/* Category badge top-left */}
         <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 transition-transform duration-500 group-hover:-translate-y-0.5 flex items-center gap-2">
           <span className="relative flex h-1.5 w-1.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
@@ -37,20 +52,20 @@ export default function VideoCard({ project, onClick }) {
           </span>
         </div>
 
-        {/* Type badge top-right (Now with Purple Ping Dot) */}
+        {/* Type badge top-right (Teal Ping Dot) */}
         <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 transition-transform duration-500 group-hover:-translate-y-0.5 flex items-center gap-2">
           <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#a78bfa] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#a78bfa]"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#06b6d4] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#06b6d4]"></span>
           </span>
-          <span className="text-xs font-medium text-[#a78bfa]">
+          <span className="text-xs font-medium text-[#06b6d4]">
             {project.type}
           </span>
         </div>
 
         {/* Play button center — appears on hover */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-400">
-          <div className="w-16 h-16 rounded-full bg-[#8b5cf6] flex items-center justify-center shadow-[0_0_40px_rgba(139,92,246,0.6)] transform scale-75 group-hover:scale-100 transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]">
+          <div className="w-16 h-16 rounded-full bg-[#06b6d4] flex items-center justify-center shadow-[0_0_40px_rgba(6,182,212,0.6)] transform scale-75 group-hover:scale-100 transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]">
             <svg
               className="w-6 h-6 text-white ml-1"
               fill="currentColor"
@@ -73,21 +88,21 @@ export default function VideoCard({ project, onClick }) {
       </div>
 
       {/* Bottom info bar */}
-      <div className="px-5 py-4 flex flex-col gap-3 border-t border-[#26263a]">
-        {/* 🌟 UPDATED TAGS: Stacked perfectly without being squished */}
+      <div className="px-5 py-4 flex flex-col gap-3 border-t border-[#26263a] relative z-10 bg-[#13131e]">
+        {/* Teal Tags */}
         <div className="flex flex-wrap gap-2">
           {project.tools?.slice(0, 2).map((tool) => (
             <div
               key={tool}
-              className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#1e1e2d] border border-[#8b5cf6]/20 backdrop-blur-md"
+              className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#1e1e2d] border border-[#06b6d4]/20 backdrop-blur-md"
             >
-              {/* Running Light Circle */}
+              {/* Running Light Circle (Teal) */}
               <div className="relative flex items-center justify-center w-1.5 h-1.5 shrink-0">
-                <div className="absolute inset-0 bg-[#8b5cf6] rounded-full shadow-[0_0_8px_#8b5cf6] opacity-50" />
+                <div className="absolute inset-0 bg-[#06b6d4] rounded-full shadow-[0_0_8px_#06b6d4] opacity-50" />
                 <motion.div
                   animate={{ backgroundPosition: ["200% center", "-200% center"] }}
                   transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute inset-0 rounded-full bg-[linear-gradient(90deg,transparent_0%,#8b5cf6_40%,#ffffff_50%,#8b5cf6_60%,transparent_100%)] bg-[length:200%_auto]"
+                  className="absolute inset-0 rounded-full bg-[linear-gradient(90deg,transparent_0%,#06b6d4_40%,#ffffff_50%,#06b6d4_60%,transparent_100%)] bg-[length:200%_auto]"
                 />
               </div>
               {/* Tag Text */}
