@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { assetPath } from "../lib/assetPath";
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -22,12 +21,10 @@ export default function VideoModal({ project, onClose }) {
   const hasOriginalImages = project.originalImages && project.originalImages.length > 0;
   const isVertical = project.type?.toLowerCase() === "vertical" || project.videoUrl?.includes("shorts");
 
-  // 🌟 LOGIC: Prioritize direct MP4, fallback to YouTube
   const hasDirectMp4 = project.videoUrl && (project.videoUrl.endsWith(".mp4") || project.videoUrl.endsWith(".webm"));
   const finalVideoUrl = hasDirectMp4 ? project.videoUrl : (project.youtubeUrl || project.videoUrl);
   const isDirectVideo = finalVideoUrl && (finalVideoUrl.endsWith(".mp4") || finalVideoUrl.endsWith(".webm"));
 
-  // 🌟 HELPER: Sanitize YouTube URLs
   const getCleanUrl = () => {
     if (!finalVideoUrl) return "";
     if (finalVideoUrl.includes("youtube.com/embed/")) return finalVideoUrl;
@@ -70,6 +67,7 @@ export default function VideoModal({ project, onClose }) {
         exit={{ opacity: 0, y: 20, scale: 0.95 }}
         transition={{ duration: 0.4, ease: EASE }}
         className={`relative z-10 w-full flex flex-col gap-4 cursor-auto my-auto ${
+          // 🌟 Stretch the right panel to match the video height
           isVertical ? "max-w-4xl md:flex-row md:items-stretch" : "max-w-3xl"
         }`}
       >
@@ -93,8 +91,6 @@ export default function VideoModal({ project, onClose }) {
           }`}
         >
           <div className="w-full h-full relative flex items-center justify-center bg-black">
-            
-            {/* 🌟 PRIORITY 1: DIRECT MP4 WITH POSTER AND PRELOAD */}
             {isDirectVideo ? (
               <video
                 src={finalEmbedUrl}
@@ -106,7 +102,6 @@ export default function VideoModal({ project, onClose }) {
                 className="absolute inset-0 w-full h-full object-cover"
               />
             ) : finalEmbedUrl ? (
-              /* 🌟 PRIORITY 2: CLEANED YOUTUBE IFRAME */
               <iframe
                 src={finalEmbedUrl} 
                 className="absolute inset-0 w-full h-full object-cover border-0" 
@@ -114,7 +109,6 @@ export default function VideoModal({ project, onClose }) {
                 allowFullScreen
               />
             ) : project.thumbnail ? (
-              /* 🌟 FALLBACK: THUMBNAIL */
               <div className="w-full h-full relative flex items-center justify-center p-2 bg-[#13131e]">
                 <img 
                   src={project.thumbnail} 
@@ -123,7 +117,6 @@ export default function VideoModal({ project, onClose }) {
                 />
               </div>
             ) : null}
-
           </div>
 
           {/* Running Light Border */}
@@ -144,10 +137,11 @@ export default function VideoModal({ project, onClose }) {
 
         {/* 2. TEXT INFO & IMAGES PANEL */}
         <div className={`flex flex-col bg-[#13131e]/80 border border-[#26263a] backdrop-blur-xl rounded-2xl p-5 sm:p-6 relative ${
+          // 🌟 FIX: Removed justify-between, added md:h-full so it stretches but content stays at the top
           isVertical ? "flex-1 md:h-full" : "w-full"
         }`}>
           
-          {/* Title and Tags */}
+          {/* Title and Tags (Stays at the top) */}
           <div className="mb-4">
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
               <h2 className={`font-black text-white leading-tight ${isVertical ? "text-xl sm:text-2xl" : "text-xl sm:text-2xl"}`}>
@@ -168,9 +162,10 @@ export default function VideoModal({ project, onClose }) {
             </p>
           </div>
 
-                    {/* 3. THE ORIGINAL IMAGES */}
+          {/* 3. THE ORIGINAL IMAGES (Flows naturally right below text) */}
           {hasOriginalImages && (
-            <div className="mt-auto border-t border-white/10 pt-4">
+            // 🌟 FIX: Removed mt-auto so it doesn't push to the bottom
+            <div className="border-t border-white/10 pt-4">
               <p className="text-[#a78bfa] text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#8b5cf6] animate-pulse" />
                 {project.originalLabel || "Original Products"}
@@ -178,8 +173,6 @@ export default function VideoModal({ project, onClose }) {
               
               <div className="flex flex-wrap gap-2 sm:gap-3">
                 {project.originalImages.map((img, index) => {
-                  // 🌟 THE FIX: Just use the string directly. 
-                  // projects.js already formatted it perfectly!
                   const imgSrc = img;
 
                   return (
@@ -192,7 +185,7 @@ export default function VideoModal({ project, onClose }) {
                         alt={`Original ${index + 1}`} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                         onError={(e) => {
-                          console.error("Failed image URL:", imgSrc); // Check console for exact URL
+                          console.error("Failed image URL:", imgSrc);
                           e.target.onerror = null; 
                           e.target.src = "https://placehold.co/150x150/13131e/8b5cf6?text=Missing";
                         }}

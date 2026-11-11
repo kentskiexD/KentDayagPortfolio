@@ -2,7 +2,49 @@
 import { assetPath } from "../lib/assetPath";
 
 export const projects = [
-  // ===== PRODUCT VISUALS =====
+  // ===== UGC / AI INFLUENCER (NEW) =====
+  {
+    id: 26,
+    title: "I'm NOT a Real Person… But Can You Tell I'm AI? 😳 | AI Influencer",
+    category: "ugc",
+    type: "Vertical",
+    description: "What if your favorite influencer wasn't even real? 👀 Meet Rose — an AI-generated influencer who shops, creates content, promotes products, gets brand deals, and even makes mistakes… or at least tries to! 😂",
+    tools: ["AI Influencer", "AI UGC"],
+    videoUrl: "https://www.youtube.com/embed/BYaO4QJjNno",
+    youtubeUrl: "https://youtu.be/BYaO4QJjNno",
+    thumbnail: "https://img.youtube.com/vi/BYaO4QJjNno/maxresdefault.jpg",
+    size: "large",
+  },
+  {
+    id: 27,
+    title: "Realistic AI UGC Videos for Your Brand | AI Video Creator",
+    category: "ugc",
+    type: "Vertical",
+    description: "Looking for realistic AI UGC videos for your brand? I specialize in realistic AI-generated UGC content, product promotions, and engaging video advertisements designed for Meta, TikTok, and Instagram Reels.",
+    tools: ["AI UGC", "Meta Ads", "TikTok"],
+    videoUrl: "https://www.youtube.com/embed/NNK4Ql9dlvM",
+    youtubeUrl: "https://youtu.be/NNK4Ql9dlvM",
+    thumbnail: "https://img.youtube.com/vi/NNK4Ql9dlvM/maxresdefault.jpg",
+    size: "large",
+  },
+  {
+    id: 28,
+    title: "AI UGC Clothing Ad | Realistic AI Fashion Product Showcase",
+    category: "product-visuals",
+    type: "Vertical",
+    description: "Discover the power of AI-generated UGC advertising! This AI UGC-style clothing ad showcases fashion products through a realistic AI model, natural movements, and engaging product presentation.",
+    tools: ["AI UGC", "Fashion"],
+    videoUrl: "https://www.youtube.com/embed/hEqb7lxVUR0",
+    youtubeUrl: "https://youtu.be/hEqb7lxVUR0",
+    thumbnail: "https://img.youtube.com/vi/hEqb7lxVUR0/maxresdefault.jpg",
+    originalLabel: "Original Product",
+    originalImages: [
+      assetPath("/images/originals/shirt-black.png"),
+      assetPath("/images/originals/shirt-grey.png"),
+      assetPath("/images/originals/shirt-navy.png")
+    ],
+    size: "medium",
+  },
   {
     id: 24,
     title: "Casual Men’s Outfit Idea | Outing Fit",
@@ -14,13 +56,13 @@ export const projects = [
     youtubeUrl: "https://youtu.be/V-UQhQ7fgKs",
     thumbnail: "https://img.youtube.com/vi/V-UQhQ7fgKs/maxresdefault.jpg",
     originalImages: [
-      assetPath("/images/originals/mens-shirt.webp"),  // ✅ Changed to .webp
-      assetPath("/images/originals/mens-shorts.webp") // ✅ Changed to .webp
+      assetPath("/images/originals/mens-shirt.webp"),
+      assetPath("/images/originals/mens-shorts.webp")
     ],
     originalLabel: "Original Products",
     size: "medium",
   },
-    {
+  {
     id: 25,
     title: "Burgundy Floral Puff Sleeve Mini Dress",
     category: "product-visuals",
@@ -30,7 +72,6 @@ export const projects = [
     videoUrl: "https://www.youtube.com/embed/rXZ5BKi_2iQ",
     youtubeUrl: "https://www.youtube.com/shorts/rXZ5BKi_2iQ",
     thumbnail: "https://img.youtube.com/vi/rXZ5BKi_2iQ/maxresdefault.jpg",
-    // 🌟 originalImages removed completely
     size: "medium",
   },
   {
@@ -38,8 +79,7 @@ export const projects = [
     title: "5 Dresses That Make Every Walk Look Stylish",
     category: "product-visuals",
     type: "Vertical",
-    description:
-      "Fashion reel featuring 5 AI-generated dresses designed for everyday style — short-form content for social platforms.",
+    description: "Fashion reel featuring 5 AI-generated dresses designed for everyday style — short-form content for social platforms.",
     tools: ["AI Video", "Fashion"],
     videoUrl: assetPath("/videos/dresses.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/St3j3HCCOCA",
@@ -59,8 +99,7 @@ export const projects = [
     title: "This Polo Shirt Makes Casual Style Look So Easy",
     category: "product-visuals",
     type: "Vertical",
-    description:
-      "AI-generated short-form video showcasing a polo shirt for casual fashion content — built for Shorts, Reels, and TikTok.",
+    description: "AI-generated short-form video showcasing a polo shirt for casual fashion content — built for Shorts, Reels, and TikTok.",
     tools: ["AI Video", "Shorts"],
     videoUrl: assetPath("/videos/polo-shirt.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/C_BUS3_b1mk",
@@ -74,8 +113,7 @@ export const projects = [
     title: "What Happens to Your Brain While You Sleep?",
     category: "ai-video",
     type: "Vertical",
-    description:
-      "Short-form AI animated video exploring what happens inside the brain during sleep — educational and engaging.",
+    description: "Short-form AI animated video exploring what happens inside the brain during sleep — educational and engaging.",
     tools: ["AI Video", "Storytelling"],
     videoUrl: assetPath("/videos/brain-sleep.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/bhA9l6cC028",
@@ -87,8 +125,7 @@ export const projects = [
     title: "The Crispiest Fried Chicken — Golden, Crunchy & Delicious!",
     category: "social-content",
     type: "Vertical",
-    description:
-      "Mouth-watering AI-generated food video — golden, crispy, and built for social media engagement.",
+    description: "Mouth-watering AI-generated food video — golden, crispy, and built for social media engagement.",
     tools: ["AI Video", "Food"],
     videoUrl: assetPath("/videos/fried-chicken.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/UvJLlqAHnYI",
@@ -100,8 +137,7 @@ export const projects = [
     title: "The Last Message",
     category: "ai-video",
     type: "Vertical",
-    description:
-      "Short-form AI storytelling — a cinematic narrative scene built entirely with AI-generated visuals.",
+    description: "Short-form AI storytelling — a cinematic narrative scene built entirely with AI-generated visuals.",
     tools: ["AI Video", "Storytelling"],
     videoUrl: assetPath("/videos/last-message.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/uzI0N8bKZsg",
@@ -115,8 +151,7 @@ export const projects = [
     title: "3 Cheapest States to Buy Real Estate in 2026",
     category: "ai-video",
     type: "Landscape",
-    description:
-      "An AI-generated breakdown of three under-the-radar real estate markets — West Virginia, Ohio, and Mississippi — where buyers can still find affordable homes.",
+    description: "An AI-generated breakdown of three under-the-radar real estate markets — West Virginia, Ohio, and Mississippi — where buyers can still find affordable homes.",
     tools: ["AI Video", "Education"],
     videoUrl: "https://www.youtube.com/embed/ch6rmTuH5KE",
     youtubeUrl: "https://youtu.be/ch6rmTuH5KE",
@@ -128,8 +163,7 @@ export const projects = [
     title: "How the First Successful Airplane Was Built",
     category: "ai-video",
     type: "Landscape",
-    description:
-      "A short AI-animated history of the Wright brothers' breakthrough — from glider experiments to the first powered flight at Kitty Hawk in 1903.",
+    description: "A short AI-animated history of the Wright brothers' breakthrough — from glider experiments to the first powered flight at Kitty Hawk in 1903.",
     tools: ["AI Video", "History"],
     videoUrl: "https://www.youtube.com/embed/JxPf-vBKUcA",
     youtubeUrl: "https://youtu.be/JxPf-vBKUcA",
@@ -143,8 +177,7 @@ export const projects = [
     title: "The Easiest Mango Float You'll Ever Make!",
     category: "social-content",
     type: "Vertical",
-    description:
-      "Filipino-style no-bake Mango Float made with ripe mangoes, graham crackers, cream, and condensed milk — a quick, creamy dessert for any occasion.",
+    description: "Filipino-style no-bake Mango Float made with ripe mangoes, graham crackers, cream, and condensed milk — a quick, creamy dessert for any occasion.",
     tools: ["AI Video", "Food"],
     videoUrl: assetPath("/videos/mango-float.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/RfpjdgTGLzI",
@@ -156,8 +189,7 @@ export const projects = [
     title: "She Saved a Dragon",
     category: "ai-video",
     type: "Vertical",
-    description:
-      "A cinematic Chinese fantasy short — a woman saves a wounded stranger, only to discover he is a legendary celestial dragon.",
+    description: "A cinematic Chinese fantasy short — a woman saves a wounded stranger, only to discover he is a legendary celestial dragon.",
     tools: ["AI Video", "Storytelling"],
     videoUrl: assetPath("/videos/she-saved-a-dragon.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/yVDzz0j5Uu4",
@@ -169,8 +201,7 @@ export const projects = [
     title: "This Perfume Smells Like Luxury",
     category: "product-visuals",
     type: "Vertical",
-    description:
-      "A cinematic AI-generated perfume commercial inspired by elegance, mystery, and timeless sophistication.",
+    description: "A cinematic AI-generated perfume commercial inspired by elegance, mystery, and timeless sophistication.",
     tools: ["AI Video", "Product"],
     videoUrl: assetPath("/videos/perfume-luxury.mp4"),
     youtubeUrl: "https://www.youtube.com/shorts/sFCFNPqowJI",
@@ -222,8 +253,7 @@ export const projects = [
     title: "Ayskie — AI Influencer Character Demo",
     category: "ugc",
     type: "Vertical",
-    description:
-      "A photorealistic AI influencer character created with generative AI — showcasing AI character consistency, realistic video generation, voice, and lip-sync.",
+    description: "A photorealistic AI influencer character created with generative AI — showcasing AI character consistency, realistic video generation, voice, and lip-sync.",
     tools: ["AI Character", "Generative AI"],
     videoUrl: "https://www.youtube.com/embed/SE4XxARWvEE",
     youtubeUrl: "https://www.youtube.com/shorts/SE4XxARWvEE",
@@ -235,8 +265,7 @@ export const projects = [
     title: "Who Even Are You?",
     category: "ugc",
     type: "Vertical",
-    description:
-      "AI influencer video showcasing character consistency, realistic facial animation, lip-sync, and AI voice generation — same character across every scene.",
+    description: "AI influencer video showcasing character consistency, realistic facial animation, lip-sync, and AI voice generation — same character across every scene.",
     tools: ["AI Character", "Lip-Sync"],
     videoUrl: "https://www.youtube.com/embed/CdZdqfHI2Go",
     youtubeUrl: "https://www.youtube.com/shorts/CdZdqfHI2Go",
@@ -248,8 +277,7 @@ export const projects = [
     title: "My Simple Everyday Makeup Routine",
     category: "ugc",
     type: "Vertical",
-    description:
-      "GRWM beauty content featuring Ayskie, an AI influencer — natural makeup routine with realistic AI character consistency, video generation, and lip-sync.",
+    description: "GRWM beauty content featuring Ayskie, an AI influencer — natural makeup routine with realistic AI character consistency, video generation, and lip-sync.",
     tools: ["AI Influencer", "Beauty"],
     videoUrl: "https://www.youtube.com/embed/u0i9tp5Jx8c",
     youtubeUrl: "https://www.youtube.com/shorts/u0i9tp5Jx8c",
@@ -261,8 +289,7 @@ export const projects = [
     title: "Garlic Butter Shrimp With Me",
     category: "ugc",
     type: "Vertical",
-    description:
-      "AI-generated cooking content — a POV-style garlic butter shrimp recipe with an AI influencer host. Authentic UGC feel, built for TikTok and Reels.",
+    description: "AI-generated cooking content — a POV-style garlic butter shrimp recipe with an AI influencer host. Authentic UGC feel, built for TikTok and Reels.",
     tools: ["AI Influencer", "Food"],
     videoUrl: "https://www.youtube.com/embed/S5PjkNp7Ga4",
     youtubeUrl: "https://www.youtube.com/shorts/S5PjkNp7Ga4",
@@ -276,8 +303,7 @@ export const projects = [
     title: "The Shawarma You'll Crave After One Bite",
     category: "social-content",
     type: "Vertical",
-    description:
-      "A mouth-watering AI-generated shawarma commercial — juicy grilled chicken, toasted pita, and creamy garlic sauce. Built for social media ads.",
+    description: "A mouth-watering AI-generated shawarma commercial — juicy grilled chicken, toasted pita, and creamy garlic sauce. Built for social media ads.",
     tools: ["AI Video", "Food"],
     videoUrl: "https://www.youtube.com/embed/m86KRubwwaw",
     youtubeUrl: "https://www.youtube.com/shorts/m86KRubwwaw",
@@ -289,8 +315,7 @@ export const projects = [
     title: "This Smash Burger Looks TOO Good to Resist",
     category: "social-content",
     type: "Vertical",
-    description:
-      "A cinematic AI-generated smash burger commercial — crispy caramelized beef, melted cheese, and a toasted brioche bun. Built for food ads and Reels.",
+    description: "A cinematic AI-generated smash burger commercial — crispy caramelized beef, melted cheese, and a toasted brioche bun. Built for food ads and Reels.",
     tools: ["AI Video", "Food"],
     videoUrl: "https://www.youtube.com/embed/6bTI9wIH-rU",
     youtubeUrl: "https://www.youtube.com/shorts/6bTI9wIH-rU",
@@ -304,8 +329,7 @@ export const projects = [
     title: "Okay… But Why Does This Look Kinda Cute?",
     category: "product-visuals",
     type: "Vertical",
-    description:
-      "A playful Pikachu-inspired fashion look — cozy meets bold. AI-generated UGC fashion content for TikTok.",
+    description: "A playful Pikachu-inspired fashion look — cozy meets bold. AI-generated UGC fashion content for TikTok.",
     tools: ["AI Video", "Fashion"],
     videoUrl: assetPath("/videos/pikachu.mp4"),
     tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689357112589274388",
@@ -317,8 +341,7 @@ export const projects = [
     title: "Mew, But Make It Fashion 💗",
     category: "product-visuals",
     type: "Vertical",
-    description:
-      "A soft pink Mew-inspired outfit — cute, on-trend, and UGC-ready. Would you wear this?",
+    description: "A soft pink Mew-inspired outfit — cute, on-trend, and UGC-ready. Would you wear this?",
     tools: ["AI Video", "Fashion"],
     videoUrl: assetPath("/videos/mew.mp4"),
     tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689379837768764692",
@@ -330,23 +353,19 @@ export const projects = [
     title: "A Cute Plaid Moment 🤎",
     category: "product-visuals",
     type: "Vertical",
-    description:
-      "Cozy, classy, and effortless — a plaid dress UGC fashion short with a warm, on-trend vibe.",
+    description: "Cozy, classy, and effortless — a plaid dress UGC fashion short with a warm, on-trend vibe.",
     tools: ["AI Video", "Fashion"],
     videoUrl: assetPath("/videos/plaid.mp4"),
     tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689383005906865428",
     thumbnail: assetPath("/images/ugc/plaid.JPG"),
     size: "medium",
   },
-
-  // ===== FASHION PRODUCT VISUALS (TikTok) =====
   {
     id: 20,
     title: "Comfy, Cute & Effortlessly Stylish 💙",
     category: "product-visuals",
     type: "Vertical",
-    description:
-      "Cozy pajama set UGC short — soft, relaxed, and aesthetic. Perfect for sleepwear or lounge content.",
+    description: "Cozy pajama set UGC short — soft, relaxed, and aesthetic. Perfect for sleepwear or lounge content.",
     tools: ["AI UGC", "Loungewear"],
     videoUrl: assetPath("/videos/pajama.mp4"),
     tiktokUrl: "https://www.tiktok.com/@ayskie.ai/video/7689387765900889364",
@@ -354,3 +373,8 @@ export const projects = [
     size: "medium",
   },
 ];
+
+// 🌟 THE BILLBOARD FILTER: Only picks the 6 videos you want for the carousel
+export const billboardProjects = projects.filter((project) => 
+  [28, 26, 27, 22, 21, 24].includes(project.id)  // 🌟 Changed 4 to 24
+);

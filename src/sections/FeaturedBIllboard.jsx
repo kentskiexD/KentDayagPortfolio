@@ -1,38 +1,121 @@
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-// 🌟 Imported MessageCircle for Claude
 import { Play, Video, MessageSquare, MessageCircle, Scissors } from "lucide-react";
+// 🌟 IMPORT THIS:
+import { assetPath } from "../lib/assetPath";
 
 const EASE = [0.22, 1, 0.36, 1];
 
 const tools = [
   { name: "Google Flow", icon: Video, color: "text-blue-400" },
   { name: "ChatGPT", icon: MessageSquare, color: "text-green-400" },
-  // 🌟 Changed to MessageCircle and kept the orange color
-  { name: "Claude", icon: MessageSquare, color: "text-orange-400" },
+  { name: "Claude", icon: MessageCircle, color: "text-orange-400" },
   { name: "CapCut", icon: Scissors, color: "text-white" },
 ];
 
-export default function FeaturedBillboard({ projects, onPlay }) {
+const HARDCODED_BILLBOARD_VIDEOS = [
+  {
+    id: 28,
+    title: "AI UGC Clothing Ad | Realistic AI Fashion Product Showcase",
+    category: "product-visuals",
+    type: "Vertical",
+    description: "Discover the power of AI-generated UGC advertising!",
+    tools: ["AI UGC", "Fashion"],
+    videoUrl: "https://www.youtube.com/embed/hEqb7lxVUR0",
+    youtubeUrl: "https://youtu.be/hEqb7lxVUR0",
+    thumbnail: "https://img.youtube.com/vi/hEqb7lxVUR0/maxresdefault.jpg",
+    // 🌟 FIXED: Added assetPath
+    originalImages: [
+      assetPath("/images/originals/shirt-black.png"),
+      assetPath("/images/originals/shirt-grey.png"),
+      assetPath("/images/originals/shirt-navy.png")
+    ],
+    originalLabel: "Original Product",
+  },
+  {
+    id: 26,
+    title: "I'm NOT a Real Person… But Can You Tell I'm AI? 😳 | AI Influencer",
+    category: "ugc",
+    type: "Vertical",
+    description: "What if your favorite influencer wasn't even real?",
+    tools: ["AI Influencer", "AI UGC"],
+    videoUrl: "https://www.youtube.com/embed/BYaO4QJjNno",
+    youtubeUrl: "https://youtu.be/BYaO4QJjNno",
+    thumbnail: "https://img.youtube.com/vi/BYaO4QJjNno/maxresdefault.jpg",
+  },
+  {
+    id: 27,
+    title: "Realistic AI UGC Videos for Your Brand | AI Video Creator",
+    category: "ugc",
+    type: "Vertical",
+    description: "Looking for realistic AI UGC videos for your brand?",
+    tools: ["AI UGC", "Meta Ads"],
+    videoUrl: "https://www.youtube.com/embed/NNK4Ql9dlvM",
+    youtubeUrl: "https://youtu.be/NNK4Ql9dlvM",
+    thumbnail: "https://img.youtube.com/vi/NNK4Ql9dlvM/maxresdefault.jpg",
+  },
+  {
+    id: 22,
+    title: "3 Warning Signs of High Blood Sugar",
+    category: "ugc",
+    type: "Vertical",
+    description: "Are you always thirsty, feeling unusually tired, or experiencing blurry vision?",
+    tools: ["AI UGC", "Health"],
+    videoUrl: "https://www.youtube.com/embed/K5S-tCdCDrk",
+    youtubeUrl: "https://www.youtube.com/shorts/K5S-tCdCDrk",
+    thumbnail: "https://img.youtube.com/vi/K5S-tCdCDrk/maxresdefault.jpg",
+  },
+  {
+    id: 21,
+    title: "Why Ginger Tea is a Popular Drink for Wellness",
+    category: "ugc",
+    type: "Vertical",
+    description: "Have you ever wondered why ginger tea is a popular drink for wellness?",
+    tools: ["AI UGC", "Health"],
+    videoUrl: "https://www.youtube.com/embed/cvmeNG4Yxj4",
+    youtubeUrl: "https://www.youtube.com/shorts/cvmeNG4Yxj4",
+    thumbnail: "https://img.youtube.com/vi/cvmeNG4Yxj4/maxresdefault.jpg",
+  },
+  {
+    id: 24,
+    title: "Casual Men’s Outfit Idea | Outing Fit",
+    category: "product-visuals",
+    type: "Vertical",
+    description: "Easy, comfortable fit for a day out.",
+    tools: ["AI Video", "Fashion"],
+    videoUrl: "https://www.youtube.com/embed/V-UQhQ7fgKs",
+    youtubeUrl: "https://youtu.be/V-UQhQ7fgKs",
+    thumbnail: "https://img.youtube.com/vi/V-UQhQ7fgKs/maxresdefault.jpg",
+    // 🌟 FIXED: Added assetPath
+    originalImages: [
+      assetPath("/images/originals/mens-shirt.webp"),
+      assetPath("/images/originals/mens-shorts.webp")
+    ],
+    originalLabel: "Original Products",
+  }
+];
+
+export default function FeaturedBillboard({ onPlay }) {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
 
-  if (!projects || projects.length === 0) return null;
-
-  const duplicatedProjects = [...projects, ...projects, ...projects, ...projects];
+  const duplicatedProjects = [
+    ...HARDCODED_BILLBOARD_VIDEOS, 
+    ...HARDCODED_BILLBOARD_VIDEOS, 
+    ...HARDCODED_BILLBOARD_VIDEOS, 
+    ...HARDCODED_BILLBOARD_VIDEOS
+  ];
 
   return (
     <section 
       ref={sectionRef} 
       className="relative z-20 py-20 bg-[#0a0a0f] overflow-hidden border-y border-white/5"
     >
-      {/* Background subtle glow */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
         <div className="w-[800px] h-[300px] bg-[#8b5cf6]/5 rounded-full blur-[100px]" />
       </div>
 
-      {/* Header */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
@@ -40,7 +123,6 @@ export default function FeaturedBillboard({ projects, onPlay }) {
           transition={{ duration: 0.7, ease: EASE }}
           className="text-center"
         >
-          {/* 🌟 THE ROTATING DIAMOND */}
           <span className="text-xs uppercase tracking-widest text-[#8b5cf6] font-semibold flex items-center justify-center gap-3">
             <motion.div
               animate={shouldReduceMotion ? {} : { rotate: [45, 405] }}
@@ -65,9 +147,7 @@ export default function FeaturedBillboard({ projects, onPlay }) {
         </motion.div>
       </div>
 
-      {/* 🌟 THE MARQUEE TRACK */}
       <div className="relative w-full overflow-hidden flex py-6">
-        
         <div className="absolute top-0 left-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#0a0a0f] to-transparent z-20 pointer-events-none" />
         <div className="absolute top-0 right-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#0a0a0f] to-transparent z-20 pointer-events-none" />
 
@@ -106,7 +186,6 @@ export default function FeaturedBillboard({ projects, onPlay }) {
                   </h3>
                 </div>
 
-                {/* 🌟 CYAN / TEAL RUNNING LIGHT BORDER */}
                 <div className="absolute inset-0 pointer-events-none rounded-2xl overflow-hidden opacity-70 group-hover:opacity-100 transition-opacity duration-500 z-20">
                   <motion.div
                     animate={shouldReduceMotion ? {} : { backgroundPosition: ["200% center", "-200% center"] }}
@@ -126,7 +205,6 @@ export default function FeaturedBillboard({ projects, onPlay }) {
         </div>
       </div>
 
-      {/* Tools Grid */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-16 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
@@ -158,7 +236,6 @@ export default function FeaturedBillboard({ projects, onPlay }) {
           </div>
         </motion.div>
       </div>
-
     </section>
   );
 }
